@@ -1,0 +1,911 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import StarRating from '../../../components/StarRating.astro';
+import CommentForm from '../../../components/CommentForm.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "Article",
+  "headline": "تحذير من شركة التداول WRPro - منصة تداول احتيالية",
+  "description": "تحذير شامل من شركة التداول WRPro التي تستخدم أساليب احتيالية لسرقة أموال المتداولين مع وعود كاذبة بأرباح مرتفعة",
+  "author": {
+    "@type": "Organization",
+    "name": "دليل الخليج"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "دليل الخليج",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://khalijtrust.com/img/logo4.png"
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2024-01-15",
+  "image": "https://khalijtrust.com/img/WrPro.JPG",
+  "url": "https://khalijtrust.com/warnings/wrpro-scam/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://khalijtrust.com/warnings/wrpro-scam/"
+  }
+};
+
+const warningDetails = {
+  companyName: "شركة التداول WRPro",
+  englishName: "WRPro Trading",
+  type: "منصة تداول احتيالية",
+  location: "غير محدد",
+  riskLevel: "خطر شديد",
+  reportedAmount: "200,000 دولار (حالة واحدة)",
+  reportsCount: 67,
+  status: "نشطة - تجنب التعامل معها",
+  lastUpdated: "2024-01-15"
+};
+
+const scamSteps = [
+  {
+    step: "الإغراء بالوعود الكاذبة",
+    description: "تدعي الشركة توفير بيئة تداول آمنة وعوائد مرتفعة مع إعلانات مضللة"
+  },
+  {
+    step: "إظهار أرباح وهمية",
+    description: "تعرض أرباحاً وهمية لحث المستثمرين على زيادة الإيداعات"
+  },
+  {
+    step: "طلب المزيد من الإيداعات",
+    description: "تطلب إيداعات إضافية بحجج مثل ضرائب التداول ورسوم السحب"
+  },
+  {
+    step: "المماطلة في السحب",
+    description: "تضع عراقيل أمام عمليات السحب وتمنع المستثمرين من استرداد أموالهم"
+  },
+  {
+    step: "الاختفاء التام",
+    description: "بعد استنزاف الأموال، تتوقف عن التواصل وتختفي بأموال الضحايا"
+  }
+];
+
+const warningSignsTrading = [
+  {
+    title: "ترخيص ضعيف أو غير موثوق",
+    description: "عدم وجود تراخيص من هيئات رقابية معترف بها دولياً",
+    icon: "📜"
+  },
+  {
+    title: "وعود بعوائد غير واقعية",
+    description: "ادعاءات بأرباح مضمونة أو عوائد خيالية بدون مخاطر",
+    icon: "💰"
+  },
+  {
+    title: "إلحاح على الإيداع المتكرر",
+    description: "ضغط مستمر لإيداع المزيد من الأموال بحجج مختلفة",
+    icon: "📞"
+  },
+  {
+    title: "التأخير في عمليات السحب",
+    description: "وضع عراقيل ومبررات واهية لمنع سحب الأموال",
+    icon: "⏰"
+  },
+  {
+    title: "غياب الشفافية",
+    description: "عدم وضوح معلومات الشركة أو مقرها أو فريق العمل",
+    icon: "❓"
+  }
+];
+
+const protectionSteps = [
+  {
+    title: "التحقق من التراخيص",
+    description: "تأكد من أن الشركة مرخصة من هيئات رقابية موثوقة مثل FCA أو CySEC",
+    icon: "🔍"
+  },
+  {
+    title: "عدم تصديق الوعود المبالغ فيها",
+    description: "كن حذراً من أي وعود بأرباح مضمونة أو عوائد خيالية",
+    icon: "⚠️"
+  },
+  {
+    title: "قراءة تقييمات العملاء",
+    description: "ابحث عن تجارب العملاء الحقيقية على مواقع مستقلة",
+    icon: "📖"
+  },
+  {
+    title: "اختبار عمليات السحب",
+    description: "جرب سحب مبلغ صغير قبل إيداع مبالغ كبيرة",
+    icon: "💳"
+  },
+  {
+    title: "تجنب مشاركة المعلومات الحساسة",
+    description: "لا تشارك معلوماتك البنكية مع منصات غير موثوقة",
+    icon: "🔒"
+  }
+];
+---
+
+<Layout 
+  title="تحذير من شركة التداول WRPro - منصة تداول احتيالية"
+  description="تحذير شامل من شركة التداول WRPro التي تستخدم أساليب احتيالية لسرقة أموال المتداولين مع وعود كاذبة بأرباح مرتفعة وبيئة تداول آمنة"
+  keywords="WRPro، شركة تداول احتيالية، نصب تداول، فوركس احتيالي، منصة وهمية، احتيال مالي"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Warning Header -->
+    <section class="warning-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="warning-badge">
+            <span class="badge-icon">⚠️</span>
+            <span class="badge-text">تحذير عاجل</span>
+          </div>
+          
+          <h1 class="warning-title">
+            تحذير من شركة التداول WRPro
+            <span class="english-name">WRPro Trading Platform</span>
+          </h1>
+          
+          <div class="company-image">
+            <img src="https://khalijtrust.com/img/WrPro.JPG" alt="شركة التداول WRPro" class="company-logo" />
+          </div>
+          
+          <div class="warning-summary">
+            <p class="summary-text">
+              منصة تداول احتيالية تستخدم أساليب ذكية لخداع المتداولين من خلال وعود كاذبة بأرباح مرتفعة 
+              وبيئة تداول آمنة، ثم تسرق أموالهم عبر المماطلة في السحب والاختفاء التام.
+            </p>
+          </div>
+          
+          <div class="warning-stats">
+            <div class="stat-item danger">
+              <StarRating rating={0} size="large" />
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{warningDetails.reportsCount}</span>
+              <span class="stat-label">بلاغ احتيال</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">$200K</span>
+              <span class="stat-label">أكبر خسارة مبلغة</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Company Details -->
+    <section class="company-details">
+      <div class="container">
+        <div class="details-grid">
+          <div class="detail-card">
+            <h3>معلومات الشركة</h3>
+            <div class="detail-list">
+              <div class="detail-item">
+                <span class="detail-label">الاسم:</span>
+                <span class="detail-value">{warningDetails.companyName}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الاسم الإنجليزي:</span>
+                <span class="detail-value">{warningDetails.englishName}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">النوع:</span>
+                <span class="detail-value">{warningDetails.type}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الموقع:</span>
+                <span class="detail-value">{warningDetails.location}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الحالة:</span>
+                <span class="detail-value danger">{warningDetails.status}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="detail-card">
+            <h3>إحصائيات التحذير</h3>
+            <div class="detail-list">
+              <div class="detail-item">
+                <span class="detail-label">عدد البلاغات:</span>
+                <span class="detail-value">{warningDetails.reportsCount}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">مستوى الخطر:</span>
+                <span class="detail-value danger">{warningDetails.riskLevel}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">المبلغ المبلغ عنه:</span>
+                <span class="detail-value danger">{warningDetails.reportedAmount}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scam Method -->
+    <section class="scam-method">
+      <div class="container">
+        <div class="section-header">
+          <h2>كيف يتم النصب على المستثمرين؟</h2>
+          <p>فهم الأسلوب الاحتيالي المستخدم من قبل WRPro</p>
+        </div>
+        
+        <div class="method-timeline">
+          {scamSteps.map((step, index) => (
+            <div class="timeline-item">
+              <div class="timeline-number">{index + 1}</div>
+              <div class="timeline-content">
+                <h4>{step.step}</h4>
+                <p>{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Victim Case Study -->
+    <section class="case-study">
+      <div class="container">
+        <div class="section-header">
+          <h2>قصة ضحية حقيقية</h2>
+          <p>تجربة مؤلمة مع شركة WRPro</p>
+        </div>
+        
+        <div class="case-card">
+          <div class="case-header">
+            <div class="victim-info">
+              <h3>الضحية: مستثمر من الخليج</h3>
+              <div class="loss-amount">الخسارة: 200,000 دولار</div>
+            </div>
+          </div>
+          
+          <div class="case-content">
+            <div class="case-timeline">
+              <div class="case-step">
+                <div class="step-icon">📞</div>
+                <div class="step-text">
+                  <h4>البداية</h4>
+                  <p>تم التواصل معه عبر إعلانات مضللة تدعي وجود فرص استثمارية مربحة</p>
+                </div>
+              </div>
+              
+              <div class="case-step">
+                <div class="step-icon">💰</div>
+                <div class="step-text">
+                  <h4>الإيداعات المتزايدة</h4>
+                  <p>تم إقناعه بإيداع مبالغ متزايدة على مدار أشهر مع وعود بأرباح كبيرة</p>
+                </div>
+              </div>
+              
+              <div class="case-step">
+                <div class="step-icon">📈</div>
+                <div class="step-text">
+                  <h4>الأرباح الوهمية</h4>
+                  <p>أظهرت الشركة أرباحاً وهمية في حسابه لتشجيعه على المزيد من الاستثمار</p>
+                </div>
+              </div>
+              
+              <div class="case-step">
+                <div class="step-icon">🚫</div>
+                <div class="step-text">
+                  <h4>منع السحب</h4>
+                  <p>عند طلب السحب، بدأت الشركة بالمماطلة ووضع العراقيل</p>
+                </div>
+              </div>
+              
+              <div class="case-step">
+                <div class="step-icon">👻</div>
+                <div class="step-text">
+                  <h4>الاختفاء</h4>
+                  <p>توقفت الشركة عن الرد تماماً واختفت بجميع أمواله</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Warning Signs -->
+    <section class="warning-signs">
+      <div class="container">
+        <div class="section-header">
+          <h2>علامات التحذير من شركات التداول الوهمية</h2>
+          <p>كيف تتعرف على الشركات الاحتيالية قبل فوات الأوان</p>
+        </div>
+        
+        <div class="signs-grid">
+          {warningSignsTrading.map(sign => (
+            <div class="sign-card">
+              <div class="sign-icon">{sign.icon}</div>
+              <h4>{sign.title}</h4>
+              <p>{sign.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Protection Guide -->
+    <section class="protection-guide">
+      <div class="container">
+        <div class="section-header">
+          <h2>كيف تحمي نفسك من شركات التداول النصابة؟</h2>
+          <p>خطوات عملية لضمان أمان استثماراتك</p>
+        </div>
+        
+        <div class="protection-grid">
+          {protectionSteps.map(step => (
+            <div class="protection-card">
+              <div class="protection-icon">{step.icon}</div>
+              <h4>{step.title}</h4>
+              <p>{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Recovery Section -->
+    <section class="recovery-section">
+      <div class="container">
+        <div class="recovery-card">
+          <div class="recovery-icon">⚖️</div>
+          <div class="recovery-content">
+            <h3>تعرضت للنصب من WRPro أو شركة مشابهة؟</h3>
+            <p>لا تيأس! يمكن استرجاع أموالك من خلال الإجراءات القانونية المناسبة</p>
+            
+            <div class="recovery-steps">
+              <div class="recovery-step">
+                <span class="step-number">1</span>
+                <span class="step-text">تواصل مع بنكك لطلب استرداد (Chargeback)</span>
+              </div>
+              <div class="recovery-step">
+                <span class="step-number">2</span>
+                <span class="step-text">قدم شكوى للهيئات الرقابية المختصة</span>
+              </div>
+              <div class="recovery-step">
+                <span class="step-number">3</span>
+                <span class="step-text">استعن بمحامي متخصص في قضايا الاحتيال المالي</span>
+              </div>
+            </div>
+            
+            <div class="recovery-actions">
+              <a href="/lawyers/" class="btn btn-primary">
+                ابحث عن محامي متخصص
+              </a>
+              <a href="/report/" class="btn btn-outline">
+                بلغ عن الاحتيال
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <JournalistByline articleSlug="wrpro-scam" />
+        <CommentForm postId="wrpro-warning" postType="warning" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .warning-header {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .warning-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .warning-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .badge-text {
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .warning-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .english-name {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--font-weight-normal);
+  }
+
+  .company-image {
+    margin: var(--space-8) 0;
+  }
+
+  .company-logo {
+    max-width: 300px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 4px solid white;
+  }
+
+  .warning-summary {
+    max-width: 800px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .summary-text {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .warning-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-item.danger {
+    border: 2px solid var(--color-secondary-light);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .company-details {
+    padding: var(--space-16) 0;
+    background: var(--color-neutral-50);
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .detail-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid #dc2626;
+  }
+
+  .detail-card h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-6);
+    font-size: 1.5rem;
+  }
+
+  .detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-md);
+  }
+
+  .detail-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-600);
+  }
+
+  .detail-value {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+  }
+
+  .detail-value.danger {
+    color: #dc2626;
+  }
+
+  .scam-method {
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .method-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+    padding: var(--space-6);
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid #dc2626;
+  }
+
+  .timeline-number {
+    width: 50px;
+    height: 50px;
+    background: #dc2626;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 0;
+  }
+
+  .timeline-content h4 {
+    color: #dc2626;
+    margin-bottom: var(--space-3);
+    font-size: 1.25rem;
+  }
+
+  .timeline-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .case-study {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .case-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    border: 2px solid var(--color-warning);
+  }
+
+  .case-header {
+    background: linear-gradient(135deg, var(--color-warning) 0%, #d97706 100%);
+    color: white;
+    padding: var(--space-8);
+    text-align: center;
+  }
+
+  .victim-info h3 {
+    color: white;
+    margin-bottom: var(--space-4);
+    font-size: 1.5rem;
+  }
+
+  .loss-amount {
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-bold);
+    display: inline-block;
+  }
+
+  .case-content {
+    padding: var(--space-8);
+  }
+
+  .case-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .case-step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-lg);
+  }
+
+  .step-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: var(--space-1);
+  }
+
+  .step-text h4 {
+    color: var(--color-neutral-900);
+    margin-bottom: var(--space-2);
+    font-size: 1.125rem;
+  }
+
+  .step-text p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .warning-signs {
+    padding: var(--space-20) 0;
+  }
+
+  .signs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .sign-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid #dc2626;
+  }
+
+  .sign-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .sign-card h4 {
+    color: #dc2626;
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .sign-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .protection-guide {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .protection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .protection-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-success);
+  }
+
+  .protection-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .protection-card h4 {
+    color: var(--color-success);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .protection-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .recovery-section {
+    padding: var(--space-20) 0;
+  }
+
+  .recovery-card {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .recovery-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .recovery-content h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .recovery-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .recovery-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .recovery-step {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .step-number {
+    width: 30px;
+    height: 30px;
+    background: white;
+    color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 0;
+  }
+
+  .step-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .recovery-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .recovery-section .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .recovery-section .btn-outline:hover {
+    background: white;
+    color: var(--color-primary);
+  }
+
+  .comments-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 768px) {
+    .warning-title {
+      font-size: 2rem;
+    }
+
+    .english-name {
+      font-size: 1.125rem;
+    }
+
+    .warning-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .details-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline-item {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .recovery-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .recovery-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

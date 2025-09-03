@@ -1,0 +1,989 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import StarRating from '../../components/StarRating.astro';
+
+const schemaData = {
+  "@type": "CollectionPage",
+  "name": "محامون موثوقون - استرجاع الأموال",
+  "description": "قائمة بالمحامين الموثوقين المتخصصين في قضايا الاحتيال واسترجاع الأموال في منطقة الخليج",
+  "url": "https://khalijtrust.com/lawyers/"
+};
+
+// Sample lawyers data
+const lawyers = [
+  {
+    id: 1,
+    name: "مكتب Trust Law",
+    rating: 5,
+    specialization: "استرجاع أموال الفوركس والاستثمارات الاحتيالية",
+    experience: "23 سنة",
+    successRate: "98%",
+    location: "لندن، المملكة المتحدة",
+    languages: ["العربية", "الإنجليزية"],
+    fees: {
+      consultation: "مجانية",
+      courtFiling: "500-1500 دولار (رسوم فتح ملف المحكمة)",
+      success: "5% من المبلغ المسترجع"
+    },
+    specialties: ["استرجاع أموال الفوركس", "الاستثمارات الاحتيالية", "التقاضي الدولي", "قانون الشركات"],
+    casesWon: 500,
+    amountRecovered: "10+ مليون جنيه إسترليني",
+    slug: "trust-law",
+    verified: true,
+    available: true,
+    featured: true,
+    description: "تأسست Trust Law في عام 2001 وهي واحدة من أكثر شركات المحاماة احتراماً في لندن. متخصصة في استرجاع أموال الفوركس مع سجل حافل بالنجاح على مدى 23 عاماً.",
+    website: "https://trusttlaw.com/",
+    phone: "+44 203 953 6094",
+    whatsapp: "+44 7514 141975",
+    email: "contact@trusttlaw.com",
+    address: "1 Ropemaker Street, London, England, United Kingdom",
+    logo: "https://khalijtrust.com/img/trustlawlogo.png",
+    establishedYear: 2001,
+    keyMilestones: [
+      "2001: تأسيس المكتب في لندن",
+      "2015: التخصص في استرداد أموال الفوركس",
+      "2024: أكثر من 500 قضية ناجحة"
+    ]
+  },
+  {
+    id: 2,
+    name: "مكتب العربية للمحاماة",
+    rating: 4.9,
+    specialization: "قضايا الاحتيال المالي والاستثمارات الوهمية",
+    experience: "18 سنة",
+    successRate: "94%",
+    location: "لندن، المملكة المتحدة",
+    languages: ["العربية", "الإنجليزية"],
+    fees: {
+      consultation: "مجانية",
+      courtFiling: "1000-2000  دولار (رسوم فتح ملف المحكمة)",
+      success: "22% من المبلغ المسترجع"
+    },
+    specialties: ["الاحتيال المالي", "الاستثمارات الوهمية", "المخططات الهرمية", "قانون الشركات"],
+    casesWon: 280,
+    amountRecovered: "8+ مليون جنيه إسترليني",
+    slug: "alarabia-law",
+    verified: true,
+    available: true,
+    featured: false,
+    description: "مكتب العربية للمحاماة متخصص في قضايا الاحتيال المالي والاستثمارات الوهمية مع خبرة 18 سنة في لندن.",
+    website: "https://alarabialaw.com/",
+    phone: "+44 207 123 4567",
+    whatsapp: "+44 7700 123456",
+    email: "info@alarabialaw.com",
+    address: "25 Old Broad Street, London, England, United Kingdom",
+    establishedYear: 2006
+  },
+  {
+    id: 3,
+    name: "مكتب LAW FX",
+    rating: 4.8,
+    specialization: "استرجاع أموال الفوركس والعملات الرقمية",
+    experience: "15 سنة",
+    successRate: "91%",
+    location: "لندن، المملكة المتحدة",
+    languages: ["العربية", "الإنجليزية"],
+    fees: {
+      consultation: "مجانية",
+      courtFiling: "1000-200  دولار (رسوم فتح ملف المحكمة)",
+      success: "20% من المبلغ المسترجع"
+    },
+    specialties: ["استرجاع أموال الفوركس", "العملات الرقمية", "التداول الاحتيالي", "التقاضي الدولي"],
+    casesWon: 195,
+    amountRecovered: "6.5+ مليون جنيه إسترليني",
+    slug: "law-fx",
+    verified: true,
+    available: true,
+    featured: false,
+    description: "مكتب LAW FX متخصص في استرجاع أموال الفوركس والعملات الرقمية مع سجل حافل بالنجاح في لندن.",
+    website: "https://lawfx.co.uk/",
+    phone: "+44 203 456 7890",
+    whatsapp: "+44 7800 987654",
+    email: "contact@lawfx.co.uk",
+    address: "15 Moorgate, London, England, United Kingdom",
+    establishedYear: 2009
+  }
+];
+
+const specializations = [
+  { value: "all", label: "جميع التخصصات" },
+  { value: "fraud", label: "الاحتيال المالي" },
+  { value: "investment", label: "قضايا الاستثمار" },
+  { value: "cyber", label: "الاحتيال الإلكتروني" },
+  { value: "crypto", label: "العملات الرقمية" },
+  { value: "trading", label: "التداول الوهمي" }
+];
+
+const locations = [
+  { value: "all", label: "جميع المواقع" },
+  { value: "uae", label: "الإمارات العربية المتحدة" },
+  { value: "saudi", label: "المملكة العربية السعودية" },
+  { value: "kuwait", label: "الكويت" },
+  { value: "qatar", label: "قطر" },
+  { value: "bahrain", label: "البحرين" },
+  { value: "oman", label: "عمان" }
+];
+---
+
+<Layout 
+  title="محامون موثوقون لاسترجاع الأموال - دليل الخليج"
+  description="اعثر على أفضل مكاتب المحاماة الموثوقة المتخصصة في قضايا الاحتيال واسترجاع الأموال في منطقة الخليج مع استشارة مجانية"
+  keywords="مكاتب محاماة، استرجاع أموال، قضايا احتيال، مكتب محاماة موثوق، الخليج، استشارة قانونية، النصب"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="page-title">
+            <span class="title-icon">⚖️</span>
+            مكاتب محاماة موثوقة
+          </h1>
+          <p class="page-description">
+            اعثر على أفضل مكاتب المحاماة الموثوقة المتخصصة في قضايا الاحتيال واسترجاع الأموال. 
+            جميع المكاتب مُختارة بعناية ولديها سجل حافل بالنجاح.
+          </p>
+          
+          <div class="lawyers-stats">
+            <div class="stat-item">
+              <span class="stat-number">{lawyers.length}</span>
+              <span class="stat-label">مكتب موثوق</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{Math.round(lawyers.reduce((sum, l) => sum + parseFloat(l.successRate), 0) / lawyers.length)}%</span>
+              <span class="stat-label">متوسط النجاح</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{lawyers.reduce((sum, l) => sum + l.casesWon, 0)}</span>
+              <span class="stat-label">قضية فائزة</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+      <div class="container">
+        <div class="filters-container">
+          <div class="filter-group">
+            <label for="specializationFilter" class="filter-label">التخصص:</label>
+            <select id="specializationFilter" class="filter-select">
+              {specializations.map(spec => (
+                <option value={spec.value}>{spec.label}</option>
+              ))}
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label for="locationFilter" class="filter-label">الموقع:</label>
+            <select id="locationFilter" class="filter-select">
+              {locations.map(location => (
+                <option value={location.value}>{location.label}</option>
+              ))}
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label for="availabilityFilter" class="filter-label">التوفر:</label>
+            <select id="availabilityFilter" class="filter-select">
+              <option value="all">الجميع</option>
+              <option value="available">متاح الآن</option>
+              <option value="consultation">استشارة مجانية</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lawyers List -->
+    <section class="lawyers-section">
+      <div class="container">
+        <div class="lawyers-grid">
+          {lawyers.map(lawyer => (
+            <article class="lawyer-card">
+              <div class="card-header">
+                <div class="lawyer-info">
+                  <h2 class="lawyer-name">
+                    <a href={`/lawyers/${lawyer.slug}/`}>{lawyer.name}</a>
+                    {lawyer.verified && <span class="verified-badge" title="محامي موثق">✓</span>}
+                  </h2>
+                  <p class="specialization">{lawyer.specialization}</p>
+                  <div class="rating-container">
+                    <StarRating rating={lawyer.rating} size="medium" />
+                  </div>
+                </div>
+                <div class="availability-status">
+                  {lawyer.available ? (
+                    <span class="status available">متاح</span>
+                  ) : (
+                    <span class="status busy">مشغول</span>
+                  )}
+                </div>
+              </div>
+              
+              <div class="card-body">
+                <div class="lawyer-stats">
+                  <div class="stat-row">
+                    <div class="stat">
+                      <span class="stat-label">الخبرة:</span>
+                      <span class="stat-value">{lawyer.experience}</span>
+                    </div>
+                    <div class="stat">
+                      <span class="stat-label">معدل النجاح:</span>
+                      <span class="stat-value success">{lawyer.successRate}</span>
+                    </div>
+                  </div>
+                  <div class="stat-row">
+                    <div class="stat">
+                      <span class="stat-label">القضايا الفائزة:</span>
+                      <span class="stat-value">{lawyer.casesWon}</span>
+                    </div>
+                    <div class="stat">
+                      <span class="stat-label">المبلغ المسترجع:</span>
+                      <span class="stat-value recovered">{lawyer.amountRecovered}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="location-languages">
+                  <div class="location">
+                    <span class="icon">📍</span>
+                    <span>{lawyer.location}</span>
+                  </div>
+                  <div class="languages">
+                    <span class="icon">🗣️</span>
+                    <span>{lawyer.languages.join(', ')}</span>
+                  </div>
+                </div>
+                
+                <div class="specialties">
+                  <h4 class="specialties-title">التخصصات:</h4>
+                  <div class="specialties-list">
+                    {lawyer.specialties.map(specialty => (
+                      <span class="specialty-tag">{specialty}</span>
+                    ))}
+                  </div>
+                </div>
+                
+                <div class="fees-info">
+                  <h4 class="fees-title">الأتعاب:</h4>
+                  <div class="fees-grid">
+                    <div class="fee-item">
+                      <span class="fee-label">الاستشارة:</span>
+                      <span class="fee-value">{lawyer.fees.consultation}</span>
+                    </div>
+                    <div class="fee-item">
+                  {lawyer.fees.courtFiling ? (
+                    <div class="fee-item">
+                      <span class="fee-label">رسوم المحكمة:</span>
+                      <span class="fee-value">{lawyer.fees.courtFiling}</span>
+                    </div>
+                  ) : (
+                    <div class="fee-item">
+                      <span class="fee-value">{lawyer.fees.hourly}</span>
+                    </div>
+                    </div>
+                  )}
+                      <span class="fee-label">عند النجاح:</span>
+                      <span class="fee-value">{lawyer.fees.success}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="card-footer">
+                <div class="footer-actions">
+                  <a href={`/lawyers/${lawyer.slug}/`} class="btn btn-primary">
+                    عرض الملف الشخصي
+                  </a>
+                  {lawyer.fees.consultation === "مجانية" && (
+                    <a href={`/lawyers/${lawyer.slug}/consultation/`} class="btn btn-secondary">
+                      استشارة مجانية
+                    </a>
+                  )}
+                  <button class="btn btn-outline contact-btn" data-name={lawyer.name}>
+                    تواصل مباشر
+                  </button>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <h2>كيف نساعدك في العثور على المحامي المناسب؟</h2>
+          <p>خطوات بسيطة للحصول على المساعدة القانونية التي تحتاجها</p>
+        </div>
+        
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>اختر المحامي المناسب</h3>
+              <p>تصفح قائمة المحامين الموثوقين واختر الأنسب لحالتك حسب التخصص والموقع</p>
+            </div>
+          </div>
+          
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>احجز استشارة مجانية</h3>
+              <p>معظم محامينا يقدمون استشارة أولية مجانية لتقييم حالتك وتوضيح خيارات العمل</p>
+            </div>
+          </div>
+          
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>ابدأ العمل القانوني</h3>
+              <p>بعد الموافقة على الخطة، يبدأ المحامي العمل على قضيتك لاسترجاع أموالك</p>
+            </div>
+          </div>
+          
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>استلم أموالك</h3>
+              <p>في حالة النجاح، تحصل على أموالك ولا تدفع إلا نسبة النجاح المتفق عليها</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Legal Advice Section -->
+    <section class="legal-advice">
+      <div class="container">
+        <div class="advice-card">
+          <div class="advice-icon">⚖️</div>
+          <div class="advice-content">
+            <h3>نصيحة قانونية مجانية</h3>
+            <p>احصل على نصيحة قانونية أولية مجانية من خبرائنا حول حالتك</p>
+            <div class="advice-actions">
+              <a href="/consultation/" class="btn btn-primary">
+                احجز استشارة مجانية
+              </a>
+              <a href="https://wa.me/97145109509" class="btn btn-outline" target="_blank">
+                تحدث معنا الآن
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const specializationFilter = document.getElementById('specializationFilter');
+    const locationFilter = document.getElementById('locationFilter');
+    const availabilityFilter = document.getElementById('availabilityFilter');
+    
+    function applyFilters() {
+      console.log('Applying filters:', {
+        specialization: specializationFilter?.value,
+        location: locationFilter?.value,
+        availability: availabilityFilter?.value
+      });
+      // This would typically involve AJAX calls or client-side filtering
+    }
+    
+    [specializationFilter, locationFilter, availabilityFilter].forEach(filter => {
+      filter?.addEventListener('change', applyFilters);
+    });
+    
+    // Contact buttons
+    const contactButtons = document.querySelectorAll('.contact-btn');
+    contactButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const lawyerName = this.dataset.name;
+        const message = `مرحباً، أود التواصل مع ${lawyerName} بخصوص حالة احتيال تعرضت لها.`;
+        const whatsappUrl = `https://wa.me/97145109509?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+      });
+    });
+  });
+</script>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: var(--space-16) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+  }
+
+  .title-icon {
+    font-size: 3.5rem;
+  }
+
+  .page-description {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .lawyers-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: var(--space-4);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-secondary-light);
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .filters-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--color-neutral-200);
+  }
+
+  .filters-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    flex-wrap: wrap;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .filter-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-700);
+    white-space: nowrap;
+  }
+
+  .filter-select {
+    padding: var(--space-2) var(--space-4);
+    border: 2px solid var(--color-neutral-200);
+    border-radius: var(--radius-md);
+    background: white;
+    font-family: inherit;
+    font-size: 1rem;
+    min-width: 180px;
+    transition: border-color 0.2s ease;
+  }
+
+  .filter-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  .lawyers-section {
+    padding: var(--space-16) 0;
+  }
+
+  .lawyers-grid {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  .lawyer-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-neutral-100);
+  }
+
+  .lawyer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-primary-light);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: var(--space-8);
+    background: linear-gradient(135deg, var(--color-neutral-50) 0%, white 100%);
+  }
+
+  .lawyer-info {
+    flex: 1;
+  }
+
+  .lawyer-name {
+    font-size: 1.75rem;
+    margin-bottom: var(--space-3);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .lawyer-name a {
+    color: var(--color-neutral-900);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .lawyer-name a:hover {
+    color: var(--color-primary);
+  }
+
+  .verified-badge {
+    background: var(--color-success);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+
+  .specialization {
+    color: var(--color-neutral-600);
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-4);
+  }
+
+  .rating-container {
+    margin-bottom: var(--space-2);
+  }
+
+  .availability-status {
+    display: flex;
+    align-items: center;
+  }
+
+  .status {
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .status.available {
+    background: var(--color-success);
+    color: white;
+  }
+
+  .status.busy {
+    background: var(--color-neutral-400);
+    color: white;
+  }
+
+  .card-body {
+    padding: 0 var(--space-8) var(--space-8);
+  }
+
+  .lawyer-stats {
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-4);
+  }
+
+  .stat-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--color-neutral-500);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .stat-value {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+    font-size: 1.125rem;
+  }
+
+  .stat-value.success {
+    color: var(--color-success);
+  }
+
+  .stat-value.recovered {
+    color: var(--color-primary);
+  }
+
+  .location-languages {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .location,
+  .languages {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-neutral-600);
+    font-size: 0.875rem;
+  }
+
+  .icon {
+    font-size: 1rem;
+  }
+
+  .specialties {
+    margin-bottom: var(--space-6);
+  }
+
+  .specialties-title {
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-700);
+    margin-bottom: var(--space-3);
+  }
+
+  .specialties-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .specialty-tag {
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .fees-info {
+    margin-bottom: var(--space-6);
+  }
+
+  .fees-title {
+    font-size: 1rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-700);
+    margin-bottom: var(--space-4);
+  }
+
+  .fees-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .fee-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .fee-label {
+    font-size: 0.75rem;
+    color: var(--color-neutral-500);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+  }
+
+  .fee-value {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+    font-size: 0.875rem;
+  }
+
+  .card-footer {
+    padding: var(--space-6) var(--space-8);
+    background: var(--color-neutral-50);
+    border-top: 1px solid var(--color-neutral-100);
+  }
+
+  .footer-actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+
+  .footer-actions .btn {
+    flex: 1;
+    min-width: 140px;
+    justify-content: center;
+    font-size: 0.875rem;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .how-it-works {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .step-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .step-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    margin: 0 auto var(--space-6);
+  }
+
+  .step-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-3);
+    color: var(--color-neutral-900);
+  }
+
+  .step-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .legal-advice {
+    padding: var(--space-16) 0;
+  }
+
+  .advice-card {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+    color: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .advice-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .advice-content h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .advice-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .advice-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .legal-advice .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .legal-advice .btn-outline:hover {
+    background: white;
+    color: var(--color-secondary);
+  }
+
+  @media (max-width: 1024px) {
+    .stat-row {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .location-languages {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .fees-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .footer-actions {
+      flex-direction: column;
+    }
+
+    .footer-actions .btn {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .title-icon {
+      font-size: 3rem;
+    }
+
+    .lawyers-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .filters-container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-4);
+    }
+
+    .filter-group {
+      justify-content: space-between;
+    }
+
+    .filter-select {
+      min-width: auto;
+      flex: 1;
+    }
+
+    .card-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-4);
+    }
+
+    .availability-status {
+      align-self: flex-end;
+    }
+
+    .advice-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .advice-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

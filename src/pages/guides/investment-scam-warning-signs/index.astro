@@ -1,0 +1,1520 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import CommentForm from '../../../components/CommentForm.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "HowTo",
+  "name": "علامات التحذير من شركات الاستثمار الوهمية",
+  "description": "تعلم كيف تكتشف علامات الإنذار المبكر للشركات المحتالة وتحمي نفسك من الاستثمارات الوهمية",
+  "image": "https://khalijtrust.com/img/logo4.png",
+  "totalTime": "PT6M",
+  "supply": [
+    "معلومات الشركة الأساسية",
+    "وصول للإنترنت للبحث",
+    "قائمة بالعلامات التحذيرية"
+  ],
+  "tool": [
+    "محركات البحث",
+    "مواقع التقييم المستقلة",
+    "سجلات الهيئات الرقابية"
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "فحص الوعود غير الواقعية",
+      "text": "احذر من الشركات التي تعد بأرباح مضمونة أو عوائد خيالية"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "التحقق من التراخيص",
+      "text": "تأكد من وجود تراخيص حقيقية من هيئات رقابية معترف بها"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "فحص الضغط للاستثمار السريع",
+      "text": "احذر من الشركات التي تضغط عليك لاتخاذ قرار سريع"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "تقييم شفافية المعلومات",
+      "text": "تأكد من وضوح معلومات الشركة وفريق العمل"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "فحص طرق الدفع",
+      "text": "احذر من الشركات التي تطلب طرق دفع غير تقليدية"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "البحث عن التقييمات",
+      "text": "ابحث عن تجارب العملاء الحقيقية على مواقع مستقلة"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "فحص العنوان الفعلي",
+      "text": "تأكد من وجود مكتب حقيقي للشركة"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "تقييم خدمة العملاء",
+      "text": "اختبر جودة وسرعة استجابة خدمة العملاء"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "فحص المواد التسويقية",
+      "text": "احذر من المواد التسويقية المبالغ فيها أو المضللة"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "طلب المشورة المهنية",
+      "text": "استشر خبراء مثل مكتب Trust Law قبل اتخاذ قرار الاستثمار"
+    }
+  ],
+  "url": "https://khalijtrust.com/guides/investment-scam-warning-signs/"
+};
+
+const warningSignsCategories = [
+  {
+    category: "الوعود المشبوهة",
+    icon: "💰",
+    color: "error",
+    signs: [
+      {
+        title: "أرباح مضمونة",
+        description: "وعود بأرباح مضمونة 100% بدون مخاطر",
+        severity: "عالي جداً",
+        example: "ضمان ربح 50% شهرياً بدون أي مخاطر"
+      },
+      {
+        title: "عوائد خيالية",
+        description: "وعود بعوائد غير واقعية تفوق السوق بكثير",
+        severity: "عالي جداً", 
+        example: "ربح 200% في 6 أشهر مضمون"
+      },
+      {
+        title: "استراتيجيات سرية",
+        description: "ادعاء امتلاك استراتيجيات سرية للربح",
+        severity: "عالي",
+        example: "استراتيجية سرية تضمن الربح دائماً"
+      }
+    ]
+  },
+  {
+    category: "مشاكل التراخيص",
+    icon: "📜",
+    color: "warning",
+    signs: [
+      {
+        title: "تراخيص مزيفة",
+        description: "ادعاء تراخيص من جهات غير موجودة أو مزيفة",
+        severity: "عالي جداً",
+        example: "مرخص من 'الهيئة العالمية للاستثمار'"
+      },
+      {
+        title: "تراخيص منتهية الصلاحية",
+        description: "استخدام تراخيص قديمة أو منتهية الصلاحية",
+        severity: "عالي",
+        example: "ترخيص صادر عام 2015 ومنتهي الصلاحية"
+      },
+      {
+        title: "تراخيص غير ذات صلة",
+        description: "تراخيص لا تغطي الخدمات المقدمة فعلياً",
+        severity: "متوسط",
+        example: "ترخيص تجاري عام لشركة استثمار متخصصة"
+      }
+    ]
+  },
+  {
+    category: "الضغط والإلحاح",
+    icon: "⏰",
+    color: "secondary",
+    signs: [
+      {
+        title: "عروض محدودة الوقت",
+        description: "ضغط للاستثمار بحجة انتهاء العرض قريباً",
+        severity: "عالي",
+        example: "العرض ينتهي خلال 24 ساعة فقط!"
+      },
+      {
+        title: "منع التفكير",
+        description: "عدم إعطاء وقت كافي للتفكير أو الاستشارة",
+        severity: "عالي",
+        example: "يجب اتخاذ القرار الآن أو ستفوتك الفرصة"
+      },
+      {
+        title: "مكالمات متكررة",
+        description: "مكالمات مستمرة ومضايقة للإقناع بالاستثمار",
+        severity: "متوسط",
+        example: "10 مكالمات في اليوم للإقناع"
+      }
+    ]
+  },
+  {
+    category: "نقص الشفافية",
+    icon: "❓",
+    color: "neutral",
+    signs: [
+      {
+        title: "معلومات غامضة",
+        description: "عدم وضوح في شرح كيفية تحقيق الأرباح",
+        severity: "عالي",
+        example: "نستثمر في أسواق خاصة سرية"
+      },
+      {
+        title: "إخفاء هوية المؤسسين",
+        description: "عدم الكشف عن هوية مؤسسي أو مديري الشركة",
+        severity: "عالي",
+        example: "فريق عمل مجهول الهوية"
+      },
+      {
+        title: "عدم وجود عنوان واضح",
+        description: "عدم وجود عنوان مكتب حقيقي أو واضح",
+        severity: "متوسط",
+        example: "صندوق بريد فقط بدون عنوان فعلي"
+      }
+    ]
+  }
+];
+
+const redFlagChecklist = [
+  {
+    category: "الوعود والعروض",
+    items: [
+      "وعود بأرباح مضمونة",
+      "عوائد تفوق السوق بشكل غير واقعي",
+      "ادعاء عدم وجود مخاطر",
+      "استراتيجيات سرية أو حصرية",
+      "ضمانات مكتوبة للربح"
+    ]
+  },
+  {
+    category: "التراخيص والقانونية",
+    items: [
+      "عدم وجود ترخيص من هيئة معترف بها",
+      "تراخيص مزيفة أو منتهية الصلاحية",
+      "رفض إظهار وثائق الترخيص",
+      "ادعاء تراخيص من جهات غير موجودة",
+      "تراخيص لا تغطي الخدمات المقدمة"
+    ]
+  },
+  {
+    category: "السلوك والتعامل",
+    items: [
+      "ضغط للاستثمار فوراً",
+      "منع التشاور مع آخرين",
+      "رفض الإجابة على أسئلة مفصلة",
+      "مكالمات مضايقة متكررة",
+      "تجنب اللقاءات الشخصية"
+    ]
+  },
+  {
+    category: "المعلومات والشفافية",
+    items: [
+      "معلومات غامضة عن الاستثمار",
+      "عدم وضوح هوية المؤسسين",
+      "عدم وجود عنوان مكتب واضح",
+      "موقع إلكتروني ضعيف أو حديث",
+      "عدم وجود تقارير مالية"
+    ]
+  }
+];
+
+const protectionStrategies = [
+  {
+    title: "البحث والتحقق",
+    description: "قم ببحث شامل قبل أي استثمار",
+    steps: [
+      "ابحث عن اسم الشركة + 'احتيال' أو 'نصب'",
+      "تحقق من التراخيص في المواقع الرسمية",
+      "ابحث عن تقييمات على مواقع مستقلة",
+      "تحقق من العنوان على خرائط جوجل"
+    ],
+    icon: "🔍"
+  },
+  {
+    title: "طلب الوثائق",
+    description: "اطلب جميع الوثائق الرسمية",
+    steps: [
+      "اطلب نسخة من الترخيص الرسمي",
+      "احصل على عقد مفصل ومكتوب",
+      "اطلب التقارير المالية للشركة",
+      "احصل على معلومات الاتصال الكاملة"
+    ],
+    icon: "📋"
+  },
+  {
+    title: "الاستشارة المهنية",
+    description: "استشر خبراء قبل الاستثمار",
+    steps: [
+      "استشر مستشار مالي مستقل",
+      "اطلب رأي محامي متخصص",
+      "تحدث مع مستثمرين ذوي خبرة",
+      "احصل على رأي ثاني أو ثالث"
+    ],
+    icon: "👨‍💼"
+  },
+  {
+    category: "الاختبار التدريجي",
+    description: "ابدأ بمبالغ صغيرة للاختبار",
+    steps: [
+      "استثمر مبلغ صغير في البداية",
+      "اختبر عملية السحب قبل زيادة الاستثمار",
+      "راقب الأداء لفترة كافية",
+      "تأكد من شفافية التقارير"
+    ],
+    icon: "🧪"
+  }
+];
+---
+
+<Layout 
+  title="علامات التحذير من شركات الاستثمار الوهمية - دليل الخليج"
+  description="تعلم كيف تكتشف علامات الإنذار المبكر للشركات المحتالة وتحمي نفسك من الاستثمارات الوهمية مع 10 علامات تحذيرية أساسية"
+  keywords="شركات استثمار وهمية، علامات احتيال، استثمار آمن، حماية من النصب، علامات تحذيرية، الخليج"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Guide Header -->
+    <section class="guide-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="guide-meta">
+            <span class="category">التعرف على الاحتيال</span>
+            <span class="difficulty easy">سهل</span>
+            <span class="read-time">⏱️ 6 دقائق</span>
+          </div>
+          
+          <h1 class="guide-title">
+            علامات التحذير من شركات الاستثمار الوهمية
+          </h1>
+          
+          <p class="guide-description">
+            تعلم كيف تكتشف علامات الإنذار المبكر للشركات المحتالة وتحمي نفسك من الوقوع في فخ 
+            الاستثمارات الوهمية. دليل شامل بـ10 علامات تحذيرية أساسية.
+          </p>
+          
+          <div class="guide-stats">
+            <div class="stat">
+              <span class="stat-number">10</span>
+              <span class="stat-label">علامات</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">90%</span>
+              <span class="stat-label">معدل الكشف</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">6</span>
+              <span class="stat-label">دقائق</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="introduction">
+      <div class="container">
+        <div class="intro-content">
+          <h2>لماذا تحتاج لمعرفة علامات التحذير؟</h2>
+          <p class="intro-text">
+            شركات الاستثمار الوهمية تستخدم أساليب متطورة لخداع المستثمرين وسرقة أموالهم. 
+            معرفة علامات التحذير المبكرة يمكن أن تحميك من خسارة مدخراتك وتوفر عليك الكثير من المتاعب.
+          </p>
+          
+          <div class="statistics-grid">
+            <div class="stat-card">
+              <div class="stat-icon">💸</div>
+              <div class="stat-info">
+                <span class="stat-number">15.5M</span>
+                <span class="stat-label">درهم خسائر سنوية</span>
+              </div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="stat-icon">👥</div>
+              <div class="stat-info">
+                <span class="stat-number">1,200+</span>
+                <span class="stat-label">ضحية سنوياً</span>
+              </div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="stat-icon">🏢</div>
+              <div class="stat-info">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">شركة مشبوهة</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Warning Signs Categories -->
+    <section class="warning-signs">
+      <div class="container">
+        <div class="section-header">
+          <h2>فئات علامات التحذير الرئيسية</h2>
+          <p>تعرف على أهم فئات العلامات التحذيرية التي تدل على الشركات المحتالة</p>
+        </div>
+        
+        <div class="categories-container">
+          {warningSignsCategories.map(category => (
+            <div class="category-section">
+              <div class="category-header">
+                <div class="category-icon">{category.icon}</div>
+                <h3>{category.category}</h3>
+              </div>
+              
+              <div class="signs-grid">
+                {category.signs.map(sign => (
+                  <div class="sign-card">
+                    <div class="sign-header">
+                      <h4>{sign.title}</h4>
+                      <span class="severity-badge severity-{sign.severity.replace(' ', '-').toLowerCase()}">
+                        {sign.severity}
+                      </span>
+                    </div>
+                    <p class="sign-description">{sign.description}</p>
+                    <div class="sign-example">
+                      <span class="example-label">مثال:</span>
+                      <span class="example-text">"{sign.example}"</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Red Flag Checklist -->
+    <section class="checklist-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>قائمة فحص العلامات التحذيرية</h2>
+          <p>استخدم هذه القائمة للتحقق من أي شركة استثمار قبل وضع أموالك فيها</p>
+        </div>
+        
+        <div class="checklist-grid">
+          {redFlagChecklist.map(category => (
+            <div class="checklist-card">
+              <h4 class="checklist-title">{category.category}</h4>
+              <div class="checklist-items">
+                {category.items.map(item => (
+                  <label class="checklist-item">
+                    <input type="checkbox" class="item-checkbox" />
+                    <span class="checkmark"></span>
+                    <span class="item-text">{item}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <div class="checklist-result">
+          <div class="result-card">
+            <div class="result-icon">📊</div>
+            <div class="result-content">
+              <h4>تفسير النتائج:</h4>
+              <div class="result-levels">
+                <div class="level safe">
+                  <span class="level-indicator">0-2 علامات</span>
+                  <span class="level-text">آمن نسبياً - لكن ابق حذراً</span>
+                </div>
+                <div class="level caution">
+                  <span class="level-indicator">3-5 علامات</span>
+                  <span class="level-text">حذر - تحقق أكثر قبل الاستثمار</span>
+                </div>
+                <div class="level danger">
+                  <span class="level-indicator">6+ علامات</span>
+                  <span class="level-text">خطر عالي - تجنب هذه الشركة</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Protection Strategies -->
+    <section class="protection-strategies">
+      <div class="container">
+        <div class="section-header">
+          <h2>استراتيجيات الحماية</h2>
+          <p>خطوات عملية لحماية نفسك من شركات الاستثمار المحتالة</p>
+        </div>
+        
+        <div class="strategies-grid">
+          {protectionStrategies.map(strategy => (
+            <div class="strategy-card">
+              <div class="strategy-header">
+                <div class="strategy-icon">{strategy.icon}</div>
+                <h4>{strategy.title}</h4>
+              </div>
+              <p class="strategy-description">{strategy.description}</p>
+              <div class="strategy-steps">
+                <h5>الخطوات:</h5>
+                <ul class="steps-list">
+                  {strategy.steps.map(step => (
+                    <li>{step}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Real Examples -->
+    <section class="real-examples">
+      <div class="container">
+        <div class="section-header">
+          <h2>أمثلة حقيقية من الواقع</h2>
+          <p>قصص حقيقية توضح كيف تعمل الشركات المحتالة</p>
+        </div>
+        
+        <div class="examples-container">
+          <div class="example-card">
+            <div class="example-header">
+              <h4>مثال 1: شركة الوعود الخيالية</h4>
+              <span class="example-type">استثمار وهمي</span>
+            </div>
+            <div class="example-content">
+              <p class="example-story">
+                شركة ادعت ضمان ربح 100% خلال 6 أشهر من خلال "استراتيجية سرية" في سوق العقارات. 
+                استخدمت شهادات مزيفة وصور مكاتب فخمة مستعارة من الإنترنت.
+              </p>
+              <div class="warning-signs-found">
+                <h5>العلامات التحذيرية الموجودة:</h5>
+                <ul>
+                  <li>وعود بأرباح مضمونة</li>
+                  <li>استراتيجية سرية</li>
+                  <li>ضغط للاستثمار السريع</li>
+                  <li>شهادات مزيفة</li>
+                  <li>عدم وجود ترخيص حقيقي</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="example-card">
+            <div class="example-header">
+              <h4>مثال 2: شركة التراخيص المزيفة</h4>
+              <span class="example-type">تداول احتيالي</span>
+            </div>
+            <div class="example-content">
+              <p class="example-story">
+                شركة تداول ادعت أنها مرخصة من "الهيئة الأوروبية للتداول" (جهة غير موجودة). 
+                استخدمت موقع احترافي وخدمة عملاء متاحة 24/7 لكسب الثقة.
+              </p>
+              <div class="warning-signs-found">
+                <h5>العلامات التحذيرية الموجودة:</h5>
+                <ul>
+                  <li>ترخيص من جهة غير موجودة</li>
+                  <li>رفض إظهار وثائق الترخيص</li>
+                  <li>عدم وجود عنوان مكتب حقيقي</li>
+                  <li>تقييمات مزيفة على الموقع</li>
+                  <li>صعوبة في عمليات السحب</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Expert Advice -->
+    <section class="expert-advice">
+      <div class="container">
+        <div class="advice-card">
+          <div class="advice-header">
+            <div class="expert-icon">👨‍⚖️</div>
+            <h3>نصيحة من الخبراء</h3>
+          </div>
+          <div class="advice-content">
+            <blockquote>
+              "في خبرتنا الممتدة لـ23 عاماً في مكتب Trust Law، رأينا آلاف الحالات من ضحايا الاستثمارات الوهمية. 
+              أهم نصيحة نقدمها: إذا بدا العرض جيداً جداً ليكون حقيقياً، فهو غالباً كذلك. 
+              لا تتردد في طلب استشارة قانونية مجانية قبل أي استثمار كبير."
+            </blockquote>
+            <div class="expert-info">
+              <span class="expert-name">مكتب Trust Law</span>
+              <span class="expert-title">خبراء استرجاع الأموال - لندن</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action Steps -->
+    <section class="action-steps">
+      <div class="container">
+        <div class="section-header">
+          <h2>ماذا تفعل إذا اكتشفت علامات تحذيرية؟</h2>
+          <p>خطوات فورية لحماية نفسك عند اكتشاف علامات مشبوهة</p>
+        </div>
+        
+        <div class="action-timeline">
+          <div class="timeline-item">
+            <div class="timeline-number">1</div>
+            <div class="timeline-content">
+              <h4>توقف فوراً</h4>
+              <p>لا تقم بأي إيداعات إضافية أو توقيع أي وثائق</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-number">2</div>
+            <div class="timeline-content">
+              <h4>وثق كل شيء</h4>
+              <p>احتفظ بجميع المراسلات والوثائق والأدلة</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-number">3</div>
+            <div class="timeline-content">
+              <h4>ابحث أكثر</h4>
+              <p>قم ببحث مكثف عن الشركة والشكاوى ضدها</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-number">4</div>
+            <div class="timeline-content">
+              <h4>استشر خبير</h4>
+              <p>تواصل مع محامي متخصص للحصول على رأي قانوني</p>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-number">5</div>
+            <div class="timeline-content">
+              <h4>أبلغ الجهات المختصة</h4>
+              <p>قدم بلاغ للهيئات الرقابية والجهات المختصة</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Help Section -->
+    <section class="help-section">
+      <div class="container">
+        <div class="help-card">
+          <div class="help-icon">🆘</div>
+          <div class="help-content">
+            <h3>هل تشك في شركة استثمار؟</h3>
+            <p>
+              إذا كنت تشك في مصداقية شركة استثمار أو اكتشفت علامات تحذيرية، 
+              لا تتردد في طلب المساعدة من خبرائنا.
+            </p>
+            <div class="help-actions">
+              <a href="/lawyers/" class="btn btn-primary">
+                استشر خبير قانوني
+              </a>
+              <a href="/report/" class="btn btn-secondary">
+                بلغ عن شركة مشبوهة
+              </a>
+              <a href="/contact/" class="btn btn-outline">
+                اطلب مساعدة فورية
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <JournalistByline articleSlug="investment-scam-warning-signs" />
+        <CommentForm postId="investment-scam-warning-signs-guide" postType="guide" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Checklist functionality
+    const checkboxes = document.querySelectorAll('.item-checkbox');
+    const resultCard = document.querySelector('.checklist-result');
+    
+    function updateResult() {
+      const checkedCount = document.querySelectorAll('.item-checkbox:checked').length;
+      const levels = document.querySelectorAll('.level');
+      
+      // Remove active class from all levels
+      levels.forEach(level => level.classList.remove('active'));
+      
+      // Add active class to appropriate level
+      if (checkedCount <= 2) {
+        levels[0].classList.add('active');
+      } else if (checkedCount <= 5) {
+        levels[1].classList.add('active');
+      } else {
+        levels[2].classList.add('active');
+      }
+      
+      // Show result card
+      resultCard.style.display = 'block';
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', updateResult);
+    });
+  });
+</script>
+
+<style>
+  .guide-header {
+    background: linear-gradient(135deg, var(--color-warning) 0%, #d97706 100%);
+    color: white;
+    padding: var(--space-16) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .guide-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .guide-meta {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .category {
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .difficulty {
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .difficulty.easy {
+    background: var(--color-success);
+    color: white;
+  }
+
+  .read-time {
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .guide-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+  }
+
+  .guide-description {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+  }
+
+  .guide-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .stat {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .introduction {
+    padding: var(--space-16) 0;
+  }
+
+  .intro-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intro-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-6);
+    color: var(--color-neutral-900);
+  }
+
+  .intro-text {
+    font-size: 1.25rem;
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-10);
+  }
+
+  .statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .stat-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    border-left: 4px solid var(--color-warning);
+  }
+
+  .stat-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+  }
+
+  .stat-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .stat-card .stat-number {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-warning);
+  }
+
+  .stat-card .stat-label {
+    font-size: 0.875rem;
+    color: var(--color-neutral-600);
+  }
+
+  .warning-signs {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .categories-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .category-section {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+
+  .category-header {
+    background: linear-gradient(135deg, var(--color-error) 0%, #dc2626 100%);
+    color: white;
+    padding: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .category-icon {
+    font-size: 2rem;
+  }
+
+  .category-header h3 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: white;
+  }
+
+  .signs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
+    padding: var(--space-8);
+  }
+
+  .sign-card {
+    background: var(--color-neutral-50);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-error);
+  }
+
+  .sign-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-3);
+  }
+
+  .sign-header h4 {
+    color: var(--color-error);
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  .severity-badge {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .severity-عالي-جداً {
+    background: #dc2626;
+    color: white;
+  }
+
+  .severity-عالي {
+    background: var(--color-error);
+    color: white;
+  }
+
+  .severity-متوسط {
+    background: var(--color-warning);
+    color: white;
+  }
+
+  .sign-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .sign-example {
+    background: white;
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-warning);
+  }
+
+  .example-label {
+    color: var(--color-warning);
+    font-weight: var(--font-weight-bold);
+    font-size: 0.875rem;
+  }
+
+  .example-text {
+    color: var(--color-neutral-600);
+    font-style: italic;
+  }
+
+  .checklist-section {
+    padding: var(--space-20) 0;
+  }
+
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-12);
+  }
+
+  .checklist-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--color-primary);
+  }
+
+  .checklist-title {
+    color: var(--color-primary);
+    margin-bottom: var(--space-6);
+    font-size: 1.25rem;
+  }
+
+  .checklist-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    cursor: pointer;
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    transition: background-color 0.2s ease;
+  }
+
+  .checklist-item:hover {
+    background: var(--color-neutral-50);
+  }
+
+  .item-checkbox {
+    display: none;
+  }
+
+  .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-neutral-300);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .item-checkbox:checked + .checkmark {
+    background: var(--color-error);
+    border-color: var(--color-error);
+  }
+
+  .item-checkbox:checked + .checkmark::after {
+    content: '✓';
+    color: white;
+    font-weight: bold;
+    font-size: 0.875rem;
+  }
+
+  .item-text {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .checklist-result {
+    display: none;
+  }
+
+  .result-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--color-primary);
+  }
+
+  .result-card .result-icon {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .result-content h4 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-6);
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  .result-levels {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .level {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    transition: all 0.3s ease;
+    opacity: 0.5;
+  }
+
+  .level.active {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+
+  .level.safe {
+    background: rgba(16, 185, 129, 0.1);
+    border: 2px solid var(--color-success);
+  }
+
+  .level.safe.active {
+    background: var(--color-success);
+    color: white;
+  }
+
+  .level.caution {
+    background: rgba(245, 158, 11, 0.1);
+    border: 2px solid var(--color-warning);
+  }
+
+  .level.caution.active {
+    background: var(--color-warning);
+    color: white;
+  }
+
+  .level.danger {
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px solid var(--color-error);
+  }
+
+  .level.danger.active {
+    background: var(--color-error);
+    color: white;
+  }
+
+  .level-indicator {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .level-text {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .protection-strategies {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .strategies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .strategy-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--color-success);
+  }
+
+  .strategy-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .strategy-icon {
+    font-size: 2rem;
+  }
+
+  .strategy-header h4 {
+    color: var(--color-success);
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  .strategy-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .strategy-steps h5 {
+    color: var(--color-neutral-700);
+    margin-bottom: var(--space-3);
+  }
+
+  .steps-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .steps-list li {
+    padding: var(--space-2) 0;
+    color: var(--color-neutral-600);
+    border-bottom: 1px solid var(--color-neutral-100);
+    position: relative;
+    padding-right: var(--space-6);
+  }
+
+  .steps-list li::before {
+    content: '✓';
+    color: var(--color-success);
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+  }
+
+  .real-examples {
+    padding: var(--space-20) 0;
+  }
+
+  .examples-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .example-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    border: 2px solid var(--color-warning);
+  }
+
+  .example-header {
+    background: linear-gradient(135deg, var(--color-warning) 0%, #d97706 100%);
+    color: white;
+    padding: var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .example-header h4 {
+    margin: 0;
+    color: white;
+    font-size: 1.25rem;
+  }
+
+  .example-type {
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .example-content {
+    padding: var(--space-6);
+  }
+
+  .example-story {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+    font-style: italic;
+  }
+
+  .warning-signs-found h5 {
+    color: var(--color-warning);
+    margin-bottom: var(--space-3);
+  }
+
+  .warning-signs-found ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .warning-signs-found li {
+    padding: var(--space-2) 0;
+    color: var(--color-neutral-600);
+    border-bottom: 1px solid var(--color-neutral-100);
+    position: relative;
+    padding-right: var(--space-6);
+  }
+
+  .warning-signs-found li::before {
+    content: '🚩';
+    position: absolute;
+    right: 0;
+  }
+
+  .expert-advice {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  .advice-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+    border: 2px solid var(--color-primary);
+  }
+
+  .advice-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: white;
+    padding: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .expert-icon {
+    font-size: 2rem;
+  }
+
+  .advice-header h3 {
+    margin: 0;
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  .advice-content {
+    padding: var(--space-8);
+  }
+
+  .advice-content blockquote {
+    font-size: 1.125rem;
+    line-height: var(--line-height-relaxed);
+    color: var(--color-neutral-600);
+    font-style: italic;
+    margin: 0 0 var(--space-6);
+    padding: 0;
+    border: none;
+  }
+
+  .expert-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .expert-name {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.125rem;
+  }
+
+  .expert-title {
+    color: var(--color-neutral-500);
+    font-size: 0.875rem;
+  }
+
+  .action-steps {
+    padding: var(--space-20) 0;
+  }
+
+  .action-timeline {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .action-timeline::before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-primary);
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+    position: relative;
+  }
+
+  .timeline-number {
+    width: 50px;
+    height: 50px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 0;
+    z-index: 2;
+  }
+
+  .timeline-content {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    flex: 1;
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .timeline-content h4 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    font-size: 1.25rem;
+  }
+
+  .timeline-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .help-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  .help-card {
+    background: linear-gradient(135deg, var(--color-error) 0%, #dc2626 100%);
+    color: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .help-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .help-content h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .help-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .help-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .help-section .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .help-section .btn-outline:hover {
+    background: white;
+    color: var(--color-error);
+  }
+
+  .comments-section {
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 768px) {
+    .guide-title {
+      font-size: 2rem;
+    }
+
+    .guide-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .guide-meta {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .statistics-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .signs-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .checklist-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .help-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .help-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .action-timeline::before {
+      left: 15px;
+    }
+
+    .timeline-number {
+      width: 30px;
+      height: 30px;
+      font-size: 1rem;
+    }
+  }
+</style>

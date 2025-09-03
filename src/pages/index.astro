@@ -1,0 +1,865 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import StarRating from '../components/StarRating.astro';
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "دليل الخليج",
+  "alternateName": "Khalij Trust",
+  "url": "https://khalijtrust.com",
+  "description": "دليل موثوق لحمايتك من الاحتيال والنصب في منطقة الخليج",
+  "inLanguage": "ar",
+  "publisher": {
+    "@type": "Organization",
+    "name": "دليل الخليج",
+    "url": "https://khalijtrust.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://khalijtrust.com/img/logo4.png",
+      "width": 400,
+      "height": 400
+    },
+    "sameAs": [
+      "https://x.com/khalijtrust",
+      "https://www.facebook.com/khalijtrust",
+      "https://www.instagram.com/khalijtrust"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+971-4-510-9509",
+      "contactType": "customer service",
+      "availableLanguage": ["Arabic", "English"],
+      "areaServed": ["AE", "SA", "KW", "QA", "BH", "OM"]
+    }
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://khalijtrust.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "mainEntity": {
+    "@type": "Service",
+    "name": "خدمات الحماية من الاحتيال",
+    "description": "نقدم تحذيرات من الشركات المشبوهة ودليل بالمحامين الموثوقين",
+    "provider": {
+      "@type": "Organization",
+      "name": "دليل الخليج"
+    },
+    "serviceType": [
+      "تحذيرات من الشركات المحتالة",
+      "دليل المحامين الموثوقين",
+      "أدلة توعوية للحماية من الاحتيال",
+      "قصص نجاح في استرجاع الأموال"
+    ],
+    "areaServed": {
+      "@type": "Place",
+      "name": "منطقة الخليج العربي",
+      "containedInPlace": [
+        {
+          "@type": "Country",
+          "name": "الإمارات العربية المتحدة"
+        },
+        {
+          "@type": "Country", 
+          "name": "المملكة العربية السعودية"
+        },
+        {
+          "@type": "Country",
+          "name": "الكويت"
+        },
+        {
+          "@type": "Country",
+          "name": "قطر"
+        },
+        {
+          "@type": "Country",
+          "name": "البحرين"
+        },
+        {
+          "@type": "Country",
+          "name": "عمان"
+        }
+      ]
+    }
+  },
+  "about": [
+    {
+      "@type": "Thing",
+      "name": "الاحتيال المالي",
+      "description": "حماية المستثمرين من الشركات المحتالة والاستثمارات الوهمية"
+    },
+    {
+      "@type": "Thing", 
+      "name": "استرجاع الأموال",
+      "description": "مساعدة الضحايا في العثور على محامين متخصصين لاسترجاع أموالهم"
+    },
+    {
+      "@type": "Thing",
+      "name": "التوعية المالية",
+      "description": "تقديم أدلة توعوية لحماية المجتمع من الاحتيال"
+    }
+  ],
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "المستثمرون وضحايا الاحتيال في منطقة الخليج",
+    "geographicArea": {
+      "@type": "Place",
+      "name": "منطقة الخليج العربي"
+    }
+  }
+};
+
+// Sample data for featured content
+const featuredWarnings = [
+  {
+    id: 1,
+    title: "شركة أبيان المالية Abyan Capital",
+    rating: 0.5,
+    description: "شركة استثمار وهمية تستخدم نظام تدوير الأموال والمخططات الهرمية لسرقة أموال المستثمرين",
+    slug: "abyan-capital-scam"
+  },
+  {
+    id: 2,
+    title: "شركة التداول WRPro",
+    rating: 0,
+    description: "منصة تداول احتيالية تستخدم أساليب ذكية لخداع المتداولين مع وعود كاذبة بأرباح مرتفعة",
+    slug: "wrpro-scam"
+  },
+  {
+    id: 3,
+    title: "شركة إيفيست Evest",
+    rating: 1,
+    description: "وسيط تداول مشبوه يواجه شكاوى متزايدة حول تأخير السحب وعدم وجود تراخيص قوية",
+    slug: "evest-scam"
+  },
+  {
+    id: 4,
+    title: "شركة اكسيا Axia",
+    rating: 0,
+    description: "شركة تداول احتيالية تمارس النصب المنظم من خلال التلاعب في الصفقات ورفض السحب",
+    slug: "axia-scam"
+  },
+  {
+  id: 5,
+  title: "شركة تريد جلوبال TradeEU Global",
+  rating: 0,
+  description: "شركة تداول نصابة تمارس النصب المنظم من خلال وعود كاذبة، التلاعب في أموال العملاء، ورفض طلبات السحب",
+  slug: "tradee-u-global-scam"
+}
+];
+
+const featuredLawyers = [
+  {
+    id: 1,
+    name: "مكتب Trust Law",
+    rating: 5,
+    specialization: "استرجاع أموال الفوركس والاستثمارات الاحتيالية",
+    successRate: "98%",
+    slug: "trust-law",
+    experience: "23 سنة",
+    location: "لندن، المملكة المتحدة"
+  },
+  {
+    id: 2,
+    name: "مكتب العربية للمحاماة",
+    rating: 4.9,
+    specialization: "قضايا الاحتيال المالي والاستثمارات الوهمية",
+    successRate: "94%",
+    slug: "alarabia-law",
+    experience: "18 سنة",
+    location: "لندن، المملكة المتحدة"
+  },
+  {
+    id: 3,
+    name: "مكتب LAW FX",
+    rating: 4.8,
+    specialization: "استرجاع أموال الفوركس والعملات الرقمية",
+    successRate: "91%",
+    slug: "law-fx",
+    experience: "15 سنة",
+    location: "لندن، المملكة المتحدة"
+  }
+];
+---
+
+<Layout 
+  title="دليل الخليج - حمايتك من الاحتيال ودليلك للمحامين الموثوقين"
+  description="منصة موثوقة لحمايتك من الاحتيال والنصب في منطقة الخليج، مع دليل شامل للمحامين الموثوقين وقصص النجاح في استرجاع الأموال"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1 class="hero-title">
+              <span class="title-highlight">دليل الخليج</span>
+              <span class="title-subtitle">حمايتك من الاحتيال</span>
+            </h1>
+            <p class="hero-description">
+              منصة موثوقة تحميك من شركات الاحتيال والنصب، وترشدك للمحامين الموثوقين في منطقة الخليج. 
+              اكتشف التحذيرات، اقرأ قصص النجاح، واحصل على المساعدة القانونية المناسبة.
+            </p>
+            <div class="hero-stats">
+              <div class="stat">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">تحذير من شركات مشبوهة</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">100+</span>
+                <span class="stat-label">محامي موثوق</span>
+              </div>
+              <div class="stat">
+                <span class="stat-number">1000+</span>
+                <span class="stat-label">قصة نجاح</span>
+              </div>
+            </div>
+            <div class="hero-actions">
+              <a href="/warnings/" class="btn btn-primary">تصفح التحذيرات</a>
+              <a href="/lawyers/" class="btn btn-secondary">ابحث عن محامي</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="protection-badge">
+              <div class="badge-icon">🛡️</div>
+              <h3>حماية موثوقة</h3>
+              <p>نحميك من الاحتيال والشركات المشبوهة</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions Section -->
+    <section class="quick-actions">
+      <div class="container">
+        <div class="actions-grid">
+          <a href="/warnings/" class="action-card warning">
+            <div class="card-icon">⚠️</div>
+            <h3>تحذيرات من الشركات</h3>
+            <p>اكتشف الشركات المشبوهة وحماية نفسك من الاحتيال</p>
+            <div class="card-arrow">←</div>
+          </a>
+          
+          <a href="/lawyers/" class="action-card lawyers">
+            <div class="card-icon">⚖️</div>
+            <h3>محامون موثوقون</h3>
+            <p>ابحث عن محامين مختصين في استرجاع الأموال</p>
+            <div class="card-arrow">←</div>
+          </a>
+          
+          <a href="/guides/" class="action-card guides">
+            <div class="card-icon">📚</div>
+            <h3>أدلة توعوية</h3>
+            <p>تعلم كيف تحمي نفسك وتتجنب الاحتيال</p>
+            <div class="card-arrow">←</div>
+          </a>
+          
+          <a href="/cases/" class="action-card cases">
+            <div class="card-icon">✅</div>
+            <h3>قصص نجاح</h3>
+            <p>اقرأ قصص حقيقية لاسترجاع الأموال</p>
+            <div class="card-arrow">←</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Warnings -->
+    <section class="featured-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>أحدث التحذيرات</h2>
+          <p>كن على اطلاع بأحدث الشركات المشبوهة والمحتالة</p>
+          <a href="/warnings/" class="view-all-link">عرض جميع التحذيرات</a>
+        </div>
+        
+        <div class="content-grid">
+          {featuredWarnings.map(warning => (
+            <article class="content-card warning-card">
+              <div class="card-header">
+                <h3 class="card-title">{warning.title}</h3>
+                <StarRating rating={warning.rating} size="small" />
+              </div>
+              <p class="card-description">{warning.description}</p>
+              <div class="card-footer">
+                <a href={`/warnings/${warning.slug}/`} class="read-more">
+                  قراءة التحذير كاملاً
+                </a>
+                <span class="warning-badge">تحذير</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Lawyers -->
+    <section class="featured-section law-firms-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>مكاتب محاماة موصى بها</h2>
+          <p>مكاتب محاماة موثوقة متخصصة في قضايا الاحتيال واسترجاع الأموال</p>
+          <a href="/lawyers/" class="view-all-link">عرض جميع المكاتب</a>
+        </div>
+        
+        <div class="content-grid">
+          {featuredLawyers.map(lawyer => (
+            <article class="content-card lawyer-card">
+              <div class="card-header">
+                <h3 class="card-title">{lawyer.name}</h3>
+                <StarRating rating={lawyer.rating} size="small" />
+              </div>
+              <div class="lawyer-info">
+                <p class="specialization">{lawyer.specialization}</p>
+                <div class="success-rate">
+                  <span class="rate-label">معدل النجاح:</span>
+                  <span class="rate-value">{lawyer.successRate}</span>
+                </div>
+              </div>
+              <div class="card-footer">
+                <a href={`/lawyers/${lawyer.slug}/`} class="btn btn-primary btn-sm">
+                  عرض الملف الشخصي
+                </a>
+                <a href={`/lawyers/${lawyer.slug}/consultation/`} class="consultation-link">
+                  استشارة مجانية
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>هل تعرضت للاحتيال؟</h2>
+          <p>لا تتردد في التواصل معنا أو الإبلاغ عن الشركات المشبوهة</p>
+          <div class="cta-actions">
+            <a href="/report/" class="btn btn-primary">
+              بلغ عن احتيال
+            </a>
+            <a href="https://wa.me/97145109509" class="btn btn-outline" target="_blank">
+              تواصل معنا عبر واتساب
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-12);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .title-highlight {
+    font-size: 3.5rem;
+    font-weight: var(--font-weight-black);
+    background: linear-gradient(135deg, white 0%, var(--color-secondary-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .title-subtitle {
+    font-size: 2rem;
+    font-weight: var(--font-weight-semibold);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    margin-bottom: var(--space-10);
+  }
+
+  .stat {
+    text-align: center;
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-secondary-light);
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .protection-badge {
+    text-align: center;
+    padding: var(--space-8);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-xl);
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .badge-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .protection-badge h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-2);
+    color: white;
+  }
+
+  .protection-badge p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+  }
+
+  /* Quick Actions */
+  .quick-actions {
+    padding: var(--space-20) 0;
+    background: var(--color-neutral-50);
+  }
+
+  .actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .action-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+  }
+
+  .action-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .action-card.warning::before {
+    background: linear-gradient(135deg, var(--color-error) 0%, #dc2626 100%);
+  }
+
+  .action-card.fake-lawyers::before {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  }
+
+  .action-card.lawyers::before {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  }
+
+  .action-card.guides::before {
+    background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+  }
+
+  .action-card.cases::before {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light) 100%);
+  }
+
+  .action-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  .action-card:hover::before {
+    height: 6px;
+  }
+
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .action-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-3);
+    color: var(--color-neutral-900);
+  }
+
+  .action-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .card-arrow {
+    position: absolute;
+    bottom: var(--space-6);
+    left: var(--space-8);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-neutral-400);
+    transition: all 0.3s ease;
+  }
+
+  .action-card:hover .card-arrow {
+    color: var(--color-primary);
+    transform: translateX(-4px);
+  }
+
+  /* Featured Sections */
+  .featured-section {
+    padding: var(--space-20) 0;
+  }
+
+  .lawyers-section {
+    background: var(--color-neutral-50);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto var(--space-6);
+  }
+
+  .view-all-link {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .view-all-link:hover {
+    border-bottom-color: var(--color-primary);
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .content-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-neutral-100);
+  }
+
+  .content-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-primary-light);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-4);
+    gap: var(--space-4);
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    color: var(--color-neutral-900);
+    margin: 0;
+    flex: 1;
+  }
+
+  .card-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .read-more {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .read-more:hover {
+    border-bottom-color: var(--color-primary);
+  }
+
+  .warning-badge {
+    background: var(--color-error);
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  /* Lawyer Card Specific */
+  .lawyer-info {
+    margin-bottom: var(--space-6);
+  }
+
+  .specialization {
+    color: var(--color-neutral-600);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-3);
+  }
+
+  .success-rate {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .rate-label {
+    color: var(--color-neutral-500);
+    font-size: 0.875rem;
+  }
+
+  .rate-value {
+    color: var(--color-success);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.125rem;
+  }
+
+  .btn-sm {
+    padding: var(--space-2) var(--space-4);
+    font-size: 0.875rem;
+  }
+
+  .consultation-link {
+    color: var(--color-secondary);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    font-size: 0.875rem;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .consultation-link:hover {
+    border-bottom-color: var(--color-secondary);
+  }
+
+  /* CTA Section */
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .cta-content p {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-8);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cta-section .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .cta-section .btn-outline:hover {
+    background: white;
+    color: var(--color-secondary);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      text-align: center;
+    }
+
+    .hero-stats {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: var(--space-16) 0;
+    }
+
+    .title-highlight {
+      font-size: 2.5rem;
+    }
+
+    .title-subtitle {
+      font-size: 1.5rem;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+    }
+
+    .hero-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+      width: 100%;
+    }
+
+    .hero-actions .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .actions-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .action-card {
+      padding: var(--space-6);
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .cta-content h2 {
+      font-size: 2rem;
+    }
+
+    .cta-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+      width: 100%;
+    }
+
+    .cta-actions .btn {
+      width: 100%;
+    }
+
+    .card-footer {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-3);
+    }
+  }
+</style>

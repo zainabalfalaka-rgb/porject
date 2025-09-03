@@ -1,0 +1,1285 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import CommentForm from '../../../components/CommentForm.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "HowTo",
+  "name": "خطوات استرجاع الأموال من البنك",
+  "description": "الخطوات القانونية لاسترجاع أموالك من البنك في حالات الاحتيال والمعاملات غير المصرح بها",
+  "image": "https://khalijtrust.com/img/logo4.png",
+  "totalTime": "PT8M",
+  "supply": [
+    "كشوف حساب بنكية",
+    "إيصالات المعاملات",
+    "مراسلات مع الشركة المحتالة",
+    "وثائق إثبات الهوية"
+  ],
+  "tool": [
+    "تطبيق البنك الإلكتروني",
+    "خدمة العملاء البنكية",
+    "نماذج الشكاوى الرسمية"
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "توثيق المعاملة المشبوهة",
+      "text": "اجمع جميع الوثائق والأدلة المتعلقة بالمعاملة الاحتيالية"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "التواصل الفوري مع البنك",
+      "text": "اتصل بخدمة العملاء فوراً لإبلاغهم بالمعاملة المشبوهة"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "تقديم طلب Chargeback",
+      "text": "قدم طلب رسمي لاسترداد الأموال عبر نظام Chargeback"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "تقديم الأدلة والوثائق",
+      "text": "قدم جميع الأدلة التي تثبت أن المعاملة احتيالية"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "متابعة الطلب",
+      "text": "تابع حالة طلبك بانتظام مع البنك"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "التصعيد للجهات العليا",
+      "text": "في حالة الرفض، صعد الأمر لإدارة الشكاوى أو البنك المركزي"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "الاستعانة بخبير قانوني",
+      "text": "إذا فشلت الخطوات السابقة، استعن بمحامي متخصص مثل مكتب Trust Law"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "المتابعة القانونية",
+      "text": "اتخذ الإجراءات القانونية اللازمة لاسترجاع حقوقك"
+    }
+  ],
+  "url": "https://khalijtrust.com/guides/bank-refund-process/"
+};
+
+const refundSteps = [
+  {
+    number: 1,
+    title: "توثيق المعاملة المشبوهة",
+    description: "الخطوة الأولى والأهم هي جمع وتوثيق جميع الأدلة المتعلقة بالمعاملة الاحتيالية",
+    timeframe: "فوراً عند اكتشاف الاحتيال",
+    details: [
+      "كشف حساب يظهر المعاملة المشبوهة",
+      "لقطات شاشة من موقع أو تطبيق الشركة المحتالة",
+      "جميع المراسلات (إيميلات، رسائل نصية، واتساب)",
+      "إيصالات أو تأكيدات الدفع",
+      "تسجيلات المكالمات إن وجدت",
+      "أي وثائق أو عقود موقعة"
+    ],
+    tips: [
+      "احتفظ بنسخ رقمية ومطبوعة من جميع الوثائق",
+      "لا تحذف أي مراسلات حتى لو كانت محرجة",
+      "اكتب تفاصيل ما حدث بالتسلسل الزمني",
+      "احتفظ بأرقام المرجع لجميع المعاملات"
+    ],
+    warning: "كلما كانت الأدلة أكثر وأوضح، كانت فرص استرجاع الأموال أعلى"
+  },
+  {
+    number: 2,
+    title: "التواصل الفوري مع البنك",
+    description: "اتصل بخدمة العملاء في بنكك فوراً لإبلاغهم بالمعاملة المشبوهة",
+    timeframe: "خلال 24-48 ساعة من اكتشاف الاحتيال",
+    details: [
+      "اتصل بالخط الساخن لخدمة العملاء",
+      "اطلب التحدث مع قسم الأمان أو مكافحة الاحتيال",
+      "اشرح الموقف بوضوح وبالتفصيل",
+      "اطلب رقم مرجع للشكوى",
+      "اطلب تجميد البطاقة إذا لزم الأمر",
+      "احصل على اسم الموظف الذي تحدثت معه"
+    ],
+    tips: [
+      "كن هادئاً ومنظماً في شرح المشكلة",
+      "اطلب تأكيد كتابي لما تم الاتفاق عليه",
+      "احتفظ بسجل لجميع المكالمات والتواريخ",
+      "لا تقبل بـ'لا' كإجابة نهائية"
+    ],
+    warning: "السرعة في التبليغ تزيد من فرص النجاح في استرجاع الأموال"
+  },
+  {
+    number: 3,
+    title: "تقديم طلب Chargeback",
+    description: "قدم طلب رسمي لاسترداد الأموال عبر نظام Chargeback المصرفي",
+    timeframe: "خلال 60-120 يوم من تاريخ المعاملة",
+    details: [
+      "املأ نموذج طلب Chargeback الرسمي",
+      "حدد سبب الطلب (احتيال، خدمة غير مقدمة، إلخ)",
+      "قدم جميع الوثائق المطلوبة",
+      "اكتب بيان مفصل عن المشكلة",
+      "حدد المبلغ المطلوب استرداده",
+      "وقع النموذج وقدمه للبنك"
+    ],
+    tips: [
+      "اقرأ شروط وأحكام البنك حول Chargeback",
+      "تأكد من أن طلبك يقع ضمن الإطار الزمني المسموح",
+      "كن دقيقاً في تحديد سبب الطلب",
+      "قدم أكبر قدر من التفاصيل والأدلة"
+    ],
+    warning: "لديك وقت محدود لتقديم طلب Chargeback، لا تتأخر"
+  },
+  {
+    number: 4,
+    title: "تقديم الأدلة والوثائق",
+    description: "قدم جميع الأدلة التي جمعتها لدعم طلب استرداد الأموال",
+    timeframe: "خلال المهلة المحددة من البنك",
+    details: [
+      "كشوف الحساب التي تظهر المعاملة",
+      "لقطات شاشة من موقع الشركة المحتالة",
+      "المراسلات مع الشركة",
+      "محاولات التواصل الفاشلة",
+      "تقارير من مواقع التحذير",
+      "شهادات من ضحايا آخرين إن أمكن"
+    ],
+    tips: [
+      "نظم الوثائق بترتيب زمني واضح",
+      "اكتب ملخص لكل وثيقة وأهميتها",
+      "قدم الوثائق الأصلية مع الاحتفاظ بنسخ",
+      "تأكد من وضوح وجودة جميع الصور والمستندات"
+    ],
+    warning: "الأدلة الضعيفة أو غير المكتملة قد تؤدي لرفض الطلب"
+  },
+  {
+    number: 5,
+    title: "متابعة الطلب بانتظام",
+    description: "تابع حالة طلبك بانتظام مع البنك واستفسر عن أي تطورات",
+    timeframe: "كل أسبوع حتى الحصول على رد نهائي",
+    details: [
+      "اتصل بالبنك أسبوعياً للاستفسار",
+      "اطلب تحديثات كتابية عن حالة الطلب",
+      "تابع مع نفس الموظف إن أمكن",
+      "احتفظ بسجل لجميع المكالمات والمراسلات",
+      "اسأل عن الخطوات التالية والمهل الزمنية",
+      "كن مستعداً لتقديم معلومات إضافية"
+    ],
+    tips: [
+      "كن مهذباً لكن مصراً في المتابعة",
+      "اطلب أرقام مرجع لكل تفاعل",
+      "احتفظ بملف منظم لجميع التطورات",
+      "لا تتردد في طلب التحدث مع مشرف"
+    ],
+    warning: "عدم المتابعة قد يؤدي لتأخير أو رفض الطلب"
+  },
+  {
+    number: 6,
+    title: "التصعيد للجهات العليا",
+    description: "في حالة رفض البنك لطلبك، صعد الأمر لإدارة الشكاوى أو البنك المركزي",
+    timeframe: "خلال 30 يوم من رفض الطلب",
+    details: [
+      "قدم شكوى لإدارة الشكاوى في البنك",
+      "اتصل بالبنك المركزي في بلدك",
+      "قدم شكوى لهيئة حماية المستهلك",
+      "استخدم منصات الشكاوى الحكومية",
+      "اطلب مراجعة مستقلة للقرار",
+      "احتفظ بجميع المراسلات الرسمية"
+    ],
+    tips: [
+      "اكتب شكوى مفصلة ومنظمة",
+      "أرفق جميع الوثائق ذات الصلة",
+      "اطلب رد كتابي على شكواك",
+      "تابع مع الجهات المختلفة بانتظام"
+    ],
+    warning: "التصعيد يتطلب صبر ومثابرة، لا تستسلم بسهولة"
+  },
+  {
+    number: 7,
+    title: "الاستعانة بخبير قانوني متخصص",
+    description: "إذا فشلت الخطوات السابقة، استعن بمحامي متخصص في قضايا الاحتيال المصرفي",
+    timeframe: "عند الحاجة",
+    details: [
+      "ابحث عن محامي متخصص في الاحتيال المالي",
+      "احصل على استشارة قانونية مجانية",
+      "قيم قوة قضيتك مع الخبير",
+      "ناقش الخيارات القانونية المتاحة",
+      "احصل على تقدير للتكاليف والمدة الزمنية",
+      "وقع اتفاقية واضحة مع المحامي"
+    ],
+    tips: [
+      "اختر محامي له خبرة في قضايا مشابهة",
+      "اطلب أمثلة على قضايا نجح فيها",
+      "تأكد من فهم هيكل الأتعاب",
+      "احتفظ بنسخ من جميع الوثائق"
+    ],
+    warning: "اختيار المحامي المناسب أمر بالغ الأهمية لنجاح القضية",
+    highlight: "مكتب Trust Law في لندن متخصص في استرجاع الأموال من البنوك والشركات الاحتيالية. لديهم خبرة 23 سنة ومعدل نجاح 98% في قضايا مشابهة. يقدمون استشارة مجانية ولا يتقاضون أتعاب إلا عند النجاح."
+  },
+  {
+    number: 8,
+    title: "المتابعة القانونية والتنفيذ",
+    description: "اتخذ الإجراءات القانونية اللازمة لاسترجاع حقوقك عبر المحاكم",
+    timeframe: "حسب تعقيد القضية",
+    details: [
+      "رفع دعوى قضائية ضد البنك أو الشركة المحتالة",
+      "تقديم جميع الأدلة للمحكمة",
+      "حضور جلسات المحكمة",
+      "التفاوض على تسوية خارج المحكمة",
+      "تنفيذ الحكم القضائي",
+      "استلام الأموال المستردة"
+    ],
+    tips: [
+      "كن صبوراً فالعملية القانونية تحتاج وقت",
+      "تعاون بالكامل مع محاميك",
+      "احتفظ بجميع الوثائق منظمة",
+      "كن مستعداً للشهادة في المحكمة"
+    ],
+    warning: "العملية القانونية قد تستغرق شهور أو سنوات، لكن النتائج تستحق الانتظار"
+  }
+];
+
+const bankTypes = [
+  {
+    type: "البنوك التجارية",
+    examples: ["بنك الإمارات دبي الوطني", "البنك الأهلي السعودي", "بنك الكويت الوطني"],
+    chargebackPolicy: "60-120 يوم",
+    successRate: "70-85%"
+  },
+  {
+    type: "البنوك الإسلامية", 
+    examples: ["بنك دبي الإسلامي", "بنك الراجحي", "بيت التمويل الكويتي"],
+    chargebackPolicy: "60-90 يوم",
+    successRate: "65-80%"
+  },
+  {
+    type: "البنوك الدولية",
+    examples: ["HSBC", "Citibank", "Standard Chartered"],
+    chargebackPolicy: "120-180 يوم", 
+    successRate: "80-90%"
+  }
+];
+
+const commonReasons = [
+  {
+    reason: "احتيال واضح",
+    description: "معاملات غير مصرح بها أو مع شركات وهمية",
+    successRate: "90%",
+    timeframe: "30-60 يوم"
+  },
+  {
+    reason: "عدم تقديم الخدمة",
+    description: "دفع مقابل خدمة لم يتم تقديمها",
+    successRate: "85%",
+    timeframe: "45-90 يوم"
+  },
+  {
+    reason: "خدمة مختلفة عن الموصوفة",
+    description: "الخدمة المقدمة مختلفة عما تم الاتفاق عليه",
+    successRate: "75%",
+    timeframe: "60-120 يوم"
+  },
+  {
+    reason: "معاملة مكررة",
+    description: "خصم نفس المبلغ أكثر من مرة",
+    successRate: "95%",
+    timeframe: "15-30 يوم"
+  }
+];
+---
+
+<Layout 
+  title="خطوات استرجاع الأموال من البنك - دليل شامل"
+  description="تعلم الخطوات القانونية الصحيحة لاسترجاع أموالك من البنك في حالات الاحتيال والمعاملات غير المصرح بها مع نصائح الخبراء"
+  keywords="استرجاع أموال، Chargeback، احتيال مصرفي، استرداد من البنك، حماية المستهلك، الخليج"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Guide Header -->
+    <section class="guide-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="guide-meta">
+            <span class="category">الإجراءات المصرفية</span>
+            <span class="difficulty medium">متوسط</span>
+            <span class="read-time">⏱️ 8 دقائق</span>
+          </div>
+          
+          <h1 class="guide-title">
+            خطوات استرجاع الأموال من البنك
+          </h1>
+          
+          <p class="guide-description">
+            دليل شامل يوضح الخطوات القانونية الصحيحة لاسترجاع أموالك من البنك في حالات الاحتيال 
+            والمعاملات غير المصرح بها. تعلم كيفية استخدام نظام Chargeback بفعالية.
+          </p>
+          
+          <div class="guide-stats">
+            <div class="stat">
+              <span class="stat-number">8</span>
+              <span class="stat-label">خطوات</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">80%</span>
+              <span class="stat-label">معدل النجاح</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">60-120</span>
+              <span class="stat-label">يوم</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="introduction">
+      <div class="container">
+        <div class="intro-content">
+          <h2>ما هو نظام Chargeback؟</h2>
+          <p class="intro-text">
+            نظام Chargeback هو آلية حماية للمستهلكين تسمح لهم باسترداد أموالهم من البنك في حالات 
+            الاحتيال أو عدم تقديم الخدمة المتفق عليها. هذا النظام مدعوم من شركات البطاقات العالمية 
+            مثل Visa وMastercard.
+          </p>
+          
+          <div class="chargeback-benefits">
+            <div class="benefit-card">
+              <div class="benefit-icon">🛡️</div>
+              <h3>حماية قانونية</h3>
+              <p>حق قانوني مضمون لجميع حاملي البطاقات</p>
+            </div>
+            
+            <div class="benefit-card">
+              <div class="benefit-icon">💰</div>
+              <h3>استرداد كامل</h3>
+              <p>إمكانية استرداد كامل المبلغ في حالة النجاح</p>
+            </div>
+            
+            <div class="benefit-card">
+              <div class="benefit-icon">⏰</div>
+              <h3>إطار زمني محدد</h3>
+              <p>مهلة زمنية واضحة لتقديم الطلب</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Refund Steps -->
+    <section class="refund-steps">
+      <div class="container">
+        <div class="section-header">
+          <h2>خطوات استرجاع الأموال من البنك</h2>
+          <p>اتبع هذه الخطوات الثمان لزيادة فرص نجاحك في استرداد أموالك</p>
+        </div>
+        
+        <div class="steps-container">
+          {refundSteps.map(step => (
+            <div class="step-card">
+              <div class="step-header">
+                <div class="step-number">{step.number}</div>
+                <div class="step-info">
+                  <h3 class="step-title">{step.title}</h3>
+                  <span class="timeframe">{step.timeframe}</span>
+                </div>
+              </div>
+              
+              <div class="step-content">
+                <p class="step-description">{step.description}</p>
+                
+                <div class="step-details">
+                  <h4>ما تحتاج لفعله:</h4>
+                  <ul class="details-list">
+                    {step.details.map(detail => (
+                      <li>{detail}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div class="step-tips">
+                  <h4>نصائح للنجاح:</h4>
+                  <ul class="tips-list">
+                    {step.tips.map(tip => (
+                      <li>{tip}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                {step.highlight && (
+                  <div class="step-highlight">
+                    <div class="highlight-icon">⭐</div>
+                    <p>{step.highlight}</p>
+                  </div>
+                )}
+                
+                <div class="step-warning">
+                  <div class="warning-icon">⚠️</div>
+                  <p>{step.warning}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Bank Types -->
+    <section class="bank-types">
+      <div class="container">
+        <div class="section-header">
+          <h2>سياسات البنوك المختلفة</h2>
+          <p>تختلف سياسات Chargeback حسب نوع البنك ومعدلات النجاح</p>
+        </div>
+        
+        <div class="types-grid">
+          {bankTypes.map(bankType => (
+            <div class="type-card">
+              <h4>{bankType.type}</h4>
+              <div class="type-details">
+                <div class="detail-item">
+                  <span class="detail-label">مهلة Chargeback:</span>
+                  <span class="detail-value">{bankType.chargebackPolicy}</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">معدل النجاح:</span>
+                  <span class="detail-value success">{bankType.successRate}</span>
+                </div>
+              </div>
+              <div class="examples">
+                <h5>أمثلة:</h5>
+                <ul>
+                  {bankType.examples.map(example => (
+                    <li>{example}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Common Reasons -->
+    <section class="common-reasons">
+      <div class="container">
+        <div class="section-header">
+          <h2>أسباب طلب استرداد الأموال</h2>
+          <p>الأسباب الأكثر شيوعاً ومعدلات نجاحها</p>
+        </div>
+        
+        <div class="reasons-grid">
+          {commonReasons.map(reason => (
+            <div class="reason-card">
+              <div class="reason-header">
+                <h4>{reason.reason}</h4>
+                <div class="success-rate">
+                  <span class="rate-label">معدل النجاح:</span>
+                  <span class="rate-value">{reason.successRate}</span>
+                </div>
+              </div>
+              <p class="reason-description">{reason.description}</p>
+              <div class="reason-timeframe">
+                <span class="timeframe-label">المدة المتوقعة:</span>
+                <span class="timeframe-value">{reason.timeframe}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Tips for Success -->
+    <section class="success-tips">
+      <div class="container">
+        <div class="section-header">
+          <h2>نصائح لزيادة فرص النجاح</h2>
+          <p>استراتيجيات مجربة لتحسين احتمالية استرداد أموالك</p>
+        </div>
+        
+        <div class="tips-grid">
+          <div class="tip-card">
+            <div class="tip-icon">📋</div>
+            <h4>التوثيق الشامل</h4>
+            <p>احتفظ بجميع الوثائق والمراسلات مرتبة ومنظمة</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">⏰</div>
+            <h4>السرعة في التبليغ</h4>
+            <p>كلما أبلغت أسرع، كانت فرص النجاح أعلى</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">🎯</div>
+            <h4>الوضوح في الشرح</h4>
+            <p>اشرح المشكلة بوضوح ودون تعقيد</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">🔄</div>
+            <h4>المتابعة المستمرة</h4>
+            <p>تابع طلبك بانتظام ولا تتركه دون متابعة</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">📞</div>
+            <h4>التواصل المهذب</h4>
+            <p>كن مهذباً لكن حازماً في تعاملك مع البنك</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">⚖️</div>
+            <h4>المساعدة القانونية</h4>
+            <p>لا تتردد في طلب المساعدة من محامي متخصص</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What to Avoid -->
+    <section class="what-to-avoid">
+      <div class="container">
+        <div class="section-header">
+          <h2>أخطاء يجب تجنبها</h2>
+          <p>تجنب هذه الأخطاء الشائعة التي قد تضر بطلبك</p>
+        </div>
+        
+        <div class="avoid-grid">
+          <div class="avoid-card">
+            <div class="avoid-icon">❌</div>
+            <h4>التأخير في التبليغ</h4>
+            <p>عدم إبلاغ البنك فوراً عند اكتشاف المشكلة</p>
+          </div>
+          
+          <div class="avoid-card">
+            <div class="avoid-icon">❌</div>
+            <h4>نقص الوثائق</h4>
+            <p>عدم تقديم أدلة كافية أو واضحة</p>
+          </div>
+          
+          <div class="avoid-card">
+            <div class="avoid-icon">❌</div>
+            <h4>عدم المتابعة</h4>
+            <p>ترك الطلب دون متابعة أو تحديث</p>
+          </div>
+          
+          <div class="avoid-card">
+            <div class="avoid-icon">❌</div>
+            <h4>المعلومات الخاطئة</h4>
+            <p>تقديم معلومات غير دقيقة أو مضللة</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Legal Help -->
+    <section class="legal-help">
+      <div class="container">
+        <div class="help-card">
+          <div class="help-icon">⚖️</div>
+          <div class="help-content">
+            <h3>هل تحتاج مساعدة قانونية؟</h3>
+            <p>
+              إذا رفض البنك طلبك أو واجهت صعوبات في العملية، يمكن للمحامين المتخصصين 
+              مساعدتك في استرجاع حقوقك بطرق قانونية فعالة.
+            </p>
+            <div class="help-features">
+              <div class="feature">
+                <span class="feature-icon">✅</span>
+                <span>استشارة قانونية مجانية</span>
+              </div>
+              <div class="feature">
+                <span class="feature-icon">✅</span>
+                <span>خبرة في التعامل مع البنوك</span>
+              </div>
+              <div class="feature">
+                <span class="feature-icon">✅</span>
+                <span>معدل نجاح عالي في القضايا</span>
+              </div>
+            </div>
+            <div class="help-actions">
+              <a href="/lawyers/" class="btn btn-primary">
+                ابحث عن محامي متخصص
+              </a>
+              <a href="/contact/" class="btn btn-outline">
+                استشارة مجانية
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <JournalistByline articleSlug="bank-refund-process" />
+        <CommentForm postId="bank-refund-process-guide" postType="guide" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .guide-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: var(--space-16) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .guide-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .guide-meta {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .category {
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .difficulty {
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .difficulty.medium {
+    background: var(--color-secondary);
+    color: white;
+  }
+
+  .read-time {
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .guide-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+  }
+
+  .guide-description {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+  }
+
+  .guide-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .stat {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .introduction {
+    padding: var(--space-16) 0;
+  }
+
+  .intro-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intro-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-6);
+    color: var(--color-neutral-900);
+  }
+
+  .intro-text {
+    font-size: 1.25rem;
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-10);
+  }
+
+  .chargeback-benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .benefit-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-primary);
+  }
+
+  .benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .benefit-card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    font-size: 1.25rem;
+  }
+
+  .benefit-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .refund-steps {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .step-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    border-left: 6px solid var(--color-primary);
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: white;
+  }
+
+  .step-number {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 0;
+  }
+
+  .step-info {
+    flex: 1;
+  }
+
+  .step-title {
+    font-size: 1.5rem;
+    margin: 0 0 var(--space-2);
+    color: white;
+  }
+
+  .timeframe {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .step-content {
+    padding: var(--space-8);
+  }
+
+  .step-description {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .step-details,
+  .step-tips {
+    margin-bottom: var(--space-6);
+  }
+
+  .step-details h4,
+  .step-tips h4 {
+    color: var(--color-neutral-900);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .details-list,
+  .tips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .details-list li,
+  .tips-list li {
+    padding: var(--space-2) 0;
+    color: var(--color-neutral-600);
+    border-bottom: 1px solid var(--color-neutral-100);
+    position: relative;
+    padding-right: var(--space-6);
+  }
+
+  .details-list li::before {
+    content: '•';
+    color: var(--color-primary);
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+  }
+
+  .tips-list li::before {
+    content: '💡';
+    position: absolute;
+    right: 0;
+  }
+
+  .step-highlight {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light) 100%);
+    color: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .highlight-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .step-highlight p {
+    margin: 0;
+    color: white;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .step-warning {
+    background: linear-gradient(135deg, var(--color-warning) 0%, #d97706 100%);
+    color: white;
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .warning-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .step-warning p {
+    margin: 0;
+    color: white;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .bank-types {
+    padding: var(--space-20) 0;
+  }
+
+  .types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .type-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--color-secondary);
+  }
+
+  .type-card h4 {
+    color: var(--color-secondary);
+    margin-bottom: var(--space-4);
+    font-size: 1.25rem;
+  }
+
+  .type-details {
+    margin-bottom: var(--space-6);
+  }
+
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--color-neutral-100);
+  }
+
+  .detail-label {
+    color: var(--color-neutral-600);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .detail-value {
+    color: var(--color-neutral-900);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .detail-value.success {
+    color: var(--color-success);
+  }
+
+  .examples h5 {
+    color: var(--color-neutral-700);
+    margin-bottom: var(--space-3);
+  }
+
+  .examples ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .examples li {
+    padding: var(--space-1) 0;
+    color: var(--color-neutral-600);
+    font-size: 0.875rem;
+  }
+
+  .common-reasons {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .reason-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--color-success);
+  }
+
+  .reason-header {
+    margin-bottom: var(--space-4);
+  }
+
+  .reason-header h4 {
+    color: var(--color-success);
+    margin-bottom: var(--space-2);
+    font-size: 1.125rem;
+  }
+
+  .success-rate {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .rate-label {
+    color: var(--color-neutral-500);
+    font-size: 0.875rem;
+  }
+
+  .rate-value {
+    color: var(--color-success);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .reason-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .reason-timeframe {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .timeframe-label {
+    color: var(--color-neutral-500);
+    font-size: 0.875rem;
+  }
+
+  .timeframe-value {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+    font-size: 0.875rem;
+  }
+
+  .success-tips {
+    padding: var(--space-20) 0;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .tip-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-success);
+  }
+
+  .tip-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .tip-card h4 {
+    color: var(--color-success);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .tip-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .what-to-avoid {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .avoid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .avoid-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-error);
+  }
+
+  .avoid-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .avoid-card h4 {
+    color: var(--color-error);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .avoid-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .legal-help {
+    padding: var(--space-16) 0;
+  }
+
+  .help-card {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .help-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .help-content h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .help-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .help-features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--space-3);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .feature-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .feature span:last-child {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .help-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .legal-help .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .legal-help .btn-outline:hover {
+    background: white;
+    color: var(--color-primary);
+  }
+
+  .comments-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 768px) {
+    .guide-title {
+      font-size: 2rem;
+    }
+
+    .guide-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .guide-meta {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .chargeback-benefits {
+      grid-template-columns: 1fr;
+    }
+
+    .help-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .help-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

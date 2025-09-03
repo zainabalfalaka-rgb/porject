@@ -1,0 +1,797 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const schemaData = {
+  "@type": "AboutPage",
+  "name": "من نحن - دليل الخليج",
+  "description": "تعرف على دليل الخليج ومهمتنا في حماية المجتمع من الاحتيال وتوفير الخدمات القانونية الموثوقة",
+  "url": "https://khalijtrust.com/about/"
+};
+
+const teamMembers = [
+  {
+    name: "أحمد المنصوري",
+    position: "المؤسس والمدير التنفيذي",
+    experience: "15 سنة في القانون والاستشارات",
+    description: "خبير في قضايا الاحتيال والحماية القانونية"
+  },
+  {
+    name: "فاطمة العلي",
+    position: "مديرة التطوير والمحتوى",
+    experience: "12 سنة في التكنولوجيا والإعلام",
+    description: "متخصصة في تطوير المحتوى التوعوي والتقني"
+  },
+  {
+    name: "محمد الشامي",
+    position: "مدير العلاقات القانونية",
+    experience: "18 سنة في الممارسة القانونية",
+    description: "خبير في بناء الشراكات مع المحامين والمؤسسات القانونية"
+  }
+];
+
+const milestones = [
+  { year: "2020", event: "تأسيس دليل الخليج", description: "بدأنا برؤية حماية المجتمع من الاحتيال" },
+  { year: "2021", event: "إطلاق قاعدة البيانات", description: "أول قاعدة بيانات شاملة للشركات المشبوهة" },
+  { year: "2022", event: "شبكة المحامين", description: "بناء شبكة من المحامين الموثوقين" },
+  { year: "2023", event: "التوسع الإقليمي", description: "توسيع الخدمات لتشمل جميع دول الخليج" },
+  { year: "2024", event: "الأدوات التقنية", description: "إطلاق أدوات التحقق المتقدمة" }
+];
+---
+
+<Layout 
+  title="من نحن - دليل الخليج"
+  description="تعرف على دليل الخليج، مهمتنا في حماية المجتمع من الاحتيال، وفريق العمل المتخصص في توفير الخدمات القانونية الموثوقة"
+  keywords="من نحن، دليل الخليج، حماية من الاحتيال، فريق العمل، مهمتنا، رؤيتنا"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="page-title">
+            <span class="title-icon">🏢</span>
+            من نحن
+          </h1>
+          <p class="page-description">
+            نحن فريق متخصص من الخبراء القانونيين والتقنيين، ملتزمون بحماية المجتمع من الاحتيال 
+            وتوفير الوصول للخدمات القانونية الموثوقة في منطقة الخليج.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="our-story">
+      <div class="container">
+        <div class="story-content">
+          <div class="story-text">
+            <h2>قصتنا</h2>
+            <p class="intro-text">
+              بدأت فكرة دليل الخليج من تجربة شخصية مؤلمة. عندما تعرض أحد مؤسسينا للاحتيال من شركة استثمار وهمية، 
+              أدرك مدى صعوبة العثور على معلومات موثوقة حول الشركات المشبوهة والمحامين المختصين.
+            </p>
+            <p>
+              هذه التجربة ألهمتنا لإنشاء منصة شاملة تجمع التحذيرات من الشركات المحتالة، وتوفر دليلاً 
+              بالمحامين الموثوقين، وتقدم أدوات التحقق اللازمة لحماية المجتمع.
+            </p>
+            <p>
+              منذ تأسيسنا في عام 2020، ساعدنا آلاف الأشخاص في تجنب الاحتيال وربطناهم بالمحامين المناسبين 
+              لاسترجاع أموالهم. نحن فخورون بأن نكون جزءاً من حماية المجتمع المالي في منطقة الخليج.
+            </p>
+          </div>
+          
+          <div class="story-visual">
+            <div class="achievement-cards">
+              <div class="achievement-card">
+                <div class="achievement-number">1000+</div>
+                <div class="achievement-label">شخص محمي من الاحتيال</div>
+              </div>
+              <div class="achievement-card">
+                <div class="achievement-number">500+</div>
+                <div class="achievement-label">شركة محتالة مكشوفة</div>
+              </div>
+              <div class="achievement-card">
+                <div class="achievement-number">100+</div>
+                <div class="achievement-label">محامي موثوق</div>
+              </div>
+              <div class="achievement-card">
+                <div class="achievement-number">50M+</div>
+                <div class="achievement-label">درهم تم حمايته</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mission-vision">
+      <div class="container">
+        <div class="mv-grid">
+          <div class="mv-card mission">
+            <div class="mv-icon">🎯</div>
+            <h3>مهمتنا</h3>
+            <p>
+              حماية المجتمع من الاحتيال والنصب من خلال توفير معلومات موثوقة وشاملة عن الشركات المشبوهة، 
+              وربط الضحايا بالمحامين المختصين، وتقديم الأدوات والأدلة اللازمة للحماية الذاتية.
+            </p>
+          </div>
+          
+          <div class="mv-card vision">
+            <div class="mv-icon">🔮</div>
+            <h3>رؤيتنا</h3>
+            <p>
+              أن نكون المرجع الأول والأكثر ثقة في منطقة الخليج للحماية من الاحتيال والوصول للخدمات القانونية، 
+              ونساهم في بناء مجتمع مالي آمن وواعي يحمي نفسه من المحتالين.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="our-values">
+      <div class="container">
+        <div class="section-header">
+          <h2>قيمنا الأساسية</h2>
+          <p>المبادئ التي توجه عملنا وتحدد هويتنا</p>
+        </div>
+        
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon">🛡️</div>
+            <h4>الحماية</h4>
+            <p>نضع حماية المجتمع من الاحتيال كأولوية قصوى في كل ما نقوم به</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon">🔍</div>
+            <h4>الشفافية</h4>
+            <p>نؤمن بالشفافية الكاملة في المعلومات والخدمات التي نقدمها</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon">🤝</div>
+            <h4>الثقة</h4>
+            <p>نبني الثقة من خلال التحقق الدقيق والمعلومات الموثوقة</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon">⚖️</div>
+            <h4>العدالة</h4>
+            <p>نساعد في تحقيق العدالة من خلال ربط الضحايا بالمحامين المناسبين</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon">🎓</div>
+            <h4>التعليم</h4>
+            <p>نؤمن بقوة التعليم والتوعية في منع الاحتيال</p>
+          </div>
+          
+          <div class="value-card">
+            <div class="value-icon">🌟</div>
+            <h4>التميز</h4>
+            <p>نسعى للتميز في كل خدمة نقدمها ومعلومة ننشرها</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Team -->
+    <section class="our-team">
+      <div class="container">
+        <div class="section-header">
+          <h2>فريق العمل</h2>
+          <p>خبراء متخصصون في القانون والتكنولوجيا والحماية من الاحتيال</p>
+        </div>
+        
+        <div class="team-grid">
+          {teamMembers.map(member => (
+            <div class="team-card">
+              <div class="member-avatar">
+                <div class="avatar-placeholder">
+                  {member.name.split(' ').map(n => n[0]).join('')}
+                </div>
+              </div>
+              <div class="member-info">
+                <h4 class="member-name">{member.name}</h4>
+                <p class="member-position">{member.position}</p>
+                <p class="member-experience">{member.experience}</p>
+                <p class="member-description">{member.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Journey -->
+    <section class="our-journey">
+      <div class="container">
+        <div class="section-header">
+          <h2>رحلتنا</h2>
+          <p>المعالم المهمة في تطوير دليل الخليج</p>
+        </div>
+        
+        <div class="timeline">
+          {milestones.map((milestone, index) => (
+            <div class="timeline-item">
+              <div class="timeline-year">{milestone.year}</div>
+              <div class="timeline-content">
+                <h4>{milestone.event}</h4>
+                <p>{milestone.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- What We Do -->
+    <section class="what-we-do">
+      <div class="container">
+        <div class="section-header">
+          <h2>ما نقوم به</h2>
+          <p>خدماتنا الشاملة لحماية المجتمع</p>
+        </div>
+        
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">⚠️</div>
+            <h4>التحذيرات</h4>
+            <p>نجمع ونتحقق من التحذيرات حول الشركات المشبوهة والمحتالة</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">⚖️</div>
+            <h4>دليل المحامين</h4>
+            <p>نوفر دليلاً شاملاً بالمحامين الموثوقين المتخصصين في قضايا الاحتيال</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">📚</div>
+            <h4>الأدلة التوعوية</h4>
+            <p>نقدم أدلة عملية لتعليم الناس كيفية حماية أنفسهم من الاحتيال</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">✅</div>
+            <h4>قصص النجاح</h4>
+            <p>نشارك قصص حقيقية لأشخاص نجحوا في استرجاع أموالهم</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">🛠️</div>
+            <h4>أدوات التحقق</h4>
+            <p>نطور أدوات تقنية للتحقق من صحة الشركات والمواقع</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">🤝</div>
+            <h4>الاستشارات</h4>
+            <p>نقدم استشارات أولية مجانية وتوجيه للخطوات المناسبة</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>انضم إلى مجتمعنا</h2>
+          <p>ساعدنا في حماية المزيد من الأشخاص من الاحتيال</p>
+          <div class="cta-actions">
+            <a href="/report/" class="btn btn-primary">
+              بلغ عن احتيال
+            </a>
+            <a href="/contact/" class="btn btn-outline">
+              تواصل معنا
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: var(--space-16) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+  }
+
+  .title-icon {
+    font-size: 3.5rem;
+  }
+
+  .page-description {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .our-story {
+    padding: var(--space-20) 0;
+  }
+
+  .story-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  .story-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-6);
+    color: var(--color-neutral-900);
+  }
+
+  .intro-text {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-6);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .story-text p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .achievement-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .achievement-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border: 2px solid var(--color-primary);
+  }
+
+  .achievement-number {
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .achievement-label {
+    font-size: 0.875rem;
+    color: var(--color-neutral-600);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .mission-vision {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  .mv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .mv-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+  }
+
+  .mv-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .mv-card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+    font-size: 1.75rem;
+  }
+
+  .mv-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .our-values {
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .value-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 2px solid var(--color-neutral-100);
+  }
+
+  .value-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
+  }
+
+  .value-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .value-card h4 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    font-size: 1.25rem;
+  }
+
+  .value-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .our-team {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .team-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+  }
+
+  .member-avatar {
+    margin-bottom: var(--space-6);
+  }
+
+  .avatar-placeholder {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    margin: 0 auto;
+  }
+
+  .member-name {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-2);
+    color: var(--color-neutral-900);
+  }
+
+  .member-position {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-3);
+  }
+
+  .member-experience {
+    color: var(--color-neutral-500);
+    font-size: 0.875rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .member-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .our-journey {
+    padding: var(--space-20) 0;
+  }
+
+  .timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--color-primary);
+    transform: translateX(-50%);
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-12);
+    position: relative;
+  }
+
+  .timeline-item:nth-child(odd) {
+    flex-direction: row;
+  }
+
+  .timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  .timeline-year {
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.125rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .timeline-content {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    width: 45%;
+    border: 2px solid var(--color-primary);
+  }
+
+  .timeline-item:nth-child(odd) .timeline-content {
+    margin-left: auto;
+    margin-right: 55%;
+  }
+
+  .timeline-item:nth-child(even) .timeline-content {
+    margin-right: auto;
+    margin-left: 55%;
+  }
+
+  .timeline-content h4 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    font-size: 1.25rem;
+  }
+
+  .timeline-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .what-we-do {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .service-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .service-card h4 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    font-size: 1.25rem;
+  }
+
+  .service-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .contact-cta {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .cta-content p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contact-cta .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .contact-cta .btn-outline:hover {
+    background: white;
+    color: var(--color-secondary);
+  }
+
+  @media (max-width: 1024px) {
+    .story-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .mv-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .timeline::before {
+      left: 30px;
+    }
+
+    .timeline-item {
+      flex-direction: row !important;
+      padding-left: 60px;
+    }
+
+    .timeline-year {
+      left: 30px;
+      transform: translateX(-50%);
+    }
+
+    .timeline-content {
+      width: 100% !important;
+      margin: 0 !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .title-icon {
+      font-size: 3rem;
+    }
+
+    .achievement-cards {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .values-grid,
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .cta-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .cta-content h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

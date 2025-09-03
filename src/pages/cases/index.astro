@@ -1,0 +1,974 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import StarRating from '../../components/StarRating.astro';
+import CommentForm from '../../components/CommentForm.astro';
+
+const schemaData = {
+  "@type": "CollectionPage",
+  "name": "قصص نجاح - استرجاع الأموال",
+  "description": "قصص حقيقية لأشخاص نجحوا في استرجاع أموالهم من شركات الاحتيال مع تفاصيل العملية والنتائج",
+  "url": "https://khalijtrust.com/cases/"
+};
+
+// Sample success cases data
+const cases = [
+  {
+    id: 1,
+    title: "استرجاع 2.5 مليون جنيه من منصة فوركس احتيالية عبر Trust Law",
+    clientName: "عبدالله م.",
+    location: "لندن، المملكة المتحدة",
+    amount: "2,500,000 جنيه إسترليني",
+    duration: "14 شهر",
+    lawyerName: "مكتب Trust Law",
+    rating: 5,
+    category: "فوركس احتيالي",
+    description: "تعرض العميل للاحتيال من منصة فوركس وهمية ادعت تحقيق أرباح مضمونة. بفضل خبرة Trust Law الممتدة لـ23 عاماً في استرجاع أموال الفوركس، تم استرجاع كامل المبلغ مع التعويضات.",
+    timeline: [
+      { step: "الاستشارة المجانية", date: "يناير 2023", description: "تقييم الحالة وجمع الوثائق الأولية" },
+      { step: "فتح ملف المحكمة", date: "فبراير 2023", description: "دفع رسوم فتح الملف (500 جنيه) وبدء الإجراءات القانونية" },
+      { step: "التحقيقات الدولية", date: "مارس - يونيو 2023", description: "تتبع الأموال عبر الحدود والتعاون مع السلطات" },
+      { step: "التفاوض والتسوية", date: "يوليو - ديسمبر 2023", description: "مفاوضات مكثفة مع الأطراف المتورطة" },
+      { step: "الاسترجاع الكامل", date: "مارس 2024", description: "استرجاع كامل المبلغ مع تعويضات إضافية" }
+    ],
+    outcome: "نجح",
+    featured: true,
+    slug: "trust-law-forex-recovery-2-5m",
+    tags: ["فوركس", "لندن", "Trust Law", "استرجاع كامل"],
+    lastUpdated: "2024-01-20",
+    courtFilingFee: "500 جنيه إسترليني",
+    successFee: "3% من المبلغ المسترجع"
+  },
+  {
+    id: 2,
+    title: "نجاح Trust Law في استرداد 1.8 مليون جنيه من شركة استثمار وهمية",
+    clientName: "فاطمة ع.",
+    location: "مانشستر، المملكة المتحدة", 
+    amount: "1,800,000 جنيه إسترليني",
+    duration: "10 أشهر",
+    lawyerName: "مكتب Trust Law",
+    rating: 5,
+    category: "استثمار وهمي",
+    description: "شركة استثمار وهمية اختفت بأموال المستثمرين. استطاع فريق Trust Law المتخصص تتبع الأموال واسترجاعها بالكامل خلال 10 أشهر فقط.",
+    timeline: [
+      { step: "التواصل الأولي", date: "مايو 2023", description: "استشارة مجانية وتقييم قوة القضية" },
+      { step: "بدء الإجراءات", date: "يونيو 2023", description: "دفع رسوم فتح ملف المحكمة والبدء الرسمي" },
+      { step: "جمع الأدلة", date: "يوليو - أغسطس 2023", description: "تجميع الوثائق والأدلة القانونية" },
+      { step: "الإجراءات القضائية", date: "سبتمبر - فبراير 2024", description: "رفع الدعوى والمتابعة القانونية" },
+      { step: "الحكم والتنفيذ", date: "مارس 2024", description: "صدور حكم لصالح العميلة وتنفيذ الاسترجاع" }
+    ],
+    outcome: "نجح",
+    featured: true,
+    slug: "trust-law-investment-recovery-1-8m",
+    tags: ["استثمار", "Trust Law", "المملكة المتحدة"],
+    lastUpdated: "2024-01-18",
+    courtFilingFee: "500 جنيه إسترليني",
+    successFee: "3% من المبلغ المسترجع"
+  },
+  {
+    id: 3,
+    title: "استرجاع 1.1 مليون جنيه من شركة استثمار وهمية",
+    clientName: "أحمد م.",
+    location: "لندن، المملكة المتحدة",
+    amount: "1,100,000 جنيه إسترليني",
+    duration: "8 أشهر",
+    lawyerName: "مكتب العربية للمحاماة",
+    rating: 4.9,
+    category: "استثمار وهمي",
+    description: "تعرض العميل للاحتيال من شركة استثمار وهمية ادعت تحقيق أرباح 40% شهرياً. بفضل خبرة مكتب العربية للمحاماة في قضايا الاحتيال المالي، تم استرجاع كامل المبلغ.",
+    timeline: [
+      { step: "التواصل الأولي", date: "يناير 2023", description: "تم التواصل مع المحامي وتقديم الوثائق" },
+      { step: "رفع القضية", date: "فبراير 2023", description: "رفع دعوى قضائية ضد الشركة المحتالة" },
+      { step: "التحقيقات", date: "مارس - مايو 2023", description: "جمع الأدلة والشهادات" },
+      { step: "الحكم", date: "يونيو 2023", description: "صدور حكم لصالح العميل" },
+      { step: "الاسترجاع", date: "أغسطس 2023", description: "استرجاع كامل المبلغ مع التعويضات" }
+    ],
+    outcome: "نجح",
+    featured: true,
+    slug: "investment-scam-recovery-1-1m",
+    tags: ["استثمار", "لندن", "العربية للمحاماة"],
+    lastUpdated: "2024-01-15"
+  },
+  {
+    id: 4,
+    title: "استعادة 950 ألف جنيه من منصة تداول احتيالية",
+    clientName: "سارة ع.",
+    location: "لندن، المملكة المتحدة",
+    amount: "950,000 جنيه إسترليني",
+    duration: "6 أشهر",
+    lawyerName: "مكتب LAW FX",
+    rating: 4.8,
+    category: "تداول احتيالي",
+    description: "منصة تداول وهمية منعت العميلة من سحب أموالها وأرباحها. بفضل خبرة مكتب LAW FX في قضايا الفوركس، تم استرجاع المبلغ بالكامل.",
+    timeline: [
+      { step: "الاستشارة", date: "مارس 2023", description: "تقييم الحالة وجمع المستندات" },
+      { step: "الإجراءات القانونية", date: "أبريل 2023", description: "رفع شكوى رسمية وتجميد الحسابات" },
+      { step: "التفاوض", date: "مايو - يونيو 2023", description: "التفاوض مع الجهات المختصة" },
+      { step: "التسوية", date: "يوليو 2023", description: "التوصل لتسوية شاملة" },
+      { step: "الاستلام", date: "سبتمبر 2023", description: "استلام كامل المبلغ" }
+    ],
+    outcome: "نجح",
+    featured: true,
+    slug: "trading-platform-recovery-950k",
+    tags: ["تداول", "لندن", "LAW FX"],
+    lastUpdated: "2024-01-12"
+  },
+  {
+    id: 5,
+    title: "استرجاع 650 ألف جنيه من مشروع عملات رقمية وهمي",
+    clientName: "محمد ك.",
+    location: "لندن، المملكة المتحدة",
+    amount: "650,000 جنيه إسترليني",
+    duration: "10 أشهر",
+    lawyerName: "مكتب LAW FX",
+    rating: 4.8,
+    category: "عملات رقمية",
+    description: "استثمار في مشروع عملة رقمية وهمية. بفضل خبرة مكتب LAW FX في العملات الرقمية، تم تتبع الأموال واسترجاع 90% من المبلغ.",
+    timeline: [
+      { step: "التقييم الأولي", date: "فبراير 2023", description: "دراسة الحالة وتحليل المعاملات" },
+      { step: "التتبع التقني", date: "مارس - مايو 2023", description: "تتبع المعاملات على البلوك تشين" },
+      { step: "الإجراءات القانونية", date: "يونيو 2023", description: "رفع القضية والحصول على أوامر قضائية" },
+      { step: "التعاون الدولي", date: "يوليو - أكتوبر 2023", description: "التعاون مع جهات دولية" },
+      { step: "الاسترجاع الجزئي", date: "ديسمبر 2023", description: "استرجاع 90% من المبلغ" }
+    ],
+    outcome: "نجح جزئياً",
+    featured: false,
+    slug: "crypto-scam-recovery-650k",
+    tags: ["عملات رقمية", "لندن", "LAW FX"],
+    lastUpdated: "2024-01-10"
+  },
+  {
+    id: 6,
+    title: "استعادة 480 ألف جنيه من شركة وساطة مالية مزيفة",
+    clientName: "فاطمة ر.",
+    location: "لندن، المملكة المتحدة",
+    amount: "480,000 جنيه إسترليني",
+    duration: "4 أشهر",
+    lawyerName: "مكتب العربية للمحاماة",
+    rating: 4.9,
+    category: "وساطة مالية",
+    description: "شركة وساطة مالية مزيفة اختفت بأموال العملاء. بفضل خبرة مكتب العربية للمحاماة، تم تتبع المسؤولين واسترجاع الأموال بسرعة.",
+    timeline: [
+      { step: "البلاغ", date: "يونيو 2023", description: "تقديم بلاغ للجهات المختصة" },
+      { step: "التحقيق", date: "يوليو 2023", description: "التحقيق مع المسؤولين" },
+      { step: "تجميد الأصول", date: "أغسطس 2023", description: "تجميد حسابات الشركة" },
+      { step: "الاسترجاع", date: "أكتوبر 2023", description: "استرجاع كامل المبلغ" }
+    ],
+    outcome: "نجح",
+    featured: false,
+    slug: "financial-brokerage-recovery-480k",
+    tags: ["وساطة مالية", "لندن", "العربية للمحاماة"],
+    lastUpdated: "2024-01-08"
+  }
+];
+
+const categories = [
+  { value: "all", label: "جميع الفئات" },
+  { value: "investment", label: "استثمار وهمي" },
+  { value: "trading", label: "تداول احتيالي" },
+  { value: "crypto", label: "عملات رقمية" },
+  { value: "brokerage", label: "وساطة مالية" },
+  { value: "banking", label: "مصرفي" }
+];
+
+const outcomes = [
+  { value: "all", label: "جميع النتائج" },
+  { value: "full", label: "استرجاع كامل" },
+  { value: "partial", label: "استرجاع جزئي" },
+  { value: "ongoing", label: "قيد المتابعة" }
+];
+---
+
+<Layout 
+  title="قصص نجاح في استرجاع الأموال - دليل الخليج"
+  description="قصص حقيقية ومفصلة لأشخاص نجحوا في استرجاع أموالهم من شركات الاحتيال مع خطوات العملية والنتائج المحققة"
+  keywords="قصص نجاح، استرجاع أموال، قضايا احتيال، نجاح قانوني، تعويضات، الخليج"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="page-title">
+            <span class="title-icon">✅</span>
+            قصص نجاح
+          </h1>
+          <p class="page-description">
+            قصص حقيقية لأشخاص نجحوا في استرجاع أموالهم من شركات الاحتيال والنصب. 
+            تعرف على التفاصيل الكاملة للعملية والخطوات التي أدت للنجاح.
+          </p>
+          
+          <div class="success-stats">
+            <div class="stat-item">
+              <span class="stat-number">{cases.length}</span>
+              <span class="stat-label">قصة نجاح</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">2.8M</span>
+              <span class="stat-label">مبلغ مسترجع</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">92%</span>
+              <span class="stat-label">معدل النجاح</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+      <div class="container">
+        <div class="filters-container">
+          <div class="filter-group">
+            <label for="categoryFilter" class="filter-label">نوع القضية:</label>
+            <select id="categoryFilter" class="filter-select">
+              {categories.map(category => (
+                <option value={category.value}>{category.label}</option>
+              ))}
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label for="outcomeFilter" class="filter-label">النتيجة:</label>
+            <select id="outcomeFilter" class="filter-select">
+              {outcomes.map(outcome => (
+                <option value={outcome.value}>{outcome.label}</option>
+              ))}
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label for="sortFilter" class="filter-label">ترتيب حسب:</label>
+            <select id="sortFilter" class="filter-select">
+              <option value="recent">الأحدث</option>
+              <option value="amount">المبلغ</option>
+              <option value="duration">المدة الزمنية</option>
+              <option value="rating">التقييم</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Cases -->
+    <section class="featured-cases">
+      <div class="container">
+        <div class="section-header">
+          <h2>قصص النجاح المميزة</h2>
+          <p>أبرز القضايا التي تم حلها بنجاح واسترجاع الأموال بالكامل</p>
+        </div>
+        
+        <div class="featured-grid">
+          {cases.filter(case_ => case_.featured).map(case_ => (
+            <article class="case-card featured">
+              <div class="card-header">
+                <div class="case-meta">
+                  <span class="category">{case_.category}</span>
+                  <span class="featured-badge">مميز</span>
+                </div>
+                <div class="outcome-badge outcome-{case_.outcome === 'نجح' ? 'success' : 'partial'}">
+                  {case_.outcome}
+                </div>
+              </div>
+              
+              <div class="card-body">
+                <h3 class="case-title">
+                  <a href={`/cases/${case_.slug}/`}>{case_.title}</a>
+                </h3>
+                <p class="case-description">{case_.description}</p>
+                
+                <div class="case-details">
+                  <div class="detail-row">
+                    <div class="detail-item">
+                      <span class="detail-label">العميل:</span>
+                      <span class="detail-value">{case_.clientName}</span>
+                    </div>
+                    <div class="detail-item">
+                      <span class="detail-label">الموقع:</span>
+                      <span class="detail-value">{case_.location}</span>
+                    </div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-item">
+                      <span class="detail-label">المبلغ:</span>
+                      <span class="detail-value amount">{case_.amount}</span>
+                    </div>
+                    <div class="detail-item">
+                      <span class="detail-label">المدة:</span>
+                      <span class="detail-value">{case_.duration}</span>
+                    </div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-item">
+                      <span class="detail-label">المحامي:</span>
+                      <span class="detail-value">{case_.lawyerName}</span>
+                    </div>
+                    <div class="detail-item">
+                      <StarRating rating={case_.rating} size="small" />
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="case-tags">
+                  {case_.tags.map(tag => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+              
+              <div class="card-footer">
+                <a href={`/cases/${case_.slug}/`} class="btn btn-primary">
+                  قراءة القصة كاملة
+                </a>
+                <button class="btn btn-outline share-btn" data-title={case_.title}>
+                  مشاركة القصة
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- All Cases -->
+    <section class="all-cases">
+      <div class="container">
+        <div class="section-header">
+          <h2>جميع قصص النجاح</h2>
+        </div>
+        
+        <div class="cases-grid">
+          {cases.map(case_ => (
+            <article class="case-card">
+              <div class="card-header">
+                <div class="case-meta">
+                  <span class="category">{case_.category}</span>
+                  {case_.featured && <span class="featured-badge">مميز</span>}
+                </div>
+                <div class="outcome-badge outcome-{case_.outcome === 'نجح' ? 'success' : case_.outcome === 'نجح جزئياً' ? 'partial' : 'ongoing'}">
+                  {case_.outcome}
+                </div>
+              </div>
+              
+              <div class="card-body">
+                <h3 class="case-title">
+                  <a href={`/cases/${case_.slug}/`}>{case_.title}</a>
+                </h3>
+                <p class="case-description">{case_.description}</p>
+                
+                <div class="case-details">
+                  <div class="detail-row">
+                    <div class="detail-item">
+                      <span class="detail-label">العميل:</span>
+                      <span class="detail-value">{case_.clientName}</span>
+                    </div>
+                    <div class="detail-item">
+                      <span class="detail-label">الموقع:</span>
+                      <span class="detail-value">{case_.location}</span>
+                    </div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-item">
+                      <span class="detail-label">المبلغ:</span>
+                      <span class="detail-value amount">{case_.amount}</span>
+                    </div>
+                    <div class="detail-item">
+                      <span class="detail-label">المدة:</span>
+                      <span class="detail-value">{case_.duration}</span>
+                    </div>
+                  </div>
+                  <div class="detail-row">
+                    <div class="detail-item">
+                      <span class="detail-label">المحامي:</span>
+                      <span class="detail-value">{case_.lawyerName}</span>
+                    </div>
+                    <div class="detail-item">
+                      <StarRating rating={case_.rating} size="small" />
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="case-tags">
+                  {case_.tags.map(tag => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+              
+              <div class="card-footer">
+                <a href={`/cases/${case_.slug}/`} class="btn btn-primary btn-sm">
+                  قراءة التفاصيل
+                </a>
+                <button class="btn btn-outline btn-sm share-btn" data-title={case_.title}>
+                  مشاركة
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Inspiration Section -->
+    <section class="inspiration-section">
+      <div class="container">
+        <div class="inspiration-card">
+          <div class="inspiration-icon">💪</div>
+          <div class="inspiration-content">
+            <h3>هل تعرضت للاحتيال؟ لا تيأس!</h3>
+            <p>
+              كما ترى من القصص أعلاه، هناك أمل كبير في استرجاع أموالك. 
+              تواصل مع محامينا الموثوقين واحصل على استشارة مجانية لتقييم حالتك.
+            </p>
+            <div class="inspiration-actions">
+              <a href="/lawyers/" class="btn btn-primary">
+                ابحث عن محامي
+              </a>
+              <a href="/contact/" class="btn btn-outline">
+                استشارة مجانية
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <CommentForm postId="cases-page" postType="case" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const categoryFilter = document.getElementById('categoryFilter');
+    const outcomeFilter = document.getElementById('outcomeFilter');
+    const sortFilter = document.getElementById('sortFilter');
+    
+    function applyFilters() {
+      console.log('Applying filters:', {
+        category: categoryFilter?.value,
+        outcome: outcomeFilter?.value,
+        sort: sortFilter?.value
+      });
+    }
+    
+    [categoryFilter, outcomeFilter, sortFilter].forEach(filter => {
+      filter?.addEventListener('change', applyFilters);
+    });
+    
+    // Share functionality
+    const shareButtons = document.querySelectorAll('.share-btn');
+    shareButtons.forEach(button => {
+      button.addEventListener('click', async function() {
+        const title = this.dataset.title;
+        const url = window.location.href;
+        
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: `قصة نجاح: ${title}`,
+              text: 'قصة نجاح ملهمة في استرجاع الأموال',
+              url: url
+            });
+          } catch (error) {
+            // Handle permission denied, user cancellation, or other errors
+            if (error.name === 'NotAllowedError' || error.name === 'AbortError') {
+              // Fall back to clipboard
+              navigator.clipboard.writeText(`قصة نجاح: ${title} - ${url}`);
+              
+              const originalText = this.textContent;
+              this.textContent = 'تم النسخ!';
+              setTimeout(() => {
+                this.textContent = originalText;
+              }, 2000);
+            }
+          }
+        } else {
+          navigator.clipboard.writeText(`قصة نجاح: ${title} - ${url}`);
+          
+          const originalText = this.textContent;
+          this.textContent = 'تم النسخ!';
+          setTimeout(() => {
+            this.textContent = originalText;
+          }, 2000);
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+    color: white;
+    padding: var(--space-16) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+  }
+
+  .title-icon {
+    font-size: 3.5rem;
+  }
+
+  .page-description {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .success-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: var(--space-4);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .filters-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--color-neutral-200);
+  }
+
+  .filters-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    flex-wrap: wrap;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .filter-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-700);
+    white-space: nowrap;
+  }
+
+  .filter-select {
+    padding: var(--space-2) var(--space-4);
+    border: 2px solid var(--color-neutral-200);
+    border-radius: var(--radius-md);
+    background: white;
+    font-family: inherit;
+    font-size: 1rem;
+    min-width: 180px;
+    transition: border-color 0.2s ease;
+  }
+
+  .filter-select:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+  }
+
+  .featured-cases {
+    padding: var(--space-16) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .all-cases {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .case-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-neutral-100);
+  }
+
+  .case-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-secondary);
+  }
+
+  .case-card.featured {
+    border-color: var(--color-secondary);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: var(--space-6);
+    background: linear-gradient(135deg, var(--color-neutral-50) 0%, white 100%);
+  }
+
+  .case-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .category {
+    background: var(--color-secondary);
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .featured-badge {
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .outcome-badge {
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .outcome-success {
+    background: var(--color-success);
+    color: white;
+  }
+
+  .outcome-partial {
+    background: var(--color-secondary);
+    color: white;
+  }
+
+  .outcome-ongoing {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .card-body {
+    padding: var(--space-6);
+  }
+
+  .case-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .case-title a {
+    color: var(--color-neutral-900);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .case-title a:hover {
+    color: var(--color-secondary);
+  }
+
+  .case-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .case-details {
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    margin-bottom: var(--space-6);
+  }
+
+  .detail-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .detail-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .detail-label {
+    font-size: 0.875rem;
+    color: var(--color-neutral-500);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .detail-value {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+  }
+
+  .detail-value.amount {
+    color: var(--color-success);
+    font-size: 1.125rem;
+  }
+
+  .detail-value.recovered {
+    color: var(--color-primary);
+  }
+
+  .detail-value.court-fee {
+    color: var(--color-warning);
+    font-size: 0.9rem;
+  }
+
+  .detail-value.success-fee {
+    color: var(--color-success);
+    font-size: 0.9rem;
+  }
+
+  .case-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .tag {
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .card-footer {
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: var(--color-neutral-50);
+    border-top: 1px solid var(--color-neutral-100);
+  }
+
+  .card-footer .btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .btn-sm {
+    padding: var(--space-2) var(--space-4);
+    font-size: 0.875rem;
+  }
+
+  .inspiration-section {
+    padding: var(--space-16) 0;
+  }
+
+  .inspiration-card {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .inspiration-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .inspiration-content h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .inspiration-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .inspiration-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .inspiration-section .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .inspiration-section .btn-outline:hover {
+    background: white;
+    color: var(--color-primary);
+  }
+
+  .comments-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 1024px) {
+    .detail-row {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .featured-grid,
+    .cases-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 2rem;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .title-icon {
+      font-size: 3rem;
+    }
+
+    .success-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .filters-container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-4);
+    }
+
+    .filter-group {
+      justify-content: space-between;
+    }
+
+    .filter-select {
+      min-width: auto;
+      flex: 1;
+    }
+
+    .card-footer {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .inspiration-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .inspiration-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

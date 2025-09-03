@@ -1,0 +1,408 @@
+---
+export interface Props {
+  postId: string;
+  postType: 'warning' | 'lawyer' | 'guide' | 'case';
+}
+
+const { postId, postType } = Astro.props;
+---
+
+<section class="comments-section">
+  <div class="comments-container">
+    <div class="comments-header">
+      <h3>التعليقات والآراء</h3>
+      <p>شاركنا رأيك أو تجربتك مع هذا المحتوى</p>
+    </div>
+    
+    <div class="comment-form-container">
+      <form 
+        class="comment-form" 
+        id="commentForm"
+        action="https://crm.zoho.com/crm/WebToLeadForm" 
+        name="WebToLeads4493626000000302083" 
+        method="POST" 
+        accept-charset="UTF-8"
+      >
+        <!-- Zoho CRM Hidden Fields -->
+        <input type="text" style="display:none;" name="xnQsjsdp" value="61752ac569cccaac7afbe5a60b87a3002a56df134dcf279afdc167983add5930">
+        <input type="hidden" name="zc_gad" id="zc_gad" value="">
+        <input type="text" style="display:none;" name="xmIwtLD" value="58740cbdb8a1fea5d234947484575cdf4ca752bfed6a3e5fff662d8f8ffc2523">
+        <input type="text" style="display:none;" name="actionType" value="TGVhZHM=">
+        <select style="width:100%;box-sizing:border-box; display: none;" name="Lead Source">
+          <option value="دليل الخليج" style="display:none"></option>
+        </select>
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="commentFirstName" class="form-label">الاسم الأول *</label>
+            <input 
+              type="text" 
+              id="commentFirstName" 
+              name="First Name" 
+              class="form-input" 
+              required
+              placeholder="أدخل اسمك الأول"
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="commentLastName" class="form-label">اسم العائلة *</label>
+            <input 
+              type="text" 
+              id="commentLastName" 
+              name="Last Name" 
+              class="form-input" 
+              required
+              placeholder="أدخل اسم العائلة"
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="commentPhone" class="form-label">رقم الهاتف *</label>
+            <input 
+              type="tel" 
+              id="commentPhone" 
+              name="Phone" 
+              class="form-input" 
+              required
+              placeholder="+971 50 123 4567"
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="commentCountry" class="form-label">الدولة *</label>
+            <select id="commentCountry" name="Country" class="form-select" required>
+              <option value="">اختر دولتك</option>
+              <option value="الإمارات العربية المتحدة">الإمارات العربية المتحدة</option>
+              <option value="المملكة العربية السعودية">المملكة العربية السعودية</option>
+              <option value="الكويت">الكويت</option>
+              <option value="قطر">قطر</option>
+              <option value="البحرين">البحرين</option>
+              <option value="عمان">عمان</option>
+              <option value="دولة أخرى">دولة أخرى</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="commentEmail" class="form-label">البريد الإلكتروني *</label>
+            <input 
+              type="email" 
+              id="commentEmail" 
+              name="Email" 
+              class="form-input" 
+              required
+              placeholder="your@email.com"
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="commentCompany" class="form-label">الشركة المتورطة</label>
+            <input 
+              type="text" 
+              id="commentCompany" 
+              name="Company" 
+              class="form-input"
+              placeholder="اسم الشركة (إن وجدت)"
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="commentMoney" class="form-label">المبلغ المتضرر (بالدرهم)</label>
+            <input 
+              type="number" 
+              id="commentMoney" 
+              name="Money" 
+              class="form-input"
+              placeholder="0"
+              min="0"
+            />
+          </div>
+          
+          <div class="form-group">
+            <label for="commentWebsite" class="form-label">موقع الشركة الإلكتروني</label>
+            <input 
+              type="url" 
+              id="commentWebsite" 
+              name="Website" 
+              class="form-input"
+              placeholder="https://example.com"
+            />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="commentDescription" class="form-label">التعليق أو التجربة *</label>
+          <textarea 
+            id="commentDescription" 
+            name="Description" 
+            class="form-textarea" 
+            rows="4" 
+            required
+            placeholder="شاركنا تجربتك أو رأيك..."
+          ></textarea>
+        </div>
+        
+        <div class="form-group">
+          <div class="checkbox-group">
+            <input type="checkbox" id="commentPrivacy" name="privacy" class="form-checkbox" required />
+            <label for="commentPrivacy" class="checkbox-label">
+              أوافق على <a href="/privacy/" target="_blank">سياسة الخصوصية</a> وأفهم أن تعليقي قد يُنشر على الموقع
+            </label>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary submit-btn">
+          <span class="btn-text">إرسال التعليق</span>
+          <div class="loading-spinner" style="display: none;">
+            <div class="spinner"></div>
+          </div>
+        </button>
+      </form>
+      
+      <div class="form-message" id="commentFormMessage" style="display: none;"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const commentForm = document.getElementById('commentForm');
+    const submitBtn = commentForm?.querySelector('.submit-btn');
+    const btnText = submitBtn?.querySelector('.btn-text');
+    const loadingSpinner = submitBtn?.querySelector('.loading-spinner');
+    const messageDiv = document.getElementById('commentFormMessage');
+    
+    if (commentForm && submitBtn && btnText && loadingSpinner && messageDiv) {
+      commentForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        btnText.style.display = 'none';
+        loadingSpinner.style.display = 'flex';
+        submitBtn.disabled = true;
+        
+        const formData = new FormData(commentForm);
+        
+        try {
+          // Submit to Zoho CRM
+          const response = await fetch('https://crm.zoho.com/crm/WebToLeadForm', {
+            method: 'POST',
+            body: formData
+          });
+          
+          // Success
+          messageDiv.textContent = 'تم إرسال تعليقك بنجاح! شكراً لمشاركتك.';
+          messageDiv.className = 'form-message success';
+          messageDiv.style.display = 'block';
+          
+          // Reset form
+          commentForm.reset();
+          
+        } catch (error) {
+          // Error
+          messageDiv.textContent = 'حدث خطأ أثناء إرسال التعليق. يرجى المحاولة مرة أخرى.';
+          messageDiv.className = 'form-message error';
+          messageDiv.style.display = 'block';
+        } finally {
+          // Reset button state
+          btnText.style.display = 'inline';
+          loadingSpinner.style.display = 'none';
+          submitBtn.disabled = false;
+          
+          // Hide message after 5 seconds
+          setTimeout(() => {
+            messageDiv.style.display = 'none';
+          }, 5000);
+        }
+      });
+    }
+  });
+</script>
+
+<style>
+  .comments-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  .comments-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+  }
+
+  .comments-header {
+    text-align: center;
+    margin-bottom: var(--space-10);
+  }
+
+  .comments-header h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .comments-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .comment-form-container {
+    background: white;
+    padding: var(--space-10);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-700);
+    font-size: 1rem;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    padding: var(--space-4);
+    border: 2px solid var(--color-neutral-200);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+    direction: rtl;
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: var(--line-height-relaxed);
+  }
+
+  .form-select {
+    cursor: pointer;
+  }
+
+  .checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .form-checkbox {
+    margin-top: var(--space-1);
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-primary);
+    cursor: pointer;
+  }
+
+  .checkbox-label {
+    font-size: 0.9rem;
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    cursor: pointer;
+  }
+
+  .checkbox-label a {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .submit-btn {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+    height: 48px;
+    position: relative;
+    margin-top: var(--space-4);
+  }
+
+  .loading-spinner {
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .form-message {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    margin-top: var(--space-4);
+    font-weight: var(--font-weight-semibold);
+    text-align: center;
+  }
+
+  .form-message.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--color-success);
+    border: 2px solid rgba(16, 185, 129, 0.2);
+  }
+
+  .form-message.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--color-error);
+    border: 2px solid rgba(239, 68, 68, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .comment-form-container {
+      padding: var(--space-6);
+    }
+
+    .comments-header h3 {
+      font-size: 1.5rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+    }
+  }
+</style>

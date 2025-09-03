@@ -1,0 +1,884 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import StarRating from '../../../components/StarRating.astro';
+import CommentForm from '../../../components/CommentForm.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "Article",
+  "headline": "مكتب الخليج العالمي للمحاماة - تحذير من مكتب نصاب",
+  "description": "تحذير شامل من مكتب الخليج العالمي للمحاماة الذي يدعي تخصصه في استرجاع الأموال لكنه في الحقيقة مكتب احتيالي",
+  "author": {
+    "@type": "Organization",
+    "name": "دليل الخليج"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "دليل الخليج",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://khalijtrust.com/img/logo4.png"
+    }
+  },
+  "datePublished": "2024-01-20",
+  "dateModified": "2024-01-20",
+  "image": "https://khalijtrust.com/img/alkhaleejlaw.png",
+  "url": "https://khalijtrust.com/warnings/alkhaleej-global-scam/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://khalijtrust.com/warnings/alkhaleej-global-scam/"
+  }
+};
+
+const warningDetails = {
+  officeName: "مكتب الخليج العالمي للمحاماة",
+  type: "مكتب محاماة احتيالي",
+  claimedSpecialty: "استرجاع الأموال من الشركات الوهمية",
+  riskLevel: "خطر شديد",
+  rating: "0/5",
+  reportsCount: 42,
+  status: "نشط - تجنب التعامل معه نهائياً",
+  lastUpdated: "2024-01-20"
+};
+
+const scamMethods = [
+  {
+    title: "ادعاء التخصص في استرجاع الأموال",
+    description: "يقدم نفسه كجهة قانونية مختصة باسترجاع الأموال من الشركات الاحتيالية",
+    icon: "🎭"
+  },
+  {
+    title: "وعود زائفة حول مساعدة الضحايا",
+    description: "يدعي أنه يمتلك الخبرة الكافية لاسترجاع أموال ضحايا النصب المالي",
+    icon: "💰"
+  },
+  {
+    title: "طلب رسوم ضخمة مقدماً",
+    description: "يطلب رسوماً ضخمة تحت وعود كاذبة باسترجاع الأموال دون أي نتائج",
+    icon: "💸"
+  },
+  {
+    title: "تلقي رشاوى من الشركات النصابة",
+    description: "يُعتقد أنه يتلقى رشاوى من الشركات النصابة نفسها",
+    icon: "🤝"
+  },
+  {
+    title: "توريط الضحايا في مشاكل إضافية",
+    description: "يعمل على توريط الضحايا في مزيد من المشاكل بدلاً من مساعدتهم",
+    icon: "🕳️"
+  },
+  {
+    title: "عدم امتلاك تراخيص قانونية",
+    description: "لا يمتلك أي تراخيص قانونية تتيح له العمل في هذا المجال",
+    icon: "📜"
+  }
+];
+
+const victimExperiences = [
+  {
+    issue: "دوامة من الوعود الكاذبة",
+    description: "الضحايا يجدون أنفسهم عالقين في دوامة من الوعود الكاذبة دون أي نتائج ملموسة",
+    impact: "خسائر مالية إضافية"
+  },
+  {
+    issue: "التلاعب وعدم الشفافية",
+    description: "جميع تعاملات المكتب مشوبة بالتلاعب وعدم الشفافية",
+    impact: "فقدان الثقة"
+  },
+  {
+    issue: "استغلال ثقة الضحايا",
+    description: "يستغل ثقة الضحايا الذين يبحثون عن أي وسيلة لاسترداد حقوقهم",
+    impact: "صدمة نفسية"
+  },
+  {
+    issue: "انتهاك القوانين بشكل ممنهج",
+    description: "ينتهك القوانين بشكل ممنهج من خلال استغلال ثقة الضحايا",
+    impact: "مشاكل قانونية"
+  }
+];
+
+const warningSignsOffice = [
+  {
+    sign: "عدم وجود ترخيص قانوني",
+    description: "المكتب لا يمتلك أي تراخيص قانونية للعمل في مجال استرجاع الأموال",
+    severity: "عالي جداً"
+  },
+  {
+    sign: "استخدام اسم منتحل",
+    description: "يستخدم اسماً منتحلاً لمكتب آخر في الإمارات",
+    severity: "عالي جداً"
+  },
+  {
+    sign: "تاريخ طويل من الاحتيال",
+    description: "أظهر تاريخاً طويلاً من الاحتيال واستغلال الضحايا",
+    severity: "عالي"
+  },
+  {
+    sign: "تضارب في المصالح",
+    description: "وجود تضارب في المصالح مع الشركات النصابة",
+    severity: "عالي"
+  }
+];
+---
+
+<Layout 
+  title="مكتب الخليج العالمي للمحاماة - تحذير من مكتب نصاب"
+  description="تحذير شامل من مكتب الخليج العالمي للمحاماة الذي يدعي تخصصه في استرجاع الأموال لكنه في الحقيقة مكتب احتيالي يستغل الضحايا"
+  keywords="مكتب الخليج العالمي، محاماة نصابة، احتيال قانوني، استرجاع أموال مزيف، مكتب محاماة وهمي"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Warning Header -->
+    <section class="warning-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="warning-badge">
+            <span class="badge-icon">🚨</span>
+            <span class="badge-text">تحذير عاجل</span>
+          </div>
+          
+          <h1 class="warning-title">
+            مكتب الخليج العالمي للمحاماة
+            <span class="subtitle">تحذير من مكتب نصاب</span>
+          </h1>
+          
+          <div class="office-image">
+            <img src="https://khalijtrust.com/img/alkhaleejlaw.png" alt="مكتب الخليج العالمي" class="office-photo" />
+          </div>
+          
+          <div class="warning-summary">
+            <p class="summary-text">
+              مكتب الخليج العالمي يُقدّم نفسه على أنه جهة قانونية مختصة باسترجاع الأموال من الشركات 
+              الاحتيالية مثل شركات الفوركس وغيرها من الشركات النصابة. يروّج المكتب لنفسه بوعود زائفة 
+              حول مساعدة الضحايا الذين تعرضوا للنصب المالي، ويدّعي أنه يمتلك الخبرة الكافية لاسترجاع أموالهم.
+            </p>
+          </div>
+          
+          <div class="warning-stats">
+            <div class="stat-item danger">
+              <StarRating rating={0} size="large" />
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{warningDetails.reportsCount}</span>
+              <span class="stat-label">شكوى مؤكدة</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">خطر شديد</span>
+              <span class="stat-label">مستوى التحذير</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Office Rating -->
+    <section class="office-rating">
+      <div class="container">
+        <div class="rating-card">
+          <div class="rating-header">
+            <h2>تقييم مكتب الخليج العالمي من موقع دليل الخليج</h2>
+            <div class="rating-score">
+              <span class="score-number">0/5</span>
+              <StarRating rating={0} size="large" />
+            </div>
+          </div>
+          
+          <div class="rating-content">
+            <p>
+              يعد هذا المكتب واحدًا من أسوأ المكاتب التي تعامل معها الكثير من العملاء، حيث أظهر تاريخًا 
+              طويلًا من الاحتيال واستغلال الضحايا. رغم ادعاءاته بتقديم خدمات قانونية متخصصة في استرجاع 
+              الأموال من الشركات النصابة، إلا أن جميع تعاملاته كانت مشوبة بالتلاعب وعدم الشفافية.
+            </p>
+            <p>
+              تلقى العديد من الشكاوى من أفراد تورطوا مع المكتب على أمل استرجاع أموالهم، ليجدوا أنفسهم 
+              عالقين في دوامة من الوعود الكاذبة دون أي نتائج ملموسة.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scam Methods -->
+    <section class="scam-methods">
+      <div class="container">
+        <div class="section-header">
+          <h2>أساليب الاحتيال المستخدمة</h2>
+          <p>كيف يقوم مكتب الخليج العالمي بخداع الضحايا</p>
+        </div>
+        
+        <div class="methods-grid">
+          {scamMethods.map(method => (
+            <div class="method-card">
+              <div class="method-icon">{method.icon}</div>
+              <h4>{method.title}</h4>
+              <p>{method.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Victim Experiences -->
+    <section class="victim-experiences">
+      <div class="container">
+        <div class="section-header">
+          <h2>تجارب الضحايا مع المكتب</h2>
+          <p>المشاكل التي واجهها العملاء مع مكتب الخليج العالمي</p>
+        </div>
+        
+        <div class="experiences-grid">
+          {victimExperiences.map(experience => (
+            <div class="experience-card">
+              <div class="experience-header">
+                <h4>{experience.issue}</h4>
+              </div>
+              <p class="experience-description">{experience.description}</p>
+              <div class="experience-impact">
+                <span class="impact-label">التأثير:</span>
+                <span class="impact-value">{experience.impact}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Warning Signs -->
+    <section class="warning-signs">
+      <div class="container">
+        <div class="section-header">
+          <h2>علامات التحذير من المكتب</h2>
+          <p>المؤشرات التي تدل على خطورة هذا المكتب</p>
+        </div>
+        
+        <div class="signs-grid">
+          {warningSignsOffice.map(sign => (
+            <div class="sign-card">
+              <div class="sign-header">
+                <h4>{sign.sign}</h4>
+                <span class="severity-badge severity-{sign.severity.replace(' ', '-').toLowerCase()}">
+                  {sign.severity}
+                </span>
+              </div>
+              <p>{sign.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Question Section -->
+    <section class="question-section">
+      <div class="container">
+        <div class="question-card">
+          <div class="question-header">
+            <h2>هل مكتب الخليج العالمي نصاب؟</h2>
+          </div>
+          
+          <div class="answer-content">
+            <div class="answer-highlight">
+              <span class="answer-icon">✅</span>
+              <span class="answer-text">نعم، مكتب الخليج العالمي يُعتبر مكتبًا نصابًا</span>
+            </div>
+            
+            <p>
+              بناءً على العديد من الشكاوى والتقارير التي تشير إلى تورطه في عمليات احتيال واستغلال الضحايا. 
+              المكتب يدّعي قدرته على استرجاع الأموال من الشركات الاحتيالية مثل شركات الفوركس، ولكنه في 
+              الواقع يتلاعب بالعملاء ويتلقى رشاوى من الشركات النصابة.
+            </p>
+            
+            <div class="key-points">
+              <div class="point-item">
+                <span class="point-icon">❌</span>
+                <span>لا يملك المكتب أي تراخيص قانونية</span>
+              </div>
+              <div class="point-item">
+                <span class="point-icon">❌</span>
+                <span>يستخدم اسماً مزيفاً لإيهام الضحايا بمصداقيته</span>
+              </div>
+              <div class="point-item">
+                <span class="point-icon">❌</span>
+                <span>العديد من الأفراد تعرضوا لخسائر مالية جسيمة</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final Warning -->
+    <section class="final-warning">
+      <div class="container">
+        <div class="warning-card">
+          <div class="warning-icon">⚠️</div>
+          <div class="warning-content">
+            <h3>تحذير نهائي</h3>
+            <p>
+              يُحذر موقع دليل الخليج بشدة من التعامل مع مكتب الخليج العالمي، حيث أثبت هذا المكتب مرارًا 
+              وتكرارًا أنه يمثل خطرًا كبيرًا على العملاء الذين يسعون لاستعادة أموالهم من الشركات النصابة.
+            </p>
+            <p>
+              لذلك، ينصح دليل الخليج جميع الأفراد بتجنب التعامل مع مكتب الخليج العالمي والبحث عن 
+              خيارات قانونية موثوقة ومرخصة لاستعادة أموالهم.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trusted Alternatives -->
+    <section class="trusted-alternatives">
+      <div class="container">
+        <div class="alternatives-card">
+          <div class="alternatives-icon">🏆</div>
+          <div class="alternatives-content">
+            <h3>البحث عن محامي موثوق</h3>
+            <p>
+              إذا كنت تبحث عن محامي موثوق يمكن الاعتماد عليه، فلا تتردد في زيارة قائمة أفضل المحامين 
+              التي اخترناها بعناية وفقًا لمعايير معينة وآراء هيئات حكومية.
+            </p>
+            <div class="alternatives-actions">
+              <a href="/lawyers/" class="btn btn-primary">
+                تصفح قائمة المحامين الموثوقين
+              </a>
+              <a href="/report/" class="btn btn-outline">
+                بلغ عن مكتب مشبوه
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <JournalistByline articleSlug="alkhaleej-global-scam" />
+        <CommentForm postId="alkhaleej-global-warning" postType="warning" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .warning-header {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .warning-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .warning-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .badge-text {
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .warning-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--font-weight-normal);
+  }
+
+  .office-image {
+    margin: var(--space-8) 0;
+  }
+
+  .office-photo {
+    max-width: 300px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 4px solid white;
+  }
+
+  .warning-summary {
+    max-width: 800px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .summary-text {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .warning-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-item.danger {
+    border: 2px solid var(--color-secondary-light);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .office-rating {
+    padding: var(--space-16) 0;
+    background: var(--color-neutral-50);
+  }
+
+  .rating-card {
+    background: white;
+    padding: var(--space-10);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border: 3px solid #dc2626;
+  }
+
+  .rating-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .rating-header h2 {
+    color: #dc2626;
+    margin-bottom: var(--space-6);
+    font-size: 2rem;
+  }
+
+  .rating-score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+
+  .score-number {
+    font-size: 3rem;
+    font-weight: var(--font-weight-bold);
+    color: #dc2626;
+  }
+
+  .rating-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+    font-size: 1.125rem;
+  }
+
+  .scam-methods {
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .method-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid #dc2626;
+    transition: transform 0.3s ease;
+  }
+
+  .method-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .method-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .method-card h4 {
+    color: #dc2626;
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .method-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .victim-experiences {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .experience-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--color-warning);
+  }
+
+  .experience-header h4 {
+    color: var(--color-warning);
+    margin-bottom: var(--space-4);
+    font-size: 1.125rem;
+  }
+
+  .experience-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .experience-impact {
+    background: var(--color-neutral-50);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .impact-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-600);
+    font-size: 0.875rem;
+  }
+
+  .impact-value {
+    color: var(--color-error);
+    font-weight: var(--font-weight-bold);
+    font-size: 0.875rem;
+  }
+
+  .warning-signs {
+    padding: var(--space-20) 0;
+  }
+
+  .signs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .sign-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--color-error);
+  }
+
+  .sign-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .sign-header h4 {
+    color: var(--color-error);
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  .severity-badge {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .severity-عالي-جداً {
+    background: #dc2626;
+    color: white;
+  }
+
+  .severity-عالي {
+    background: var(--color-error);
+    color: white;
+  }
+
+  .sign-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .question-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .question-card {
+    background: white;
+    padding: var(--space-10);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border: 3px solid #dc2626;
+  }
+
+  .question-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .question-header h2 {
+    color: #dc2626;
+    font-size: 2.5rem;
+  }
+
+  .answer-highlight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    background: #dc2626;
+    color: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-8);
+  }
+
+  .answer-icon {
+    font-size: 2rem;
+  }
+
+  .answer-text {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .answer-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+    font-size: 1.125rem;
+  }
+
+  .key-points {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .point-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-lg);
+  }
+
+  .point-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .point-item span:last-child {
+    color: var(--color-neutral-700);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .final-warning {
+    padding: var(--space-20) 0;
+  }
+
+  .warning-card {
+    background: white;
+    padding: var(--space-10);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    border: 3px solid #dc2626;
+  }
+
+  .warning-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .warning-content h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-6);
+    font-size: 2rem;
+  }
+
+  .warning-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+    font-size: 1.125rem;
+  }
+
+  .trusted-alternatives {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  .alternatives-card {
+    background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+    color: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .alternatives-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .alternatives-content h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .alternatives-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .alternatives-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .trusted-alternatives .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .trusted-alternatives .btn-outline:hover {
+    background: white;
+    color: var(--color-success);
+  }
+
+  .comments-section {
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 768px) {
+    .warning-title {
+      font-size: 2rem;
+    }
+
+    .warning-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .alternatives-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .alternatives-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .question-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

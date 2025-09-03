@@ -1,0 +1,890 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import StarRating from '../../components/StarRating.astro';
+
+const schemaData = {
+  "@type": "SearchResultsPage",
+  "name": "نتائج البحث - دليل الخليج",
+  "description": "نتائج البحث في دليل الخليج للشركات والمحامين والأدلة التوعوية",
+  "url": "https://khalijtrust.com/search/"
+};
+
+// Get search query from URL parameters
+const searchQuery = Astro.url.searchParams.get('q') || '';
+
+// All available content for search
+const allContent = [
+  // Warnings
+  {
+    type: "warning",
+    title: "تحذير من شركة أبيان المالية Abyan Capital",
+    description: "شركة استثمار وهمية تستخدم نظام تدوير الأموال والمخططات الهرمية لسرقة أموال المستثمرين",
+    url: "/warnings/abyan-capital-scam/",
+    category: "تحذيرات",
+    keywords: ["أبيان", "المالية", "Abyan", "Capital", "استثمار", "وهمية", "تدوير", "أموال", "مخطط", "هرمي"]
+  },
+  {
+    type: "warning",
+    title: "تحذير من شركة التداول WRPro",
+    description: "منصة تداول احتيالية تستخدم أساليب ذكية لخداع المتداولين مع وعود كاذبة بأرباح مرتفعة",
+    url: "/warnings/wrpro-scam/",
+    category: "تحذيرات",
+    keywords: ["WRPro", "تداول", "احتيالية", "منصة", "فوركس", "خداع", "وعود", "كاذبة"]
+  },
+  {
+    type: "warning",
+    title: "تحذير من شركة إيفيست Evest",
+    description: "وسيط تداول مشبوه يواجه شكاوى متزايدة حول تأخير السحب وعدم وجود تراخيص قوية",
+    url: "/warnings/evest-scam/",
+    category: "تحذيرات",
+    keywords: ["إيفيست", "Evest", "وسيط", "تداول", "مشبوه", "تأخير", "سحب", "تراخيص"]
+  },
+  {
+    type: "warning",
+    title: "تحذير من شركة اكسيا Axia",
+    description: "شركة تداول احتيالية تمارس النصب المنظم من خلال التلاعب في الصفقات ورفض السحب",
+    url: "/warnings/axia-scam/",
+    category: "تحذيرات",
+    keywords: ["اكسيا", "Axia", "تداول", "احتيالية", "نصب", "تلاعب", "صفقات", "رفض", "سحب"]
+  },
+  {
+  type: "warning",
+  title: "تحذير من شركة تريد جلوبال TradeEU Global",
+  description: "شركة تداول احتيالية تمارس النصب المنظم من خلال خداع المتداولين، وعود كاذبة، التلاعب في الأموال ورفض السحب",
+  url: "/warnings/tradee-u-global-scam/",
+  category: "تحذيرات",
+  keywords: ["تريد جلوبال", "TradeEU Global", "تداول", "احتيالية", "نصب", "خداع", "وعود كاذبة", "رفض", "سحب"]
+},
+  {
+    type: "warning",
+    title: "تحذير من شركة CSOP",
+    description: "شركة غير مرخصة تستخدم التسويق الهرمي والتلاعب في المنصة لسرقة أموال المتداولين",
+    url: "/warnings/csop-scam/",
+    category: "تحذيرات",
+    keywords: ["CSOP", "غير", "مرخصة", "تسويق", "هرمي", "تلاعب", "منصة", "سرقة"]
+  },
+  {
+    type: "warning",
+    title: "تحذير من شركة زينستوكس Zenstox",
+    description: "شركة ناشئة تواجه اتهامات بالنصب مع مشاكل في السحب ورسوم مرتفعة وعدم شفافية في التراخيص",
+    url: "/warnings/zenstox-scam/",
+    category: "تحذيرات",
+    keywords: ["زينستوكس", "Zenstox", "ناشئة", "نصب", "مشاكل", "سحب", "رسوم", "مرتفعة"]
+  },
+  {
+    type: "warning",
+    title: "تحذير من شركة إنفستيكو Investico",
+    description: "شركة احتيالية تستخدم تراخيص مزيفة والتلاعب في الأسعار لسرقة أموال المتداولين",
+    url: "/warnings/investico-scam/",
+    category: "تحذيرات",
+    keywords: ["إنفستيكو", "Investico", "احتيالية", "تراخيص", "مزيفة", "تلاعب", "أسعار"]
+  },
+  {
+    type: "warning",
+    title: "تحذير من مكتب الشيخ للمحاماة",
+    description: "مكتب احتيالي يستخدم هوية منتحلة للمحامية علياء أحمد وتراخيص مزيفة لسرقة أموال الضحايا",
+    url: "/warnings/elshikh-law-scam/",
+    category: "تحذيرات",
+    rating: 0,
+    keywords: ["مكتب الشيخ", "علياء أحمد", "انتحال هوية", "ترخيص مزيف", "SRA", "Elshikh Law"]
+  },
+  
+  // Law Firms
+  {
+    type: "lawyer",
+    title: "مكتب Trust Law",
+    description: "خبراء استرجاع أموال الفوركس والاستثمارات الاحتيالية مع خبرة 23 سنة ومعدل نجاح 98%",
+    url: "/lawyers/trust-law/",
+    category: "مكاتب محاماة",
+    keywords: ["Trust", "Law", "استرجاع", "أموال", "فوركس", "استثمارات", "احتيالية", "لندن", "محامي"]
+  },
+  {
+    type: "lawyer",
+    title: "مكتب العربية للمحاماة",
+    description: "متخصص في قضايا الاحتيال المالي والاستثمارات الوهمية مع خبرة 18 سنة ومعدل نجاح 94%",
+    url: "/lawyers/alarabia-law/",
+    category: "مكاتب محاماة",
+    keywords: ["العربية", "محاماة", "احتيال", "مالي", "استثمارات", "وهمية", "لندن", "قانوني"]
+  },
+  {
+    type: "lawyer",
+    title: "مكتب LAW FX",
+    description: "متخصص في استرجاع أموال الفوركس والعملات الرقمية مع خبرة 15 سنة ومعدل نجاح 91%",
+    url: "/lawyers/law-fx/",
+    category: "مكاتب محاماة",
+    keywords: ["LAW", "FX", "فوركس", "عملات", "رقمية", "استرجاع", "لندن", "تداول"]
+  },
+  
+  // Guides
+  {
+    type: "guide",
+    title: "كيف تتحقق من رخصة الشركة قبل الاستثمار",
+    description: "دليل شامل للتحقق من صحة رخصة الشركة وتجنب الشركات الوهمية قبل الاستثمار",
+    url: "/guides/verify-company-license/",
+    category: "أدلة توعوية",
+    keywords: ["تحقق", "رخصة", "شركة", "استثمار", "وهمية", "حماية", "تراخيص"]
+  },
+  {
+    type: "guide",
+    title: "خطوات استرجاع الأموال من البنك",
+    description: "الخطوات القانونية لاسترجاع أموالك من البنك في حالات الاحتيال والمعاملات غير المصرح بها",
+    url: "/guides/bank-refund-process/",
+    category: "أدلة توعوية",
+    keywords: ["استرجاع", "أموال", "بنك", "Chargeback", "احتيال", "مصرفي", "قانونية"]
+  },
+  {
+    type: "guide",
+    title: "علامات التحذير من شركات الاستثمار الوهمية",
+    description: "تعلم كيف تكتشف علامات الإنذار المبكر للشركات المحتالة وتحمي نفسك من الاستثمارات الوهمية",
+    url: "/guides/investment-scam-warning-signs/",
+    category: "أدلة توعوية",
+    keywords: ["علامات", "تحذير", "استثمار", "وهمية", "محتالة", "حماية", "إنذار"]
+  },
+  {
+    type: "guide",
+    title: "كيف تحمي نفسك من احتيال العملات الرقمية",
+    description: "دليل شامل لحماية استثماراتك في العملات الرقمية من المحتالين والمشاريع الوهمية",
+    url: "/guides/crypto-scam-protection/",
+    category: "أدلة توعوية",
+    keywords: ["حماية", "عملات", "رقمية", "احتيال", "بيتكوين", "كريبتو", "مشاريع", "وهمية"]
+  },
+  {
+    type: "guide",
+    title: "التعامل مع منصات التداول المشبوهة",
+    description: "كيف تتعرف على منصات التداول الاحتيالية وتتجنبها وتحمي أموالك من الوسطاء المحتالين",
+    url: "/guides/suspicious-trading-platforms/",
+    category: "أدلة توعوية",
+    keywords: ["منصات", "تداول", "مشبوهة", "احتيالية", "وسطاء", "محتالين", "حماية"]
+  },
+  
+  // Success Cases
+  {
+    type: "case",
+    title: "استرجاع 2.5 مليون جنيه من منصة فوركس احتيالية عبر Trust Law",
+    description: "قضية معقدة تضمنت تتبع الأموال عبر عدة دول واستخدام القانون الدولي",
+    url: "/cases/trust-law-forex-recovery-2-5m/",
+    category: "قصص نجاح",
+    keywords: ["استرجاع", "مليون", "جنيه", "فوركس", "Trust", "Law", "نجاح", "قضية"]
+  },
+  {
+    type: "case",
+    title: "نجاح Trust Law في استرداد 1.8 مليون جنيه من شركة استثمار وهمية",
+    description: "شركة استثمار وهمية اختفت بأموال المستثمرين. تم استرجاع كامل المبلغ خلال 10 أشهر",
+    url: "/cases/trust-law-investment-recovery-1-8m/",
+    category: "قصص نجاح",
+    keywords: ["Trust", "Law", "استرداد", "مليون", "استثمار", "وهمية", "نجاح"]
+  }
+];
+
+// Search function
+function searchContent(query) {
+  if (!query || query.trim().length < 2) return [];
+  
+  const searchTerms = query.toLowerCase().trim().split(' ');
+  
+  return allContent.filter(item => {
+    const searchableText = [
+      item.title,
+      item.description,
+      item.category,
+      ...item.keywords
+    ].join(' ').toLowerCase();
+    
+    return searchTerms.some(term => searchableText.includes(term));
+  }).sort((a, b) => {
+    // Sort by relevance - exact matches first
+    const aTitle = a.title.toLowerCase();
+    const bTitle = b.title.toLowerCase();
+    const queryLower = query.toLowerCase();
+    
+    if (aTitle.includes(queryLower) && !bTitle.includes(queryLower)) return -1;
+    if (!aTitle.includes(queryLower) && bTitle.includes(queryLower)) return 1;
+    
+    return 0;
+  });
+}
+
+// Perform search
+const searchResults = searchQuery ? searchContent(searchQuery) : [];
+
+const categories = [
+  { value: "all", label: "جميع النتائج" },
+  { value: "warning", label: "تحذيرات" },
+  { value: "lawyer", label: "مكاتب محاماة" },
+  { value: "guide", label: "أدلة توعوية" },
+  { value: "case", label: "قصص نجاح" }
+];
+---
+
+<Layout 
+  title={searchQuery ? `نتائج البحث عن "${searchQuery}" - دليل الخليج` : "البحث - دليل الخليج"}
+  description={searchQuery ? `نتائج البحث عن "${searchQuery}" في دليل الخليج` : "ابحث في دليل الخليج عن الشركات والمحامين والأدلة التوعوية"}
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Search Header -->
+    <section class="search-header">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="page-title">
+            <span class="title-icon">🔍</span>
+            {searchQuery ? `نتائج البحث عن "${searchQuery}"` : "البحث"}
+          </h1>
+          
+          <!-- Search Form -->
+          <form class="search-form" action="/search" method="GET">
+            <div class="search-input-container">
+              <input 
+                type="text" 
+                name="q" 
+                value={searchQuery}
+                placeholder="ابحث عن شركة، محامي أو دليل..." 
+                class="search-input"
+                required
+              />
+              <button type="submit" class="search-button">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                بحث
+              </button>
+            </div>
+          </form>
+          
+          {searchQuery && (
+            <div class="search-info">
+              <p>تم العثور على {searchResults.length} نتيجة</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+
+    {searchQuery ? (
+      <>
+        <!-- Filters -->
+        <section class="filters-section">
+          <div class="container">
+            <div class="filters-container">
+              <div class="filter-group">
+                <label for="categoryFilter" class="filter-label">الفئة:</label>
+                <select id="categoryFilter" class="filter-select">
+                  {categories.map(category => (
+                    <option value={category.value}>{category.label}</option>
+                  ))}
+                </select>
+              </div>
+              
+              <div class="filter-group">
+                <label for="sortFilter" class="filter-label">ترتيب حسب:</label>
+                <select id="sortFilter" class="filter-select">
+                  <option value="relevance">الأكثر صلة</option>
+                  <option value="recent">الأحدث</option>
+                  <option value="popular">الأكثر شعبية</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Search Results -->
+        <section class="search-results">
+          <div class="container">
+            {searchResults.length > 0 ? (
+              <div class="results-grid">
+                {searchResults.map(result => (
+                  <article class="result-card">
+                    <div class="result-header">
+                      <span class="result-category">{result.category}</span>
+                      <span class="result-type">{result.type}</span>
+                    </div>
+                    <div class="result-body">
+                      <h3 class="result-title">
+                        <a href={result.url}>{result.title}</a>
+                      </h3>
+                      <p class="result-description">{result.description}</p>
+                      {result.type === 'warning' && (
+                        <div class="warning-rating">
+                          <StarRating rating={0.5} size="small" />
+                        </div>
+                      )}
+                    </div>
+                    <div class="result-footer">
+                      <a href={result.url} class="result-link">
+                        قراءة المزيد ←
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <div class="no-results">
+                <div class="no-results-icon">🔍</div>
+                <h3>لم يتم العثور على نتائج</h3>
+                <p>لم نجد أي نتائج تطابق بحثك عن "{searchQuery}"</p>
+                <div class="search-suggestions">
+                  <h4>جرب البحث عن:</h4>
+                  <ul>
+                    <li>كلمات أقل أو مختلفة</li>
+                    <li>مصطلحات أكثر عمومية</li>
+                    <li>التحقق من الإملاء</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      </>
+    ) : (
+      <!-- Search Suggestions -->
+      <section class="search-suggestions-section">
+        <div class="container">
+          <div class="suggestions-content">
+            <h2>ماذا تريد أن تبحث عنه؟</h2>
+            <div class="suggestions-grid">
+              <a href="/warnings/" class="suggestion-card">
+                <div class="suggestion-icon">⚠️</div>
+                <h3>تحذيرات من الشركات</h3>
+                <p>ابحث عن الشركات المشبوهة والمحتالة</p>
+              </a>
+              
+              <a href="/lawyers/" class="suggestion-card">
+                <div class="suggestion-icon">⚖️</div>
+                <h3>محامون موثوقون</h3>
+                <p>ابحث عن محامين متخصصين في قضايا الاحتيال</p>
+              </a>
+              
+              <a href="/guides/" class="suggestion-card">
+                <div class="suggestion-icon">📚</div>
+                <h3>أدلة توعوية</h3>
+                <p>تعلم كيف تحمي نفسك من الاحتيال</p>
+              </a>
+              
+              <a href="/cases/" class="suggestion-card">
+                <div class="suggestion-icon">✅</div>
+                <h3>قصص نجاح</h3>
+                <p>اقرأ قصص استرجاع الأموال الناجحة</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Popular Searches -->
+    <section class="popular-searches">
+      <div class="container">
+        <h3>عمليات البحث الشائعة</h3>
+        <div class="popular-tags">
+          <a href="/search?q=استثمار احتيالي" class="popular-tag">استثمار احتيالي</a>
+          <a href="/search?q=فوركس" class="popular-tag">فوركس</a>
+          <a href="/search?q=محامي استرجاع أموال" class="popular-tag">محامي استرجاع أموال</a>
+          <a href="/search?q=شركة وهمية" class="popular-tag">شركة وهمية</a>
+          <a href="/search?q=تداول احتيالي" class="popular-tag">تداول احتيالي</a>
+          <a href="/search?q=عملات رقمية" class="popular-tag">عملات رقمية</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const categoryFilter = document.getElementById('categoryFilter');
+    const sortFilter = document.getElementById('sortFilter');
+    const resultsGrid = document.querySelector('.results-grid');
+    const allResults = resultsGrid ? Array.from(resultsGrid.children) : [];
+    
+    function applyFilters() {
+      if (!resultsGrid || allResults.length === 0) return;
+      
+      const selectedCategory = categoryFilter?.value || 'all';
+      const selectedSort = sortFilter?.value || 'relevance';
+      
+      // Filter results
+      const filteredResults = allResults.filter(result => {
+        if (selectedCategory === 'all') return true;
+        const resultType = result.querySelector('.result-type')?.textContent;
+        return resultType === selectedCategory;
+      });
+      
+      // Sort results
+      if (selectedSort === 'recent') {
+        filteredResults.reverse();
+      }
+      
+      // Clear and re-add filtered results
+      resultsGrid.innerHTML = '';
+      filteredResults.forEach(result => {
+        resultsGrid.appendChild(result);
+      });
+      
+      // Show message if no results
+      if (filteredResults.length === 0) {
+        resultsGrid.innerHTML = '<p class="no-filter-results">لا توجد نتائج تطابق الفلتر المحدد</p>';
+      }
+    }
+    
+    categoryFilter?.addEventListener('change', applyFilters);
+    sortFilter?.addEventListener('change', applyFilters);
+    
+    // Search form enhancement
+    const searchForm = document.querySelector('.search-form');
+    const searchInput = document.querySelector('.search-input');
+    
+    searchInput?.addEventListener('keyup', function(e) {
+      if (e.key === 'Enter') {
+        searchForm?.submit();
+      }
+    });
+    
+    // Live search suggestions (optional enhancement)
+    searchInput?.addEventListener('input', function() {
+      const query = this.value.trim();
+      if (query.length >= 2) {
+        // Could add live search suggestions here
+        console.log('Searching for:', query);
+      }
+    });
+  });
+</script>
+
+<style>
+  .search-header {
+    background: linear-gradient(135deg, var(--color-accent) 0%, #0284c7 100%);
+    color: white;
+    padding: var(--space-16) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .search-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    font-size: 2.5rem;
+    margin-bottom: var(--space-8);
+    color: white;
+  }
+
+  .title-icon {
+    font-size: 3rem;
+  }
+
+  .search-form {
+    max-width: 600px;
+    margin: 0 auto var(--space-6);
+  }
+
+  .search-input-container {
+    display: flex;
+    gap: var(--space-3);
+    align-items: stretch;
+  }
+
+  .search-input {
+    flex: 1;
+    padding: var(--space-4);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    font-size: 1.125rem;
+    font-family: inherit;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    direction: rtl;
+  }
+
+  .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: white;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .search-button {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-6);
+    background: white;
+    color: var(--color-accent);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .search-button:hover {
+    background: var(--color-neutral-100);
+    transform: translateY(-2px);
+  }
+
+  .search-info {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.125rem;
+  }
+
+  .filters-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-8) 0;
+    border-bottom: 1px solid var(--color-neutral-200);
+  }
+
+  .filters-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    flex-wrap: wrap;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .filter-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-700);
+    white-space: nowrap;
+  }
+
+  .filter-select {
+    padding: var(--space-2) var(--space-4);
+    border: 2px solid var(--color-neutral-200);
+    border-radius: var(--radius-md);
+    background: white;
+    font-family: inherit;
+    font-size: 1rem;
+    min-width: 180px;
+    transition: border-color 0.2s ease;
+  }
+
+  .filter-select:focus {
+    outline: none;
+    border-color: var(--color-accent);
+  }
+
+  .search-results {
+    padding: var(--space-16) 0;
+  }
+
+  .results-grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .result-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-neutral-100);
+  }
+
+  .result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-accent);
+  }
+
+  .result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4) var(--space-6);
+    background: var(--color-neutral-50);
+  }
+
+  .result-category {
+    background: var(--color-accent);
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .result-type {
+    color: var(--color-neutral-500);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .result-body {
+    padding: var(--space-6);
+  }
+
+  .result-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .result-title a {
+    color: var(--color-neutral-900);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .result-title a:hover {
+    color: var(--color-accent);
+  }
+
+  .result-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .warning-rating {
+    margin-top: var(--space-3);
+  }
+
+  .result-footer {
+    padding: var(--space-4) var(--space-6);
+    background: var(--color-neutral-50);
+    border-top: 1px solid var(--color-neutral-100);
+  }
+
+  .result-link {
+    color: var(--color-accent);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .result-link:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .no-results {
+    text-align: center;
+    padding: var(--space-16) 0;
+  }
+
+  .no-results-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+    opacity: 0.5;
+  }
+
+  .no-results h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-700);
+  }
+
+  .no-results p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    margin-bottom: var(--space-8);
+  }
+
+  .search-suggestions {
+    background: var(--color-neutral-50);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .search-suggestions h4 {
+    color: var(--color-neutral-700);
+    margin-bottom: var(--space-4);
+  }
+
+  .search-suggestions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .search-suggestions li {
+    color: var(--color-neutral-600);
+    margin-bottom: var(--space-2);
+    padding-right: var(--space-4);
+    position: relative;
+  }
+
+  .search-suggestions li::before {
+    content: '•';
+    color: var(--color-accent);
+    position: absolute;
+    right: 0;
+  }
+
+  .no-filter-results {
+    text-align: center;
+    color: var(--color-neutral-500);
+    font-style: italic;
+    padding: var(--space-8);
+  }
+
+  .search-suggestions-section {
+    padding: var(--space-16) 0;
+  }
+
+  .suggestions-content {
+    text-align: center;
+  }
+
+  .suggestions-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-12);
+    color: var(--color-neutral-900);
+  }
+
+  .suggestions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .suggestion-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-neutral-100);
+  }
+
+  .suggestion-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-accent);
+  }
+
+  .suggestion-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .suggestion-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-3);
+    color: var(--color-neutral-900);
+  }
+
+  .suggestion-card p {
+    color: var(--color-neutral-600);
+    margin: 0;
+    font-size: 0.875rem;
+  }
+
+  .popular-searches {
+    background: var(--color-neutral-50);
+    padding: var(--space-12) 0;
+  }
+
+  .popular-searches h3 {
+    text-align: center;
+    margin-bottom: var(--space-6);
+    color: var(--color-neutral-700);
+  }
+
+  .popular-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: center;
+  }
+
+  .popular-tag {
+    background: white;
+    color: var(--color-neutral-700);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-semibold);
+    border: 2px solid var(--color-neutral-200);
+    transition: all 0.2s ease;
+  }
+
+  .popular-tag:hover {
+    background: var(--color-accent);
+    color: white;
+    border-color: var(--color-accent);
+  }
+
+  @media (max-width: 768px) {
+    .page-title {
+      font-size: 1.75rem;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .title-icon {
+      font-size: 2.5rem;
+    }
+
+    .search-input-container {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .search-button {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .filters-container {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--space-4);
+    }
+
+    .filter-group {
+      justify-content: space-between;
+    }
+
+    .filter-select {
+      min-width: auto;
+      flex: 1;
+    }
+
+    .suggestions-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .popular-tags {
+      justify-content: flex-start;
+    }
+  }
+</style>

@@ -1,0 +1,745 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import StarRating from '../../../components/StarRating.astro';
+import CommentForm from '../../../components/CommentForm.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "Article",
+  "headline": "تحذير من المحامي علي النظمي - نصاب محتال يغير اسمه",
+  "description": "تحذير عاجل من المحامي علي النظمي (محمد علي الصادق سابقاً) الذي يغير اسمه لتجنب كشف جرائمه في احتيال استرجاع أموال الفوركس",
+  "author": {
+    "@type": "Organization",
+    "name": "دليل الخليج"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "دليل الخليج",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://khalijtrust.com/img/logo4.png"
+    }
+  },
+  "datePublished": "2024-01-20",
+  "dateModified": "2024-01-20",
+  "image": "https://khalijtrust.com/img/lazem.jpg",
+  "url": "https://khalijtrust.com/warnings/ali-alnazmi-scam/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://khalijtrust.com/warnings/ali-alnazmi-scam/"
+  }
+};
+
+const warningDetails = {
+  lawyerName: "المحامي علي النظمي",
+  previousName: "محمد علي الصادق",
+  type: "محامي مزيف ونصاب",
+  location: "غير محدد",
+  riskLevel: "خطر شديد",
+  phone: "00441224076241",
+  email: "info@lawlazem.com",
+  reportsCount: 23,
+  status: "نشط - تجنب التعامل معه نهائياً",
+  lastUpdated: "2024-01-20"
+};
+
+const scamMethods = [
+  {
+    title: "تغيير الاسم للهروب من المساءلة",
+    description: "قام بتغيير اسمه من محمد علي الصادق إلى علي النظمي لإخفاء هويته الحقيقية",
+    icon: "🎭"
+  },
+  {
+    title: "إرسال رسائل بريدية مضللة",
+    description: "يستخدم رسائل بريد إلكتروني لتشويه السمعة وتوجيه الأنظار بعيداً عن جرائمه",
+    icon: "📧"
+  },
+  {
+    title: "وعود باسترجاع الأموال المفقودة",
+    description: "يدعي قدرته على استرجاع الأموال من شركات الفوركس دون تحقيق أي نتائج",
+    icon: "💰"
+  },
+  {
+    title: "طلب أموال مقدمة كبيرة",
+    description: "يطلب مبالغ ضخمة كرسوم استشارات قانونية دون تقديم خدمات حقيقية",
+    icon: "💸"
+  },
+  {
+    title: "الاختفاء بعد الحصول على الأموال",
+    description: "يختفي فجأة بعد استلام الأموال ولا يمكن الوصول إليه",
+    icon: "👻"
+  }
+];
+
+const protectionTips = [
+  {
+    title: "تحقق من الترخيص القانوني",
+    description: "تأكد من أن المحامي مرخص بشكل قانوني في بلدك",
+    icon: "📜"
+  },
+  {
+    title: "ابحث عن تقييمات وآراء",
+    description: "تحقق من سمعة المحامي عبر الإنترنت وآراء العملاء السابقين",
+    icon: "⭐"
+  },
+  {
+    title: "لا تدفع الأموال مقدماً",
+    description: "لا تدفع أي رسوم قبل التأكد من مصداقية المحامي ووجود نتائج",
+    icon: "🚫"
+  },
+  {
+    title: "احذر من الوعود غير الواقعية",
+    description: "لا تصدق الوعود المبالغ فيها حول استرجاع الأموال",
+    icon: "⚠️"
+  }
+];
+---
+
+<Layout 
+  title="تحذير من المحامي علي النظمي - نصاب محتال يغير اسمه"
+  description="تحذير عاجل من المحامي علي النظمي (محمد علي الصادق سابقاً) الذي يغير اسمه لتجنب كشف جرائمه في احتيال استرجاع أموال الفوركس"
+  keywords="علي النظمي، محمد علي الصادق، محامي نصاب، احتيال قانوني، استرجاع أموال فوركس، محامي مزيف"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Warning Header -->
+    <section class="warning-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="warning-badge">
+            <span class="badge-icon">🚨</span>
+            <span class="badge-text">تحذير عاجل</span>
+          </div>
+          
+          <h1 class="warning-title">
+            تحذير من المحامي علي النظمي
+            <span class="subtitle">نصاب محتال يغير اسمه لتجنب كشف جرائمه</span>
+          </h1>
+          
+          <div class="lawyer-image">
+            <img src="https://khalijtrust.com/img/lazem.jpg" alt="المحامي علي النظمي" class="lawyer-photo" />
+          </div>
+          
+          <div class="warning-summary">
+            <p class="summary-text">
+              بعد أن كشفنا عن عمليات النصب الممنهجة التي كان يقوم بها المحامي محمد علي الصادق، 
+              ها هو اليوم يقوم بتغيير اسمه إلى المحامي علي النظمي لكي يهرب من فضح جرائمه 
+              ويواصل محاولات الاحتيال على الضحايا.
+            </p>
+          </div>
+          
+          <div class="warning-stats">
+            <div class="stat-item danger">
+              <StarRating rating={0} size="large" />
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{warningDetails.reportsCount}</span>
+              <span class="stat-label">بلاغ احتيال</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">خطر شديد</span>
+              <span class="stat-label">مستوى التحذير</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lawyer Details -->
+    <section class="lawyer-details">
+      <div class="container">
+        <div class="details-grid">
+          <div class="detail-card">
+            <h3>معلومات المحامي المزعوم</h3>
+            <div class="detail-list">
+              <div class="detail-item">
+                <span class="detail-label">الاسم الحالي:</span>
+                <span class="detail-value">{warningDetails.lawyerName}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الاسم السابق:</span>
+                <span class="detail-value">{warningDetails.previousName}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">النوع:</span>
+                <span class="detail-value">{warningDetails.type}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الهاتف:</span>
+                <span class="detail-value danger">{warningDetails.phone}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">البريد الإلكتروني:</span>
+                <span class="detail-value danger">{warningDetails.email}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="detail-card">
+            <h3>إحصائيات التحذير</h3>
+            <div class="detail-list">
+              <div class="detail-item">
+                <span class="detail-label">عدد البلاغات:</span>
+                <span class="detail-value">{warningDetails.reportsCount}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">مستوى الخطر:</span>
+                <span class="detail-value danger">{warningDetails.riskLevel}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الحالة:</span>
+                <span class="detail-value danger">{warningDetails.status}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scam Methods -->
+    <section class="scam-methods">
+      <div class="container">
+        <div class="section-header">
+          <h2>كيف يعمل المحامي علي النظمي في عمليات النصب؟</h2>
+          <p>المحامي علي النظمي يواصل استخدام نفس الأساليب المخادعة التي كان يستخدمها في الماضي</p>
+        </div>
+        
+        <div class="methods-grid">
+          {scamMethods.map(method => (
+            <div class="method-card">
+              <div class="method-icon">{method.icon}</div>
+              <h4>{method.title}</h4>
+              <p>{method.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- What to Do -->
+    <section class="what-to-do">
+      <div class="container">
+        <div class="section-header">
+          <h2>ماذا يجب أن تفعل إذا كنت ضحية لهذا الاحتيال؟</h2>
+          <p>خطوات فورية لحماية نفسك واسترجاع حقوقك</p>
+        </div>
+        
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>قدّم شكوى فورية لمكتب محاماة موثوق</h4>
+              <p>احصل على استشارة قانونية من محامٍ معتمد وموثوق للمتابعة في قضايا الاحتيال</p>
+            </div>
+          </div>
+          
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>اتصل بالجهات الرسمية</h4>
+              <p>قدم بلاغ رسمي للشرطة أو الجهات المختصة مع تقديم جميع الأدلة والشهادات</p>
+            </div>
+          </div>
+          
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>شارك تجربتك مع الآخرين</h4>
+              <p>نشر تجربتك يساعد في رفع الوعي وحماية الآخرين من الوقوع في نفس الفخ</p>
+            </div>
+          </div>
+          
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>احذر من الرسائل الإلكترونية المضللة</h4>
+              <p>لا ترد على أي رسائل بريدية مضللة وتأكد دائماً من مصداقية من تتعامل معهم</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Protection Tips -->
+    <section class="protection-tips">
+      <div class="container">
+        <div class="section-header">
+          <h2>كيف تحمي نفسك من الاحتيال؟</h2>
+          <p>نصائح أساسية لحماية نفسك من أشخاص مثل المحامي علي النظمي</p>
+        </div>
+        
+        <div class="tips-grid">
+          {protectionTips.map(tip => (
+            <div class="tip-card">
+              <div class="tip-icon">{tip.icon}</div>
+              <h4>{tip.title}</h4>
+              <p>{tip.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Warning -->
+    <section class="contact-warning">
+      <div class="container">
+        <div class="warning-card">
+          <div class="warning-icon">⚠️</div>
+          <div class="warning-content">
+            <h3>طرق تحذيرية للتواصل مع المحامي علي النظمي</h3>
+            <p>
+              إذا كنت قد تعرضت للاحتيال أو ترغب في تقديم شكوى ضد المحامي علي النظمي، 
+              يجب أن تعرف أن الأرقام والبريد الإلكتروني التاليين قد يكونان وسيلة للوصول إليه، 
+              ولكننا نحذرك من التواصل مع هذا الشخص.
+            </p>
+            <div class="contact-details">
+              <div class="contact-item">
+                <span class="contact-label">رقم الهاتف:</span>
+                <span class="contact-value">{warningDetails.phone}</span>
+              </div>
+              <div class="contact-item">
+                <span class="contact-label">البريد الإلكتروني:</span>
+                <span class="contact-value">{warningDetails.email}</span>
+              </div>
+            </div>
+            <div class="final-warning">
+              <p>
+                <strong>تحذير:</strong> تأكد من أنك لا تتعامل مع أي شخص يدعي أنه المحامي علي النظمي 
+                أو يطلب منك دفع أموال مقابل استرجاع أموال مفقودة. إذا كنت بحاجة للمساعدة القانونية، 
+                يجب أن تتواصل فقط مع مكاتب محاماة موثوقة ومعترف بها.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <JournalistByline articleSlug="ali-alnazmi-scam" />
+        <CommentForm postId="ali-alnazmi-warning" postType="warning" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .warning-header {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .warning-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .warning-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .badge-text {
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .warning-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--font-weight-normal);
+  }
+
+  .lawyer-image {
+    margin: var(--space-8) 0;
+  }
+
+  .lawyer-photo {
+    max-width: 300px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 4px solid white;
+  }
+
+  .warning-summary {
+    max-width: 800px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .summary-text {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .warning-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-item.danger {
+    border: 2px solid var(--color-secondary-light);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .lawyer-details {
+    padding: var(--space-16) 0;
+    background: var(--color-neutral-50);
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .detail-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid #dc2626;
+  }
+
+  .detail-card h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-6);
+    font-size: 1.5rem;
+  }
+
+  .detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-md);
+  }
+
+  .detail-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-600);
+  }
+
+  .detail-value {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+  }
+
+  .detail-value.danger {
+    color: #dc2626;
+  }
+
+  .scam-methods {
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .method-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid #dc2626;
+    transition: transform 0.3s ease;
+  }
+
+  .method-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .method-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .method-card h4 {
+    color: #dc2626;
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .method-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .what-to-do {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .step-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-4);
+  }
+
+  .step-content h4 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .step-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .protection-tips {
+    padding: var(--space-20) 0;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .tip-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-success);
+  }
+
+  .tip-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .tip-card h4 {
+    color: var(--color-success);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .tip-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .contact-warning {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .warning-card {
+    background: white;
+    padding: var(--space-10);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border: 3px solid #dc2626;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .warning-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: var(--space-6);
+  }
+
+  .warning-content h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-4);
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .warning-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .contact-details {
+    background: var(--color-neutral-50);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+  }
+
+  .contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-neutral-200);
+  }
+
+  .contact-item:last-child {
+    border-bottom: none;
+  }
+
+  .contact-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-700);
+  }
+
+  .contact-value {
+    font-weight: var(--font-weight-bold);
+    color: #dc2626;
+  }
+
+  .final-warning {
+    background: #dc2626;
+    color: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+  }
+
+  .final-warning p {
+    margin: 0;
+    color: white;
+  }
+
+  .final-warning strong {
+    color: white;
+  }
+
+  .comments-section {
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 768px) {
+    .warning-title {
+      font-size: 2rem;
+    }
+
+    .warning-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .details-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

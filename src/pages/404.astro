@@ -1,0 +1,321 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="الصفحة غير موجودة - دليل الخليج"
+  description="الصفحة التي تبحث عنها غير موجودة. تصفح المحتوى المفيد الآخر في دليل الخليج"
+>
+  <Header />
+  
+  <main>
+    <section class="error-section">
+      <div class="container">
+        <div class="error-content">
+          <div class="error-visual">
+            <div class="error-number">404</div>
+            <div class="error-icon">🔍</div>
+          </div>
+          
+          <div class="error-text">
+            <h1 class="error-title">الصفحة غير موجودة</h1>
+            <p class="error-description">
+              عذراً، الصفحة التي تبحث عنها غير موجودة أو تم نقلها إلى موقع آخر.
+              لا تقلق، يمكنك العثور على ما تحتاجه من خلال الروابط التالية.
+            </p>
+          </div>
+          
+          <div class="error-actions">
+            <a href="/" class="btn btn-primary">
+              العودة للرئيسية
+            </a>
+            <button class="btn btn-outline" onclick="history.back()">
+              الصفحة السابقة
+            </button>
+          </div>
+        </div>
+        
+        <div class="helpful-links">
+          <h2 class="links-title">قد تكون مهتماً بـ:</h2>
+          <div class="links-grid">
+            <a href="/warnings/" class="link-card">
+              <div class="card-icon">⚠️</div>
+              <h3>تحذيرات من الشركات</h3>
+              <p>اطلع على قائمة الشركات المشبوهة</p>
+            </a>
+            
+            <a href="/lawyers/" class="link-card">
+              <div class="card-icon">⚖️</div>
+              <h3>مكاتب محاماة موثوقة</h3>
+              <p>ابحث عن مكتب محاماة لمساعدتك</p>
+            </a>
+            
+            <a href="/guides/" class="link-card">
+              <div class="card-icon">📚</div>
+              <h3>أدلة توعوية</h3>
+              <p>تعلم كيف تحمي نفسك من الاحتيال</p>
+            </a>
+            
+            <a href="/cases/" class="link-card">
+              <div class="card-icon">✅</div>
+              <h3>قصص نجاح</h3>
+              <p>اقرأ قصص استرجاع الأموال</p>
+            </a>
+          </div>
+        </div>
+        
+        <div class="search-section">
+          <h3 class="search-title">أو ابحث عما تريد:</h3>
+          <form class="search-form" action="/search" method="GET">
+            <input 
+              type="text" 
+              name="q" 
+              placeholder="ابحث عن شركة، محامي أو دليل..." 
+              class="search-input"
+              required
+            />
+            <button type="submit" class="search-button">
+              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+              بحث
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .error-section {
+    padding: var(--space-20) 0;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .container {
+    text-align: center;
+  }
+
+  .error-content {
+    margin-bottom: var(--space-16);
+  }
+
+  .error-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .error-number {
+    font-size: 8rem;
+    font-weight: var(--font-weight-black);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: var(--space-4);
+  }
+
+  .error-icon {
+    font-size: 4rem;
+    opacity: 0.7;
+  }
+
+  .error-text {
+    margin-bottom: var(--space-10);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .error-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-6);
+    color: var(--color-neutral-900);
+  }
+
+  .error-description {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .error-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+    margin-bottom: var(--space-16);
+  }
+
+  .helpful-links {
+    margin-bottom: var(--space-16);
+  }
+
+  .links-title {
+    font-size: 2rem;
+    margin-bottom: var(--space-8);
+    color: var(--color-neutral-900);
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .link-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-neutral-100);
+  }
+
+  .link-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-primary-light);
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .link-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-3);
+    color: var(--color-neutral-900);
+  }
+
+  .link-card p {
+    color: var(--color-neutral-600);
+    margin: 0;
+    font-size: 0.875rem;
+  }
+
+  .search-section {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .search-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-6);
+    color: var(--color-neutral-900);
+  }
+
+  .search-form {
+    display: flex;
+    gap: var(--space-3);
+    align-items: stretch;
+  }
+
+  .search-input {
+    flex: 1;
+    padding: var(--space-4);
+    border: 2px solid var(--color-neutral-200);
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+    direction: rtl;
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+  }
+
+  .search-button {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-6);
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .search-button:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .error-section {
+      padding: var(--space-16) 0;
+    }
+
+    .error-number {
+      font-size: 6rem;
+    }
+
+    .error-icon {
+      font-size: 3rem;
+    }
+
+    .error-title {
+      font-size: 2rem;
+    }
+
+    .error-description {
+      font-size: 1rem;
+    }
+
+    .error-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .error-actions .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .links-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .links-title {
+      font-size: 1.5rem;
+    }
+
+    .search-form {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .search-input {
+      width: 100%;
+    }
+
+    .search-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

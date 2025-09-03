@@ -1,0 +1,832 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import StarRating from '../../../components/StarRating.astro';
+import CommentSubmissionForm from '../../../components/CommentSubmissionForm.astro';
+import CommentsDisplay from '../../../components/CommentsDisplay.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "Article",
+  "headline": "تحذير هام: مكتب ليندا علي (ليندا عابد سابقاً)",
+  "description": "تحذير من مكتب المحامية ليندا علي التي غيرت اسمها من ليندا عابد وتواصل الاحتيال في استرجاع الأموال",
+  "author": {
+    "@type": "Organization",
+    "name": "دليل الخليج"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "دليل الخليج",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://khalijtrust.com/img/logo4.png"
+    }
+  },
+  "datePublished": "2024-01-20",
+  "dateModified": "2024-01-20",
+  "image": "https://khalijtrust.com/img/lindaali.jpg",
+  "url": "https://khalijtrust.com/warnings/linda-ali-scam/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://khalijtrust.com/warnings/linda-ali-scam/"
+  }
+};
+
+const warningDetails = {
+  currentName: "ليندا علي",
+  previousName: "ليندا عابد",
+  type: "محامية مزيفة ونصابة",
+  riskLevel: "خطر شديد",
+  phones: ["+44-7596983129", "+44-7716-649244"],
+  reportsCount: 27,
+  status: "نشطة - تجنب التعامل معها نهائياً",
+  lastUpdated: "2024-01-20"
+};
+
+const scamProcess = [
+  {
+    step: "التواصل عبر وسائل التواصل",
+    description: "التواصل مع الضحايا عبر فيسبوك وإنستغرام وواتساب",
+    platform: "وسائل التواصل الاجتماعي",
+    icon: "📱"
+  },
+  {
+    step: "إيهام الضحايا بفرصة الاسترجاع",
+    description: "إيهام الضحايا بأن هناك فرصة لاسترجاع أموالهم بشرط دفع رسوم قانونية أولية",
+    platform: "وعود كاذبة",
+    icon: "💰"
+  },
+  {
+    step: "طلب مبالغ إضافية",
+    description: "بعد الدفع الأولي، يُطلب من الضحايا دفع مبالغ إضافية تحت ذرائع مختلفة",
+    platform: "رسوم متتالية",
+    icon: "💸"
+  },
+  {
+    step: "التجاهل والحظر",
+    description: "في النهاية، لا يتم استرجاع أي أموال، ويتم تجاهل الضحايا أو حظرهم",
+    platform: "اختفاء تام",
+    icon: "🚫"
+  }
+];
+
+const identityChanges = [
+  {
+    change: "تغيير الاسم",
+    from: "ليندا عابد",
+    to: "ليندا علي",
+    reason: "إخفاء الهوية الحقيقية"
+  },
+  {
+    change: "تغيير أرقام الهواتف",
+    from: "أرقام قديمة محروقة",
+    to: "أرقام جديدة",
+    reason: "تجنب الشكاوى"
+  },
+  {
+    change: "تغيير الشعار",
+    from: "شعار قديم",
+    to: "شعار جديد",
+    reason: "تجديد المظهر"
+  },
+  {
+    change: "تغيير منصات التواصل",
+    from: "حسابات قديمة",
+    to: "حسابات جديدة",
+    reason: "تجنب التقييمات السلبية"
+  }
+];
+
+const protectionMeasures = [
+  {
+    measure: "عدم التعامل مع مكاتب غير موثوقة",
+    description: "لا تتعامل مع أي مكتب محاماة غير موثوق يطلب منك دفع رسوم مسبقة",
+    icon: "🚫"
+  },
+  {
+    measure: "التحقق من الترخيص",
+    description: "تحقق من ترخيص المكتب ومصداقيته عبر الجهات القانونية الرسمية",
+    icon: "📜"
+  },
+  {
+    measure: "حماية المعلومات الشخصية",
+    description: "لا تشارك معلوماتك الشخصية أو المالية مع جهات مشبوهة",
+    icon: "🔒"
+  },
+  {
+    measure: "الإبلاغ عن الاحتيال",
+    description: "قم بالإبلاغ عن أي محاولات احتيال للجهات المختصة لحماية الآخرين",
+    icon: "📢"
+  }
+];
+---
+
+<Layout 
+  title="تحذير هام: مكتب ليندا علي (ليندا عابد سابقاً)"
+  description="تحذير من مكتب المحامية ليندا علي التي غيرت اسمها من ليندا عابد وتواصل الاحتيال في استرجاع الأموال من شركات الفوركس"
+  keywords="ليندا علي، ليندا عابد، محامية نصابة، احتيال قانوني، استرجاع أموال فوركس، تغيير الهوية"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Warning Header -->
+    <section class="warning-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="warning-badge">
+            <span class="badge-icon">🚨</span>
+            <span class="badge-text">تحذير هام</span>
+          </div>
+          
+          <h1 class="warning-title">
+            تحذير هام: مكتب ليندا علي
+            <span class="subtitle">(ليندا عابد سابقاً)</span>
+          </h1>
+          
+          <div class="lawyer-image">
+            <img src="https://khalijtrust.com/img/lindaali.jpg" alt="مكتب ليندا علي" class="lawyer-photo" />
+          </div>
+          
+          <div class="warning-summary">
+            <p class="summary-text">
+              نحذر جميع الأفراد من التعامل مع مكتب المحامية ليندا علي، التي كانت تُعرف سابقًا باسم ليندا عابد. 
+              وفقًا للتحقيقات الأخيرة، قامت هذه الجهة بتغيير اسمها وأرقام هواتفها، بالإضافة إلى تغيير 
+              شعارها ومنصات التواصل الاجتماعي التي تستخدمها لخداع الضحايا.
+            </p>
+          </div>
+          
+          <div class="warning-stats">
+            <div class="stat-item danger">
+              <StarRating rating={0} size="large" />
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{warningDetails.reportsCount}</span>
+              <span class="stat-label">بلاغ موثق</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">خطر شديد</span>
+              <span class="stat-label">مستوى التحذير</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Identity Changes -->
+    <section class="identity-changes">
+      <div class="container">
+        <div class="section-header">
+          <h2>التغييرات في الهوية والمعلومات</h2>
+          <p>كيف قامت بتغيير هويتها لتجنب الكشف</p>
+        </div>
+        
+        <div class="changes-grid">
+          {identityChanges.map(change => (
+            <div class="change-card">
+              <div class="change-header">
+                <h4>{change.change}</h4>
+              </div>
+              <div class="change-details">
+                <div class="change-from">
+                  <span class="change-label">من:</span>
+                  <span class="change-value old">{change.from}</span>
+                </div>
+                <div class="change-arrow">→</div>
+                <div class="change-to">
+                  <span class="change-label">إلى:</span>
+                  <span class="change-value new">{change.to}</span>
+                </div>
+              </div>
+              <div class="change-reason">
+                <span class="reason-label">السبب:</span>
+                <span class="reason-text">{change.reason}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Scam Process -->
+    <section class="scam-process">
+      <div class="container">
+        <div class="section-header">
+          <h2>تفاصيل الاحتيال</h2>
+          <p>كيف تقوم بخداع الضحايا خطوة بخطوة</p>
+        </div>
+        
+        <div class="process-timeline">
+          {scamProcess.map((step, index) => (
+            <div class="process-item">
+              <div class="process-number">{index + 1}</div>
+              <div class="process-content">
+                <div class="process-icon">{step.icon}</div>
+                <div class="process-details">
+                  <h4>{step.step}</h4>
+                  <p>{step.description}</p>
+                  <span class="process-platform">{step.platform}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Warning -->
+    <section class="contact-warning">
+      <div class="container">
+        <div class="warning-card">
+          <div class="warning-icon">📱</div>
+          <div class="warning-content">
+            <h3>أرقام واتساب التي تم استخدامها في عمليات الاحتيال</h3>
+            <div class="phone-numbers">
+              {warningDetails.phones.map(phone => (
+                <div class="phone-item">
+                  <span class="phone-number">{phone}</span>
+                  <span class="phone-warning">⚠️ محذر منه</span>
+                </div>
+              ))}
+            </div>
+            <div class="important-note">
+              <p>
+                <strong>تحذير:</strong> لا تثق في أي جهة تطلب منك رسومًا مسبقة لاسترجاع أموالك 
+                من شركات الفوركس أو الاستثمارات الوهمية.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Protection Measures -->
+    <section class="protection-measures">
+      <div class="container">
+        <div class="section-header">
+          <h2>كيف تحمي نفسك؟</h2>
+          <p>إجراءات وقائية لتجنب الوقوع في فخ الاحتيال</p>
+        </div>
+        
+        <div class="measures-grid">
+          {protectionMeasures.map(measure => (
+            <div class="measure-card">
+              <div class="measure-icon">{measure.icon}</div>
+              <h4>{measure.measure}</h4>
+              <p>{measure.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Victim Support -->
+    <section class="victim-support">
+      <div class="container">
+        <div class="support-card">
+          <div class="support-icon">🆘</div>
+          <div class="support-content">
+            <h3>هل تعرضت للاحتيال من هذا المكتب؟</h3>
+            <p>
+              إذا كنت ضحية لهذا الاحتيال، لا تتردد في طلب المساعدة من الجهات المختصة 
+              والمحامين الموثوقين لاسترجاع حقوقك.
+            </p>
+            <div class="support-actions">
+              <a href="/lawyers/" class="btn btn-primary">
+                ابحث عن محامي موثوق
+              </a>
+              <a href="/report/" class="btn btn-secondary">
+                بلغ عن الاحتيال
+              </a>
+              <a href="/contact/" class="btn btn-outline">
+                اطلب المساعدة
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <h2>التعليقات والتجارب</h2>
+        <div class="comments-content">
+          <CommentsDisplay postId="fake-financial-audit-dubai" postType="warning" />
+          <CommentSubmissionForm postId="fake-financial-audit-dubai" postType="warning" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .warning-header {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .warning-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .warning-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .badge-text {
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .warning-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--font-weight-normal);
+  }
+
+  .lawyer-image {
+    margin: var(--space-8) 0;
+  }
+
+  .lawyer-photo {
+    max-width: 300px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 4px solid white;
+  }
+
+  .warning-summary {
+    max-width: 800px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .summary-text {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .warning-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-item.danger {
+    border: 2px solid var(--color-secondary-light);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .identity-changes {
+    padding: var(--space-20) 0;
+    background: var(--color-neutral-50);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .changes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .change-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid #dc2626;
+  }
+
+  .change-header h4 {
+    color: #dc2626;
+    margin-bottom: var(--space-4);
+    font-size: 1.125rem;
+  }
+
+  .change-details {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .change-from,
+  .change-to {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .change-label {
+    font-size: 0.875rem;
+    color: var(--color-neutral-500);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .change-value {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .change-value.old {
+    color: var(--color-error);
+  }
+
+  .change-value.new {
+    color: var(--color-warning);
+  }
+
+  .change-arrow {
+    font-size: 1.5rem;
+    color: var(--color-neutral-400);
+    font-weight: bold;
+  }
+
+  .change-reason {
+    background: var(--color-neutral-50);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .reason-label {
+    font-size: 0.875rem;
+    color: var(--color-neutral-500);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .reason-text {
+    color: var(--color-neutral-700);
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.875rem;
+  }
+
+  .scam-process {
+    padding: var(--space-20) 0;
+  }
+
+  .process-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .process-timeline::before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #dc2626;
+  }
+
+  .process-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+    position: relative;
+  }
+
+  .process-number {
+    width: 50px;
+    height: 50px;
+    background: #dc2626;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 0;
+    z-index: 2;
+  }
+
+  .process-content {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    flex: 1;
+    border-left: 4px solid #dc2626;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .process-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .process-details h4 {
+    color: #dc2626;
+    margin-bottom: var(--space-3);
+    font-size: 1.25rem;
+  }
+
+  .process-details p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-3);
+  }
+
+  .process-platform {
+    background: #dc2626;
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .contact-warning {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .warning-card {
+    background: white;
+    padding: var(--space-10);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    border: 3px solid #dc2626;
+  }
+
+  .warning-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .warning-content h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-6);
+    font-size: 1.5rem;
+  }
+
+  .phone-numbers {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+
+  .phone-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4);
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-lg);
+    border: 2px solid #dc2626;
+  }
+
+  .phone-number {
+    font-weight: var(--font-weight-bold);
+    color: #dc2626;
+    font-size: 1.125rem;
+  }
+
+  .phone-warning {
+    background: #dc2626;
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .important-note {
+    background: #dc2626;
+    color: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+  }
+
+  .important-note p {
+    margin: 0;
+    color: white;
+    font-size: 1.125rem;
+  }
+
+  .important-note strong {
+    color: white;
+  }
+
+  .protection-measures {
+    padding: var(--space-20) 0;
+  }
+
+  .measures-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .measure-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-success);
+  }
+
+  .measure-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .measure-card h4 {
+    color: var(--color-success);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .measure-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .victim-support {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  .support-card {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .support-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .support-content h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .support-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .support-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .victim-support .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .victim-support .btn-outline:hover {
+    background: white;
+    color: var(--color-primary);
+  }
+
+.comments-section {
+    padding: var(--space-20) 0;
+    background: white;
+  }
+
+  .comments-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--color-neutral-900);
+    margin-bottom: var(--space-12);
+    font-weight: var(--font-weight-bold);
+  }
+  @media (max-width: 768px) {
+    .warning-title {
+      font-size: 2rem;
+    }
+
+    .warning-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .change-details {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .change-arrow {
+      transform: rotate(90deg);
+    }
+
+    .support-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .support-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

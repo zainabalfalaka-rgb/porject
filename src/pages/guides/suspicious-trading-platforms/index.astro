@@ -1,0 +1,1481 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import CommentForm from '../../../components/CommentForm.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "HowTo",
+  "name": "التعامل مع منصات التداول المشبوهة",
+  "description": "كيف تتعرف على منصات التداول الاحتيالية وتتجنبها وتحمي أموالك من الوسطاء المحتالين",
+  "image": "https://khalijtrust.com/img/logo4.png",
+  "totalTime": "PT7M",
+  "supply": [
+    "معلومات المنصة الأساسية",
+    "وصول للإنترنت للبحث",
+    "قائمة بالهيئات الرقابية الموثوقة"
+  ],
+  "tool": [
+    "مواقع التحقق من التراخيص",
+    "منصات تقييم الوسطاء",
+    "أدوات فحص المواقع"
+  ],
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "التحقق من التراخيص الرسمية",
+      "text": "تأكد من أن المنصة مرخصة من هيئات رقابية معترف بها دولياً"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "فحص سمعة المنصة",
+      "text": "ابحث عن تقييمات وتجارب المستخدمين على مواقع مستقلة"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "اختبار عمليات السحب",
+      "text": "جرب سحب مبلغ صغير قبل إيداع مبالغ كبيرة"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "فحص شروط التداول",
+      "text": "اقرأ الشروط والأحكام بعناية خاصة شروط السحب"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "تقييم خدمة العملاء",
+      "text": "اختبر جودة وسرعة استجابة خدمة العملاء"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "فحص الأسعار والرسوم",
+      "text": "تأكد من شفافية الأسعار وعدم وجود رسوم مخفية"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "التحقق من الأمان التقني",
+      "text": "تأكد من استخدام المنصة لبروتوكولات أمان متقدمة"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "مراقبة العلامات التحذيرية",
+      "text": "انتبه لأي علامات تدل على أن المنصة قد تكون احتيالية"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "طلب المشورة القانونية",
+      "text": "استشر خبراء مثل مكتب Trust Law عند الشك في أي منصة"
+    }
+  ],
+  "url": "https://khalijtrust.com/guides/suspicious-trading-platforms/"
+};
+
+const platformRedFlags = [
+  {
+    category: "التراخيص والقانونية",
+    flags: [
+      {
+        flag: "عدم وجود ترخيص من هيئة معترف بها",
+        severity: "عالي جداً",
+        description: "المنصة غير مرخصة من FCA، CySEC، ASIC أو هيئات مشابهة"
+      },
+      {
+        flag: "ادعاء تراخيص مزيفة",
+        severity: "عالي جداً", 
+        description: "استخدام شعارات هيئات رقابية دون ترخيص حقيقي"
+      },
+      {
+        flag: "تراخيص من جهات غير معروفة",
+        severity: "عالي",
+        description: "ادعاء تراخيص من جهات غير موثوقة أو غير موجودة"
+      }
+    ]
+  },
+  {
+    category: "السلوك التجاري",
+    flags: [
+      {
+        flag: "وعود بأرباح مضمونة",
+        severity: "عالي جداً",
+        description: "ضمان أرباح أو عوائد ثابتة في التداول"
+      },
+      {
+        flag: "ضغط للإيداع السريع",
+        severity: "عالي",
+        description: "إلحاح غير طبيعي للإيداع أو زيادة الاستثمار"
+      },
+      {
+        flag: "عروض مبالغ فيها",
+        severity: "متوسط",
+        description: "مكافآت أو عروض تبدو جيدة جداً لتكون حقيقية"
+      }
+    ]
+  },
+  {
+    category: "العمليات المالية",
+    flags: [
+      {
+        flag: "صعوبة في السحب",
+        severity: "عالي جداً",
+        description: "تأخيرات أو رفض طلبات السحب بدون مبرر"
+      },
+      {
+        flag: "رسوم مخفية",
+        severity: "عالي",
+        description: "رسوم غير معلنة تظهر عند السحب أو التداول"
+      },
+      {
+        flag: "طرق دفع مشبوهة",
+        severity: "متوسط",
+        description: "قبول طرق دفع غير تقليدية أو مشبوهة فقط"
+      }
+    ]
+  },
+  {
+    category: "الشفافية والمعلومات",
+    flags: [
+      {
+        flag: "عدم وضوح معلومات الشركة",
+        severity: "عالي",
+        description: "عدم وجود معلومات واضحة عن مالكي أو مديري المنصة"
+      },
+      {
+        flag: "عدم وجود عنوان فعلي",
+        severity: "عالي",
+        description: "عدم وجود عنوان مكتب حقيقي أو معلومات اتصال واضحة"
+      },
+      {
+        flag: "موقع ضعيف أو حديث",
+        severity: "متوسط",
+        description: "موقع إلكتروني ضعيف التصميم أو حديث الإنشاء"
+      }
+    ]
+  }
+];
+
+const trustedRegulators = [
+  {
+    name: "هيئة السلوك المالي البريطانية",
+    abbreviation: "FCA",
+    country: "المملكة المتحدة",
+    website: "https://www.fca.org.uk",
+    description: "واحدة من أقوى الهيئات الرقابية في العالم",
+    checkUrl: "https://register.fca.org.uk"
+  },
+  {
+    name: "هيئة الأوراق المالية القبرصية",
+    abbreviation: "CySEC", 
+    country: "قبرص",
+    website: "https://www.cysec.gov.cy",
+    description: "هيئة رقابية أوروبية معترف بها",
+    checkUrl: "https://www.cysec.gov.cy/en-GB/entities/investment-firms"
+  },
+  {
+    name: "لجنة الأوراق المالية الأسترالية",
+    abbreviation: "ASIC",
+    country: "أستراليا", 
+    website: "https://asic.gov.au",
+    description: "هيئة رقابية صارمة ومحترمة",
+    checkUrl: "https://connectonline.asic.gov.au"
+  },
+  {
+    name: "هيئة الرقابة المالية الألمانية",
+    abbreviation: "BaFin",
+    country: "ألمانيا",
+    website: "https://www.bafin.de",
+    description: "هيئة رقابية أوروبية قوية",
+    checkUrl: "https://www.bafin.de/EN/PublikationenDaten/Datenbanken"
+  }
+];
+
+const verificationSteps = [
+  {
+    step: 1,
+    title: "التحقق من التراخيص الرسمية",
+    description: "أول وأهم خطوة هي التأكد من أن المنصة مرخصة من هيئة رقابية موثوقة",
+    actions: [
+      "ابحث عن رقم الترخيص على موقع المنصة",
+      "تحقق من الترخيص في موقع الهيئة الرقابية",
+      "تأكد من أن الترخيص ساري المفعول",
+      "تحقق من أن نوع الترخيص يغطي الخدمات المقدمة"
+    ],
+    tips: [
+      "لا تثق بالشعارات فقط، تحقق من المواقع الرسمية",
+      "احذر من التراخيص المزيفة أو المنتهية الصلاحية",
+      "تأكد من تطابق اسم الشركة في الترخيص مع اسم المنصة"
+    ],
+    timeRequired: "10-15 دقيقة"
+  },
+  {
+    step: 2,
+    title: "فحص سمعة المنصة وتقييمات المستخدمين",
+    description: "ابحث عن تجارب المستخدمين الحقيقية وتقييمات مستقلة للمنصة",
+    actions: [
+      "ابحث في Trustpilot عن تقييمات المنصة",
+      "راجع Forex Peace Army للشكاوى",
+      "ابحث في Reddit عن تجارب المستخدمين",
+      "تحقق من Google Reviews"
+    ],
+    tips: [
+      "احذر من التقييمات المزيفة (كلها إيجابية أو متشابهة)",
+      "ركز على التقييمات التي تذكر تفاصيل محددة",
+      "انتبه للشكاوى المتكررة حول نفس المشاكل",
+      "ابحث عن تقييمات من مصادر متعددة"
+    ],
+    timeRequired: "15-20 دقيقة"
+  },
+  {
+    step: 3,
+    title: "اختبار عمليات السحب والإيداع",
+    description: "جرب المنصة بمبلغ صغير لاختبار سهولة وسرعة عمليات السحب",
+    actions: [
+      "ابدأ بإيداع مبلغ صغير (50-100 دولار)",
+      "قم ببعض التداولات البسيطة",
+      "اطلب سحب جزء من المبلغ",
+      "راقب الوقت المستغرق للسحب"
+    ],
+    tips: [
+      "لا تودع مبالغ كبيرة قبل اختبار السحب",
+      "احتفظ بسجل لجميع المعاملات",
+      "انتبه لأي رسوم غير معلنة",
+      "تأكد من وصول الأموال لحسابك البنكي"
+    ],
+    timeRequired: "1-3 أيام",
+    highlight: "إذا واجهت صعوبات في السحب، استشر مكتب Trust Law فوراً. لديهم خبرة 23 سنة في التعامل مع منصات التداول المشبوهة ويمكنهم مساعدتك في استرجاع أموالك قبل فوات الأوان."
+  }
+];
+
+const platformComparison = [
+  {
+    feature: "التراخيص",
+    legitimate: "مرخصة من FCA، CySEC، ASIC",
+    suspicious: "غير مرخصة أو تراخيص مزيفة"
+  },
+  {
+    feature: "الشفافية",
+    legitimate: "معلومات واضحة عن الشركة والفريق",
+    suspicious: "معلومات غامضة أو مخفية"
+  },
+  {
+    feature: "خدمة العملاء",
+    legitimate: "دعم متعدد اللغات ومتاح 24/7",
+    suspicious: "دعم ضعيف أو غير متجاوب"
+  },
+  {
+    feature: "عمليات السحب",
+    legitimate: "سحب سريع وبدون عوائق",
+    suspicious: "تأخيرات أو رفض طلبات السحب"
+  },
+  {
+    feature: "الرسوم",
+    legitimate: "رسوم واضحة ومعلنة",
+    suspicious: "رسوم مخفية أو مبالغ فيها"
+  },
+  {
+    feature: "الأمان",
+    legitimate: "تشفير SSL وحماية الأموال",
+    suspicious: "أمان ضعيف أو غير موجود"
+  }
+];
+
+const actionPlan = [
+  {
+    scenario: "اكتشفت أن المنصة غير مرخصة",
+    immediateActions: [
+      "توقف عن التداول فوراً",
+      "لا تودع أي أموال إضافية",
+      "حاول سحب جميع أموالك",
+      "وثق جميع المعاملات"
+    ],
+    followUpActions: [
+      "أبلغ الهيئات الرقابية",
+      "قدم شكوى لحماية المستهلك",
+      "استشر محامي متخصص",
+      "انضم لمجموعات الضحايا"
+    ]
+  },
+  {
+    scenario: "المنصة ترفض سحب أموالك",
+    immediateActions: [
+      "وثق جميع محاولات السحب",
+      "احتفظ بلقطات شاشة للمراسلات",
+      "اتصل بخدمة العملاء كتابياً",
+      "اطلب تفسير كتابي للرفض"
+    ],
+    followUpActions: [
+      "قدم شكوى للهيئة الرقابية",
+      "اتصل بالبنك لطلب Chargeback",
+      "استعن بمحامي متخصص",
+      "أبلغ مواقع التحذير"
+    ]
+  }
+];
+---
+
+<Layout 
+  title="التعامل مع منصات التداول المشبوهة - دليل الحماية"
+  description="كيف تتعرف على منصات التداول الاحتيالية وتتجنبها وتحمي أموالك من الوسطاء المحتالين مع 9 خطوات عملية"
+  keywords="منصات تداول مشبوهة، وسطاء احتياليون، حماية من النصب، تداول آمن، فوركس احتيالي، الخليج"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Guide Header -->
+    <section class="guide-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="guide-meta">
+            <span class="category">التداول</span>
+            <span class="difficulty medium">متوسط</span>
+            <span class="read-time">⏱️ 7 دقائق</span>
+          </div>
+          
+          <h1 class="guide-title">
+            التعامل مع منصات التداول المشبوهة
+          </h1>
+          
+          <p class="guide-description">
+            تعلم كيف تتعرف على منصات التداول الاحتيالية وتتجنبها لحماية أموالك. 
+            دليل شامل بـ9 خطوات عملية لضمان أمان استثماراتك في التداول.
+          </p>
+          
+          <div class="guide-stats">
+            <div class="stat">
+              <span class="stat-number">9</span>
+              <span class="stat-label">خطوات</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">75%</span>
+              <span class="stat-label">معدل الكشف</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">$2.5B</span>
+              <span class="stat-label">خسائر سنوية</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="introduction">
+      <div class="container">
+        <div class="intro-content">
+          <h2>لماذا تنتشر منصات التداول المشبوهة؟</h2>
+          <p class="intro-text">
+            مع نمو شعبية التداول عبر الإنترنت، ظهرت العديد من المنصات المشبوهة التي تستغل 
+            رغبة الناس في الربح السريع. هذه المنصات تستخدم أساليب متطورة لخداع المتداولين 
+            وسرقة أموالهم.
+          </p>
+          
+          <div class="problem-stats">
+            <div class="problem-card">
+              <div class="problem-icon">📈</div>
+              <div class="problem-info">
+                <span class="problem-number">67%</span>
+                <span class="problem-label">زيادة في منصات التداول المشبوهة</span>
+              </div>
+            </div>
+            
+            <div class="problem-card">
+              <div class="problem-icon">💸</div>
+              <div class="problem-info">
+                <span class="problem-number">$2.5B</span>
+                <span class="problem-label">خسائر سنوية عالمياً</span>
+              </div>
+            </div>
+            
+            <div class="problem-card">
+              <div class="problem-icon">👥</div>
+              <div class="problem-info">
+                <span class="problem-number">89%</span>
+                <span class="problem-label">من الضحايا لا يسترجعون أموالهم</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Red Flags -->
+    <section class="red-flags-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>علامات التحذير من منصات التداول المشبوهة</h2>
+          <p>تعرف على العلامات الحمراء التي تدل على أن المنصة قد تكون احتيالية</p>
+        </div>
+        
+        <div class="flags-container">
+          {platformRedFlags.map(category => (
+            <div class="flags-category">
+              <h3 class="category-title">{category.category}</h3>
+              <div class="flags-grid">
+                {category.flags.map(flagItem => (
+                  <div class="flag-card">
+                    <div class="flag-header">
+                      <h4>{flagItem.flag}</h4>
+                      <span class="severity-badge severity-{flagItem.severity.replace(' ', '-').toLowerCase()}">
+                        {flagItem.severity}
+                      </span>
+                    </div>
+                    <p class="flag-description">{flagItem.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Trusted Regulators -->
+    <section class="trusted-regulators">
+      <div class="container">
+        <div class="section-header">
+          <h2>الهيئات الرقابية الموثوقة</h2>
+          <p>تعرف على أهم الهيئات الرقابية التي تضمن أمان منصات التداول</p>
+        </div>
+        
+        <div class="regulators-grid">
+          {trustedRegulators.map(regulator => (
+            <div class="regulator-card">
+              <div class="regulator-header">
+                <h4>{regulator.name}</h4>
+                <span class="regulator-abbr">{regulator.abbreviation}</span>
+              </div>
+              <div class="regulator-content">
+                <p class="regulator-country">{regulator.country}</p>
+                <p class="regulator-description">{regulator.description}</p>
+                <div class="regulator-links">
+                  <a href={regulator.website} target="_blank" class="website-link">
+                    الموقع الرسمي
+                  </a>
+                  <a href={regulator.checkUrl} target="_blank" class="check-link">
+                    التحقق من التراخيص
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Verification Steps -->
+    <section class="verification-steps">
+      <div class="container">
+        <div class="section-header">
+          <h2>خطوات التحقق من منصات التداول</h2>
+          <p>اتبع هذه الخطوات للتأكد من مصداقية أي منصة تداول</p>
+        </div>
+        
+        <div class="steps-container">
+          {verificationSteps.map(step => (
+            <div class="step-card">
+              <div class="step-header">
+                <div class="step-number">{step.step}</div>
+                <div class="step-info">
+                  <h3 class="step-title">{step.title}</h3>
+                  <span class="time-required">الوقت المطلوب: {step.timeRequired}</span>
+                </div>
+              </div>
+              
+              <div class="step-content">
+                <p class="step-description">{step.description}</p>
+                
+                <div class="step-actions">
+                  <h4>الإجراءات المطلوبة:</h4>
+                  <ul class="actions-list">
+                    {step.actions.map(action => (
+                      <li>{action}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div class="step-tips">
+                  <h4>نصائح مهمة:</h4>
+                  <ul class="tips-list">
+                    {step.tips.map(tip => (
+                      <li>{tip}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                {step.highlight && (
+                  <div class="step-highlight">
+                    <div class="highlight-icon">⭐</div>
+                    <p>{step.highlight}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Platform Comparison -->
+    <section class="platform-comparison">
+      <div class="container">
+        <div class="section-header">
+          <h2>مقارنة بين المنصات الموثوقة والمشبوهة</h2>
+          <p>الفروقات الأساسية التي تساعدك في التمييز</p>
+        </div>
+        
+        <div class="comparison-table">
+          <div class="table-header">
+            <div class="header-cell feature-header">الخاصية</div>
+            <div class="header-cell legitimate-header">منصات موثوقة</div>
+            <div class="header-cell suspicious-header">منصات مشبوهة</div>
+          </div>
+          
+          {platformComparison.map(item => (
+            <div class="table-row">
+              <div class="table-cell feature-cell">{item.feature}</div>
+              <div class="table-cell legitimate-cell">
+                <span class="check-icon">✅</span>
+                {item.legitimate}
+              </div>
+              <div class="table-cell suspicious-cell">
+                <span class="cross-icon">❌</span>
+                {item.suspicious}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Action Plan -->
+    <section class="action-plan">
+      <div class="container">
+        <div class="section-header">
+          <h2>خطة العمل عند اكتشاف منصة مشبوهة</h2>
+          <p>ما تفعله فوراً عند اكتشاف أن المنصة قد تكون احتيالية</p>
+        </div>
+        
+        <div class="scenarios-container">
+          {actionPlan.map(scenario => (
+            <div class="scenario-card">
+              <div class="scenario-header">
+                <h3>{scenario.scenario}</h3>
+              </div>
+              
+              <div class="scenario-content">
+                <div class="immediate-actions">
+                  <h4>إجراءات فورية:</h4>
+                  <ul class="immediate-list">
+                    {scenario.immediateActions.map(action => (
+                      <li>{action}</li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div class="followup-actions">
+                  <h4>إجراءات المتابعة:</h4>
+                  <ul class="followup-list">
+                    {scenario.followUpActions.map(action => (
+                      <li>{action}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Prevention Tips -->
+    <section class="prevention-tips">
+      <div class="container">
+        <div class="section-header">
+          <h2>نصائح الوقاية من منصات التداول المشبوهة</h2>
+          <p>استراتيجيات فعالة لحماية نفسك من البداية</p>
+        </div>
+        
+        <div class="tips-grid">
+          <div class="tip-card">
+            <div class="tip-icon">🔍</div>
+            <h4>ابحث قبل الاستثمار</h4>
+            <p>قم ببحث شامل عن المنصة لمدة أسبوع على الأقل قبل إيداع أي أموال</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">💰</div>
+            <h4>ابدأ بمبالغ صغيرة</h4>
+            <p>اختبر المنصة بمبلغ صغير أولاً وجرب عملية السحب</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">📚</div>
+            <h4>تعلم أساسيات التداول</h4>
+            <p>فهم أساسيات التداول يساعدك في اكتشاف الممارسات المشبوهة</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">🤝</div>
+            <h4>استشر الخبراء</h4>
+            <p>لا تتردد في طلب المشورة من خبراء التداول والمحامين المتخصصين</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">📱</div>
+            <h4>تابع الأخبار</h4>
+            <p>ابق على اطلاع بأحدث التحذيرات من منصات التداول المشبوهة</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">🛡️</div>
+            <h4>استخدم حماية إضافية</h4>
+            <p>فعل المصادقة الثنائية واستخدم كلمات مرور قوية</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recovery Help -->
+    <section class="recovery-help">
+      <div class="container">
+        <div class="help-card">
+          <div class="help-icon">⚖️</div>
+          <div class="help-content">
+            <h3>تعرضت لاحتيال من منصة تداول؟</h3>
+            <p>
+              إذا كنت ضحية لمنصة تداول احتيالية، فلا تيأس. هناك طرق قانونية لاسترجاع أموالك 
+              مع المساعدة المناسبة من خبراء متخصصين.
+            </p>
+            <div class="recovery-stats">
+              <div class="recovery-stat">
+                <span class="stat-number">65%</span>
+                <span class="stat-label">معدل استرجاع الأموال مع المساعدة القانونية</span>
+              </div>
+              <div class="recovery-stat">
+                <span class="stat-number">90 يوم</span>
+                <span class="stat-label">متوسط وقت استرجاع الأموال</span>
+              </div>
+            </div>
+            <div class="help-actions">
+              <a href="/lawyers/" class="btn btn-primary">
+                ابحث عن محامي متخصص
+              </a>
+              <a href="/report/" class="btn btn-secondary">
+                بلغ عن المنصة المشبوهة
+              </a>
+              <a href="/contact/" class="btn btn-outline">
+                استشارة مجانية فورية
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <JournalistByline articleSlug="suspicious-trading-platforms" />
+        <CommentForm postId="suspicious-trading-platforms-guide" postType="guide" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .guide-header {
+    background: linear-gradient(135deg, var(--color-accent) 0%, #0284c7 100%);
+    color: white;
+    padding: var(--space-16) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .guide-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .guide-meta {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    flex-wrap: wrap;
+  }
+
+  .category {
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .difficulty {
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .difficulty.medium {
+    background: var(--color-secondary);
+    color: white;
+  }
+
+  .read-time {
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .guide-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+  }
+
+  .guide-description {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+  }
+
+  .guide-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .stat {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .introduction {
+    padding: var(--space-16) 0;
+  }
+
+  .intro-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intro-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-6);
+    color: var(--color-neutral-900);
+  }
+
+  .intro-text {
+    font-size: 1.25rem;
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-10);
+  }
+
+  .problem-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .problem-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    border-left: 4px solid var(--color-accent);
+  }
+
+  .problem-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+  }
+
+  .problem-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .problem-number {
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-accent);
+  }
+
+  .problem-label {
+    font-size: 0.875rem;
+    color: var(--color-neutral-600);
+  }
+
+  .red-flags-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .flags-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-10);
+  }
+
+  .flags-category {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+
+  .category-title {
+    background: linear-gradient(135deg, var(--color-error) 0%, #dc2626 100%);
+    color: white;
+    padding: var(--space-6);
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .flags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
+    padding: var(--space-8);
+  }
+
+  .flag-card {
+    background: var(--color-neutral-50);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-error);
+  }
+
+  .flag-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-3);
+    gap: var(--space-3);
+  }
+
+  .flag-header h4 {
+    color: var(--color-error);
+    margin: 0;
+    font-size: 1.125rem;
+    flex: 1;
+  }
+
+  .severity-badge {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .severity-عالي-جداً {
+    background: #dc2626;
+    color: white;
+  }
+
+  .severity-عالي {
+    background: var(--color-error);
+    color: white;
+  }
+
+  .severity-متوسط {
+    background: var(--color-warning);
+    color: white;
+  }
+
+  .flag-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .trusted-regulators {
+    padding: var(--space-20) 0;
+  }
+
+  .regulators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .regulator-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--color-success);
+  }
+
+  .regulator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .regulator-header h4 {
+    color: var(--color-success);
+    margin: 0;
+    font-size: 1.125rem;
+    flex: 1;
+  }
+
+  .regulator-abbr {
+    background: var(--color-success);
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .regulator-country {
+    color: var(--color-neutral-500);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-3);
+  }
+
+  .regulator-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .regulator-links {
+    display: flex;
+    gap: var(--space-3);
+  }
+
+  .website-link,
+  .check-link {
+    color: var(--color-success);
+    text-decoration: none;
+    font-weight: var(--font-weight-semibold);
+    font-size: 0.875rem;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .website-link:hover,
+  .check-link:hover {
+    border-bottom-color: var(--color-success);
+  }
+
+  .verification-steps {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .step-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    border-left: 6px solid var(--color-accent);
+  }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background: linear-gradient(135deg, var(--color-accent) 0%, #0284c7 100%);
+    color: white;
+  }
+
+  .step-number {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 0;
+  }
+
+  .step-info {
+    flex: 1;
+  }
+
+  .step-title {
+    font-size: 1.5rem;
+    margin: 0 0 var(--space-2);
+    color: white;
+  }
+
+  .time-required {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .step-content {
+    padding: var(--space-8);
+  }
+
+  .step-description {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .step-actions,
+  .step-tips {
+    margin-bottom: var(--space-6);
+  }
+
+  .step-actions h4,
+  .step-tips h4 {
+    color: var(--color-neutral-900);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .actions-list,
+  .tips-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .actions-list li,
+  .tips-list li {
+    padding: var(--space-2) 0;
+    color: var(--color-neutral-600);
+    border-bottom: 1px solid var(--color-neutral-100);
+    position: relative;
+    padding-right: var(--space-6);
+  }
+
+  .actions-list li::before {
+    content: '•';
+    color: var(--color-accent);
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+  }
+
+  .tips-list li::before {
+    content: '💡';
+    position: absolute;
+    right: 0;
+  }
+
+  .step-highlight {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .highlight-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .step-highlight p {
+    margin: 0;
+    color: white;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .platform-comparison {
+    padding: var(--space-20) 0;
+  }
+
+  .comparison-table {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .table-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: linear-gradient(135deg, var(--color-neutral-700) 0%, var(--color-neutral-800) 100%);
+    color: white;
+  }
+
+  .header-cell {
+    padding: var(--space-6);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    font-size: 1.125rem;
+  }
+
+  .table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--color-neutral-200);
+  }
+
+  .table-row:last-child {
+    border-bottom: none;
+  }
+
+  .table-cell {
+    padding: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .feature-cell {
+    background: var(--color-neutral-50);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+    justify-content: center;
+  }
+
+  .legitimate-cell {
+    background: rgba(16, 185, 129, 0.05);
+    color: var(--color-neutral-600);
+  }
+
+  .suspicious-cell {
+    background: rgba(239, 68, 68, 0.05);
+    color: var(--color-neutral-600);
+  }
+
+  .check-icon {
+    color: var(--color-success);
+    font-size: 1.125rem;
+  }
+
+  .cross-icon {
+    color: var(--color-error);
+    font-size: 1.125rem;
+  }
+
+  .action-plan {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .scenarios-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .scenario-card {
+    background: white;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    border-top: 4px solid var(--color-warning);
+  }
+
+  .scenario-header {
+    background: linear-gradient(135deg, var(--color-warning) 0%, #d97706 100%);
+    color: white;
+    padding: var(--space-6);
+  }
+
+  .scenario-header h3 {
+    margin: 0;
+    color: white;
+    font-size: 1.25rem;
+  }
+
+  .scenario-content {
+    padding: var(--space-8);
+  }
+
+  .immediate-actions,
+  .followup-actions {
+    margin-bottom: var(--space-6);
+  }
+
+  .immediate-actions h4,
+  .followup-actions h4 {
+    color: var(--color-neutral-900);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .immediate-list,
+  .followup-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .immediate-list li,
+  .followup-list li {
+    padding: var(--space-2) 0;
+    color: var(--color-neutral-600);
+    border-bottom: 1px solid var(--color-neutral-100);
+    position: relative;
+    padding-right: var(--space-6);
+  }
+
+  .immediate-list li::before {
+    content: '🚨';
+    position: absolute;
+    right: 0;
+  }
+
+  .followup-list li::before {
+    content: '📋';
+    position: absolute;
+    right: 0;
+  }
+
+  .prevention-tips {
+    padding: var(--space-20) 0;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .tip-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-success);
+  }
+
+  .tip-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .tip-card h4 {
+    color: var(--color-success);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .tip-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .recovery-help {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  .help-card {
+    background: linear-gradient(135deg, var(--color-error) 0%, #dc2626 100%);
+    color: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .help-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .help-content h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .help-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .recovery-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+
+  .recovery-stat {
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .recovery-stat .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .recovery-stat .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .help-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .recovery-help .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .recovery-help .btn-outline:hover {
+    background: white;
+    color: var(--color-error);
+  }
+
+  .comments-section {
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 768px) {
+    .guide-title {
+      font-size: 2rem;
+    }
+
+    .guide-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+
+    .guide-meta {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .problem-stats {
+      grid-template-columns: 1fr;
+    }
+
+    .flags-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .table-header,
+    .table-row {
+      grid-template-columns: 1fr;
+    }
+
+    .table-cell {
+      justify-content: flex-start;
+      border-bottom: 1px solid var(--color-neutral-200);
+    }
+
+    .feature-cell {
+      background: var(--color-primary);
+      color: white;
+      font-weight: var(--font-weight-bold);
+    }
+
+    .help-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .help-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

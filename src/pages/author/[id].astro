@@ -1,0 +1,615 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { journalists, articleTitles } from '../../data/journalists.js';
+
+// Helper functions for article categorization
+function getArticleCategory(slug) {
+  if (slug.includes('-scam') || slug.includes('warning') || slug.includes('fake-') || slug.includes('altamimi') || slug.includes('alkhaleej')) {
+    return 'warnings';
+  }
+  if (slug.includes('law-profile') || slug.includes('trust-law') || slug.includes('alarabia') || slug.includes('law-fx')) {
+    return 'lawyers';
+  }
+  if (slug.includes('recovery') || slug.includes('case')) {
+    return 'cases';
+  }
+  return 'guides';
+}
+
+function getCategoryLabel(category) {
+  const labels = {
+    'warnings': 'تحذيرات',
+    'lawyers': 'مكاتب محاماة',
+    'cases': 'قصص نجاح',
+    'guides': 'أدلة توعوية'
+  };
+  return labels[category] || category;
+}
+
+export async function getStaticPaths() {
+  return journalists.map((journalist) => ({
+    params: { id: journalist.id }
+  }));
+}
+
+const { id } = Astro.params;
+const journalist = journalists.find(j => j.id === id);
+
+if (!journalist) {
+  return Astro.redirect('/404');
+}
+
+const schemaData = {
+  "@type": "Person",
+  "name": journalist.name,
+  "alternateName": journalist.englishName,
+  "description": journalist.bio,
+  "image": journalist.image,
+  "jobTitle": journalist.title,
+  "url": `https://khalijtrust.com/author/${journalist.id}/`,
+  "sameAs": [
+    journalist.socialMedia.twitter,
+    journalist.socialMedia.linkedin
+  ].filter(Boolean)
+};
+---
+
+<Layout 
+  title={`${journalist.name} - كاتب في دليل الخليج`}
+  description={journalist.bio}
+  keywords={`${journalist.name}, ${journalist.englishName}, كاتب, صحفي, دليل الخليج`}
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Author Header -->
+    <section class="author-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="author-info">
+            <div class="author-avatar">
+              <img 
+                src={journalist.image} 
+                alt={journalist.name}
+                class="avatar-image"
+                loading="eager"
+              />
+            </div>
+            <div class="author-details">
+              <h1 class="author-name">{journalist.name}</h1>
+              {journalist.englishName && (
+                <p class="author-english-name">{journalist.englishName}</p>
+              )}
+              <p class="author-title">{journalist.title}</p>
+              <p class="author-bio">{journalist.bio}</p>
+              
+              <div class="social-links">
+                {journalist.socialMedia.twitter && (
+                  <a 
+                    href={journalist.socialMedia.twitter}
+                    class="social-link twitter"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`تابع ${journalist.name} على تويتر`}
+                  >
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    تويتر
+                  </a>
+                )}
+                
+                {journalist.socialMedia.linkedin && (
+                  <a 
+                    href={journalist.socialMedia.linkedin}
+                    class="social-link linkedin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`تابع ${journalist.name} على لينكد إن`}
+                  >
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    لينكد إن
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+          
+          <div class="author-stats">
+            <div class="stat-card">
+              <span class="stat-number">{journalist.articles.length}</span>
+              <span class="stat-label">مقال منشور</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">{journalist.specialties.length}</span>
+              <span class="stat-label">تخصص</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specialties -->
+    <section class="specialties-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>مجالات التخصص</h2>
+          <p>المجالات التي يركز عليها {journalist.name} في كتاباته</p>
+        </div>
+        
+        <div class="specialties-grid">
+          {journalist.specialties.map(specialty => (
+            <div class="specialty-card">
+              <div class="specialty-icon">🎯</div>
+              <h4>{specialty}</h4>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Articles -->
+    <section class="articles-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>المقالات المنشورة</h2>
+          <p>جميع المقالات التي كتبها {journalist.name}</p>
+        </div>
+        
+        <div class="articles-grid">
+          {journalist.articles.map(articleSlug => (
+            <article class="article-card">
+              <div class="article-content">
+                <h3 class="article-title">
+                  <a href={`/${getArticleCategory(articleSlug)}/${articleSlug}/`}>
+                    {articleTitles[articleSlug] || articleSlug}
+                  </a>
+                </h3>
+                <div class="article-meta">
+                  <span class="article-category">{getCategoryLabel(getArticleCategory(articleSlug))}</span>
+                  <span class="article-author">بقلم {journalist.name}</span>
+                </div>
+              </div>
+              <div class="article-footer">
+                <a href={`/${getArticleCategory(articleSlug)}/${articleSlug}/`} class="read-more">
+                  قراءة المقال ←
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+      <div class="container">
+        <div class="cta-content">
+          <h2>تواصل مع فريق دليل الخليج</h2>
+          <p>هل لديك استفسار أو تريد المساهمة في المحتوى؟</p>
+          <div class="cta-actions">
+            <a href="/contact/" class="btn btn-primary">
+              اتصل بنا
+            </a>
+            <a href="/report/" class="btn btn-outline">
+              بلغ عن احتيال
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Helper functions for article categorization
+  function getArticleCategory(slug) {
+    if (slug.includes('-scam') || slug.includes('warning') || slug.includes('fake-') || slug.includes('altamimi') || slug.includes('alkhaleej')) {
+      return 'warnings';
+    }
+    if (slug.includes('law-profile') || slug.includes('trust-law') || slug.includes('alarabia') || slug.includes('law-fx')) {
+      return 'lawyers';
+    }
+    if (slug.includes('recovery') || slug.includes('case')) {
+      return 'cases';
+    }
+    return 'guides';
+  }
+  
+  function getCategoryLabel(category) {
+    const labels = {
+      'warnings': 'تحذيرات',
+      'lawyers': 'مكاتب محاماة',
+      'cases': 'قصص نجاح',
+      'guides': 'أدلة توعوية'
+    };
+    return labels[category] || category;
+  }
+  
+  // Make functions available globally for template
+  window.getArticleCategory = getArticleCategory;
+  window.getCategoryLabel = getCategoryLabel;
+</script>
+
+<style>
+  .author-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .author-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-12);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .author-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .author-avatar {
+    flex-shrink: 0;
+  }
+
+  .avatar-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .author-details {
+    flex: 1;
+  }
+
+  .author-name {
+    font-size: 3rem;
+    margin-bottom: var(--space-2);
+    color: white;
+  }
+
+  .author-english-name {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: var(--space-4);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .author-title {
+    font-size: 1.125rem;
+    color: var(--color-secondary-light);
+    margin-bottom: var(--space-4);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .author-bio {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+    max-width: 600px;
+  }
+
+  .social-links {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: white;
+    font-weight: var(--font-weight-semibold);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .social-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  .social-link.twitter:hover {
+    background: #1da1f2;
+  }
+
+  .social-link.linkedin:hover {
+    background: #0077b5;
+  }
+
+  .author-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .stat-card {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-secondary-light);
+    margin-bottom: var(--space-2);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .specialties-section {
+    padding: var(--space-16) 0;
+    background: var(--color-neutral-50);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .specialties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .specialty-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-primary);
+    transition: transform 0.3s ease;
+  }
+
+  .specialty-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .specialty-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .specialty-card h4 {
+    color: var(--color-primary);
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  .articles-section {
+    padding: var(--space-20) 0;
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .article-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid var(--color-neutral-100);
+  }
+
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-primary);
+  }
+
+  .article-content {
+    padding: var(--space-6);
+  }
+
+  .article-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .article-title a {
+    color: var(--color-neutral-900);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .article-title a:hover {
+    color: var(--color-primary);
+  }
+
+  .article-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .article-category {
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .article-author {
+    color: var(--color-neutral-500);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .article-footer {
+    padding: var(--space-4) var(--space-6);
+    background: var(--color-neutral-50);
+    border-top: 1px solid var(--color-neutral-100);
+  }
+
+  .read-more {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .read-more:hover {
+    color: var(--color-primary-light);
+  }
+
+  .contact-cta {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-dark) 100%);
+    color: white;
+    padding: var(--space-16) 0;
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .cta-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .contact-cta .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .contact-cta .btn-outline:hover {
+    background: white;
+    color: var(--color-secondary);
+  }
+
+  @media (max-width: 1024px) {
+    .header-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      text-align: center;
+    }
+
+    .author-info {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .author-stats {
+      flex-direction: row;
+      justify-content: center;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .author-name {
+      font-size: 2rem;
+    }
+
+    .author-bio {
+      max-width: none;
+    }
+
+    .articles-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .article-meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+    }
+
+    .cta-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .cta-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .cta-content h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

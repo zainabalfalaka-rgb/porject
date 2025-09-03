@@ -1,0 +1,1236 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import StarRating from '../../../components/StarRating.astro';
+import CommentForm from '../../../components/CommentForm.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "Article",
+  "headline": "استرجاع 2.5 مليون جنيه من منصة فوركس احتيالية عبر Trust Law",
+  "description": "قصة نجاح مفصلة لاسترجاع 2.5 مليون جنيه إسترليني من منصة فوركس احتيالية خلال 14 شهر",
+  "author": {
+    "@type": "Organization",
+    "name": "دليل الخليج"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "دليل الخليج",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://khalijtrust.com/img/logo4.png"
+    }
+  },
+  "datePublished": "2024-03-20",
+  "dateModified": "2024-03-20",
+  "url": "https://khalijtrust.com/cases/trust-law-forex-recovery-2-5m/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://khalijtrust.com/cases/trust-law-forex-recovery-2-5m/"
+  }
+};
+
+const caseDetails = {
+  clientName: "عبدالله م.",
+  amount: "2,500,000 جنيه إسترليني",
+  duration: "14 شهر",
+  lawyerName: "مكتب Trust Law",
+  location: "لندن، المملكة المتحدة",
+  caseType: "فوركس احتيالي",
+  outcome: "استرجاع كامل مع تعويضات",
+  courtFilingFee: "500 جنيه إسترليني",
+  successFee: "3% من المبلغ المسترجع",
+  totalRecovered: "2,575,000 جنيه إسترليني"
+};
+
+const timeline = [
+  {
+    date: "يناير 2023",
+    phase: "الاستشارة المجانية",
+    description: "تقييم الحالة وجمع الوثائق الأولية",
+    status: "مكتمل",
+    details: [
+      "مراجعة شاملة لجميع المعاملات",
+      "تحليل عقود التداول والاتفاقيات",
+      "تقييم قوة الأدلة المتاحة",
+      "وضع استراتيجية قانونية أولية"
+    ]
+  },
+  {
+    date: "فبراير 2023",
+    phase: "فتح ملف المحكمة",
+    description: "دفع رسوم فتح الملف (500 جنيه) وبدء الإجراءات القانونية",
+    status: "مكتمل",
+    details: [
+      "تقديم الدعوى في المحكمة العليا في لندن",
+      "إعداد الوثائق القانونية الأولية",
+      "تعيين فريق المحامين المتخصصين",
+      "إشعار الأطراف المدعى عليها"
+    ]
+  },
+  {
+    date: "مارس - يونيو 2023",
+    phase: "التحقيقات الدولية",
+    description: "تتبع الأموال عبر الحدود والتعاون مع السلطات",
+    status: "مكتمل",
+    details: [
+      "تتبع الأموال عبر 5 دول مختلفة",
+      "التعاون مع السلطات المالية الدولية",
+      "جمع أدلة إضافية من البنوك",
+      "تحديد الحسابات المصرفية للشركة المحتالة"
+    ]
+  },
+  {
+    date: "يوليو - ديسمبر 2023",
+    phase: "التفاوض والتسوية",
+    description: "مفاوضات مكثفة مع الأطراف المتورطة",
+    status: "مكتمل",
+    details: [
+      "جلسات تفاوض مع ممثلي الشركة",
+      "وساطة قانونية لتجنب المحاكمة الطويلة",
+      "التوصل لاتفاق تسوية شامل",
+      "ضمان دفع التعويضات الإضافية"
+    ]
+  },
+  {
+    date: "مارس 2024",
+    phase: "الاسترجاع الكامل",
+    description: "استرجاع كامل المبلغ مع تعويضات إضافية",
+    status: "مكتمل",
+    details: [
+      "تحويل 2,500,000 جنيه (المبلغ الأصلي)",
+      "تعويضات إضافية بقيمة 75,000 جنيه",
+      "تغطية جميع الرسوم القانونية",
+      "إغلاق الملف بنجاح تام"
+    ]
+  }
+];
+
+const challengesFaced = [
+  {
+    challenge: "تعقيد المعاملات الدولية",
+    description: "الأموال كانت موزعة عبر حسابات في 5 دول مختلفة",
+    solution: "استخدام شبكة المحامين الدوليين والتعاون مع السلطات المحلية"
+  },
+  {
+    challenge: "إخفاء هوية المالكين الحقيقيين",
+    description: "الشركة استخدمت شركات وهمية لإخفاء هوية المسؤولين",
+    solution: "تحقيقات مكثفة وتتبع الوثائق القانونية للكشف عن الهوية الحقيقية"
+  },
+  {
+    challenge: "تعقيد القوانين المختلفة",
+    description: "التعامل مع قوانين مختلفة في كل دولة",
+    solution: "فريق متخصص في القانون الدولي والتعاون مع محامين محليين"
+  }
+];
+
+const keyFactors = [
+  {
+    factor: "التوثيق الشامل",
+    description: "العميل احتفظ بجميع المراسلات والوثائق",
+    impact: "ساعد في بناء قضية قوية"
+  },
+  {
+    factor: "التبليغ السريع",
+    description: "تم التواصل مع Trust Law خلال أسبوعين من اكتشاف الاحتيال",
+    impact: "زاد من فرص تتبع الأموال"
+  },
+  {
+    factor: "التعاون الكامل",
+    description: "العميل تعاون بالكامل وقدم جميع المعلومات المطلوبة",
+    impact: "سرع من عملية التحقيق"
+  },
+  {
+    factor: "الخبرة القانونية",
+    description: "خبرة Trust Law الممتدة لـ23 عاماً في قضايا مشابهة",
+    impact: "ضمن اتباع الاستراتيجية الصحيحة"
+  }
+];
+---
+
+<Layout 
+  title="قصة نجاح: استرجاع 2.5 مليون جنيه من منصة فوركس احتيالية"
+  description="قصة نجاح مفصلة لاسترجاع 2.5 مليون جنيه إسترليني من منصة فوركس احتيالية عبر مكتب Trust Law خلال 14 شهر مع تفاصيل العملية والتحديات"
+  keywords="استرجاع أموال، فوركس، Trust Law، قصة نجاح، لندن، تعويضات، قضية ناجحة"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Case Header -->
+    <section class="case-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="success-badge">
+            <span class="badge-icon">✅</span>
+            <span class="badge-text">قصة نجاح</span>
+          </div>
+          
+          <h1 class="case-title">
+            استرجاع 2.5 مليون جنيه من منصة فوركس احتيالية
+          </h1>
+          
+          <div class="case-summary">
+            <p class="summary-text">
+              قضية معقدة ومتشابكة تضمنت تتبع الأموال عبر عدة دول واستخدام القانون الدولي 
+              لاسترجاع 2.5 مليون جنيه إسترليني من منصة فوركس احتيالية خلال 14 شهراً.
+            </p>
+          </div>
+          
+          <div class="case-stats">
+            <div class="stat-item">
+              <span class="stat-number">{caseDetails.amount}</span>
+              <span class="stat-label">المبلغ المسترجع</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{caseDetails.duration}</span>
+              <span class="stat-label">مدة القضية</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">معدل الاسترجاع</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Overview -->
+    <section class="case-overview">
+      <div class="container">
+        <div class="overview-grid">
+          <div class="client-info">
+            <h2>معلومات القضية</h2>
+            <div class="info-list">
+              <div class="info-item">
+                <span class="info-label">العميل:</span>
+                <span class="info-value">{caseDetails.clientName}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">المبلغ الأصلي:</span>
+                <span class="info-value">{caseDetails.amount}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">المبلغ المسترجع:</span>
+                <span class="info-value success">{caseDetails.totalRecovered}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">المدة الزمنية:</span>
+                <span class="info-value">{caseDetails.duration}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">المكتب القانوني:</span>
+                <span class="info-value">{caseDetails.lawyerName}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">الموقع:</span>
+                <span class="info-value">{caseDetails.location}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">نوع القضية:</span>
+                <span class="info-value">{caseDetails.caseType}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="lawyer-rating">
+            <h3>تقييم المكتب</h3>
+            <div class="rating-display">
+              <StarRating rating={5} size="large" />
+              <span class="rating-text">تقييم ممتاز</span>
+            </div>
+            <div class="lawyer-contact">
+              <a href="/lawyers/trust-law/" class="btn btn-primary">
+                عرض ملف Trust Law
+              </a>
+              <a href="https://wa.me/447514141975" class="btn btn-outline" target="_blank">
+                تواصل عبر واتساب
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Story -->
+    <section class="case-story">
+      <div class="container">
+        <div class="story-content">
+          <h2>قصة القضية</h2>
+          
+          <div class="story-section">
+            <h3>البداية - كيف وقع العميل في الفخ</h3>
+            <p>
+              في أوائل عام 2022، تلقى العميل عبدالله م. مكالمة من شركة تداول تدعي أنها مرخصة 
+              ومتخصصة في تداول الفوركس. الشركة قدمت عروضاً مغرية بأرباح عالية وضمانات كاذبة.
+            </p>
+            <p>
+              بدأ العميل بإيداع مبلغ صغير، وسرعان ما أظهرت له الشركة أرباحاً وهمية مما شجعه 
+              على زيادة استثماره تدريجياً حتى وصل إلى 2.5 مليون جنيه إسترليني.
+            </p>
+          </div>
+          
+          <div class="story-section">
+            <h3>اكتشاف الاحتيال</h3>
+            <p>
+              عندما حاول العميل سحب جزء من أرباحه المزعومة، بدأت الشركة بوضع العراقيل والمطالبة 
+              برسوم إضافية. سرعان ما أدرك أنه وقع ضحية لعملية احتيال معقدة.
+            </p>
+            <p>
+              اكتشف العميل أن الشركة غير مرخصة وأن جميع الأرباح المعروضة كانت وهمية. 
+              في هذه اللحظة، قرر البحث عن مساعدة قانونية متخصصة.
+            </p>
+          </div>
+          
+          <div class="story-section">
+            <h3>اختيار Trust Law</h3>
+            <p>
+              بعد بحث مكثف، وجد العميل مكتب Trust Law الذي يتمتع بسمعة ممتازة في استرجاع 
+              أموال الفوركس. خبرة المكتب الممتدة لـ23 عاماً ومعدل النجاح العالي جعله الخيار الأمثل.
+            </p>
+            <p>
+              تواصل العميل مع المكتب وحصل على استشارة مجانية شاملة، حيث أكد له الفريق القانوني 
+              إمكانية استرجاع أمواله بناءً على الأدلة المتوفرة.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="case-timeline">
+      <div class="container">
+        <div class="section-header">
+          <h2>الجدول الزمني للقضية</h2>
+          <p>تتبع مراحل القضية خطوة بخطوة من البداية حتى النجاح</p>
+        </div>
+        
+        <div class="timeline">
+          {timeline.map((phase, index) => (
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <div class="marker-number">{index + 1}</div>
+                <div class="marker-status status-{phase.status.toLowerCase()}"></div>
+              </div>
+              
+              <div class="timeline-content">
+                <div class="phase-header">
+                  <h4>{phase.phase}</h4>
+                  <span class="phase-date">{phase.date}</span>
+                </div>
+                <p class="phase-description">{phase.description}</p>
+                
+                <div class="phase-details">
+                  <h5>التفاصيل:</h5>
+                  <ul class="details-list">
+                    {phase.details.map(detail => (
+                      <li>{detail}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Challenges -->
+    <section class="challenges-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>التحديات التي واجهتها القضية</h2>
+          <p>العقبات الرئيسية وكيف تم التغلب عليها</p>
+        </div>
+        
+        <div class="challenges-grid">
+          {challengesFaced.map(challenge => (
+            <div class="challenge-card">
+              <h4>{challenge.challenge}</h4>
+              <p class="challenge-description">{challenge.description}</p>
+              <div class="solution">
+                <span class="solution-label">الحل:</span>
+                <p class="solution-text">{challenge.solution}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Success Factors -->
+    <section class="success-factors">
+      <div class="container">
+        <div class="section-header">
+          <h2>عوامل النجاح الرئيسية</h2>
+          <p>العناصر التي ساهمت في نجاح هذه القضية</p>
+        </div>
+        
+        <div class="factors-grid">
+          {keyFactors.map(factor => (
+            <div class="factor-card">
+              <h4>{factor.factor}</h4>
+              <p class="factor-description">{factor.description}</p>
+              <div class="impact">
+                <span class="impact-label">التأثير:</span>
+                <span class="impact-text">{factor.impact}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Financial Breakdown -->
+    <section class="financial-breakdown">
+      <div class="container">
+        <div class="section-header">
+          <h2>التفصيل المالي للقضية</h2>
+          <p>تفاصيل الرسوم والمبالغ المستردة</p>
+        </div>
+        
+        <div class="breakdown-card">
+          <div class="breakdown-grid">
+            <div class="breakdown-item">
+              <span class="item-label">المبلغ المفقود الأصلي:</span>
+              <span class="item-value original">{caseDetails.amount}</span>
+            </div>
+            
+            <div class="breakdown-item">
+              <span class="item-label">رسوم فتح ملف المحكمة:</span>
+              <span class="item-value fee">{caseDetails.courtFilingFee}</span>
+            </div>
+            
+            <div class="breakdown-item">
+              <span class="item-label">رسوم النجاح (3%):</span>
+              <span class="item-value fee">75,000 جنيه إسترليني</span>
+            </div>
+            
+            <div class="breakdown-item">
+              <span class="item-label">التعويضات الإضافية:</span>
+              <span class="item-value bonus">75,000 جنيه إسترليني</span>
+            </div>
+            
+            <div class="breakdown-item total">
+              <span class="item-label">إجمالي المبلغ المستلم:</span>
+              <span class="item-value recovered">{caseDetails.totalRecovered}</span>
+            </div>
+          </div>
+          
+          <div class="breakdown-note">
+            <p>
+              <strong>ملاحظة:</strong> العميل استلم مبلغاً أكبر من المبلغ الأصلي بفضل التعويضات 
+              الإضافية التي تم التفاوض عليها.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Client Testimonial -->
+    <section class="client-testimonial">
+      <div class="container">
+        <div class="testimonial-card">
+          <div class="testimonial-icon">💬</div>
+          <div class="testimonial-content">
+            <blockquote>
+              "لم أكن أتوقع أن أسترجع أموالي بالكامل، فضلاً عن الحصول على تعويضات إضافية. 
+              فريق Trust Law كان محترفاً ومتفانياً، وأبقاني على اطلاع بكل تطورات القضية. 
+              أنصح أي شخص تعرض لاحتيال الفوركس بالتواصل معهم فوراً."
+            </blockquote>
+            <div class="client-info">
+              <span class="client-name">{caseDetails.clientName}</span>
+              <span class="client-location">{caseDetails.location}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lessons Learned -->
+    <section class="lessons-learned">
+      <div class="container">
+        <div class="section-header">
+          <h2>الدروس المستفادة</h2>
+          <p>نصائح مهمة للمستثمرين من هذه القضية</p>
+        </div>
+        
+        <div class="lessons-grid">
+          <div class="lesson-card">
+            <div class="lesson-icon">📚</div>
+            <h4>احتفظ بجميع الوثائق</h4>
+            <p>كل مراسلة أو وثيقة قد تكون مهمة في القضية القانونية</p>
+          </div>
+          
+          <div class="lesson-card">
+            <div class="lesson-icon">⏰</div>
+            <h4>تصرف بسرعة</h4>
+            <p>كلما تواصلت مع المحامي أسرع، كانت فرص النجاح أعلى</p>
+          </div>
+          
+          <div class="lesson-card">
+            <div class="lesson-icon">🔍</div>
+            <h4>اختر المحامي المناسب</h4>
+            <p>الخبرة والتخصص في نوع قضيتك أمر بالغ الأهمية</p>
+          </div>
+          
+          <div class="lesson-card">
+            <div class="lesson-icon">🤝</div>
+            <h4>تعاون بالكامل</h4>
+            <p>التعاون الكامل مع فريق المحامين يسرع من حل القضية</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>هل تعرضت لاحتيال مشابه؟</h2>
+          <p>
+            إذا كنت ضحية لاحتيال الفوركس أو أي نوع آخر من الاحتيال المالي، 
+            لا تيأس. هناك أمل في استرجاع أموالك مع المساعدة القانونية المناسبة.
+          </p>
+          <div class="cta-actions">
+            <a href="/lawyers/trust-law/" class="btn btn-primary">
+              تواصل مع Trust Law
+            </a>
+            <a href="/lawyers/" class="btn btn-secondary">
+              تصفح المحامين الموثوقين
+            </a>
+            <a href="/contact/" class="btn btn-outline">
+              احصل على استشارة مجانية
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <JournalistByline articleSlug="trust-law-forex-recovery-2-5m" />
+        <CommentForm postId="trust-law-forex-recovery-2-5m" postType="case" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .case-header {
+    background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .case-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .success-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .badge-text {
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .case-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+  }
+
+  .case-summary {
+    max-width: 800px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .summary-text {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .case-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-2);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .case-overview {
+    padding: var(--space-16) 0;
+    background: var(--color-neutral-50);
+  }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-12);
+  }
+
+  .client-info {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border-left: 4px solid var(--color-success);
+  }
+
+  .client-info h2 {
+    color: var(--color-success);
+    margin-bottom: var(--space-6);
+    font-size: 1.75rem;
+  }
+
+  .info-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-md);
+  }
+
+  .info-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-600);
+  }
+
+  .info-value {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+  }
+
+  .info-value.success {
+    color: var(--color-success);
+    font-size: 1.125rem;
+  }
+
+  .lawyer-rating {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    border: 2px solid var(--color-success);
+  }
+
+  .lawyer-rating h3 {
+    color: var(--color-success);
+    margin-bottom: var(--space-6);
+    font-size: 1.5rem;
+  }
+
+  .rating-display {
+    margin-bottom: var(--space-6);
+  }
+
+  .rating-text {
+    display: block;
+    color: var(--color-success);
+    font-weight: var(--font-weight-bold);
+    margin-top: var(--space-2);
+  }
+
+  .lawyer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .case-story {
+    padding: var(--space-20) 0;
+  }
+
+  .story-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .story-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-8);
+    color: var(--color-neutral-900);
+    text-align: center;
+  }
+
+  .story-section {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-8);
+    border-left: 4px solid var(--color-success);
+  }
+
+  .story-section h3 {
+    color: var(--color-success);
+    margin-bottom: var(--space-4);
+    font-size: 1.5rem;
+  }
+
+  .story-section p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+    font-size: 1.125rem;
+  }
+
+  .case-timeline {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--color-success);
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-6);
+    margin-bottom: var(--space-10);
+    position: relative;
+  }
+
+  .timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    position: relative;
+    z-index: 2;
+  }
+
+  .marker-number {
+    width: 60px;
+    height: 60px;
+    background: var(--color-success);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .marker-status {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .status-مكتمل {
+    background: var(--color-success);
+  }
+
+  .timeline-content {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    flex: 1;
+    border-left: 4px solid var(--color-success);
+  }
+
+  .phase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .phase-header h4 {
+    color: var(--color-success);
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  .phase-date {
+    background: var(--color-success);
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .phase-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+    font-size: 1.125rem;
+  }
+
+  .phase-details h5 {
+    color: var(--color-neutral-700);
+    margin-bottom: var(--space-3);
+  }
+
+  .details-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .details-list li {
+    padding: var(--space-2) 0;
+    color: var(--color-neutral-600);
+    border-bottom: 1px solid var(--color-neutral-100);
+    position: relative;
+    padding-right: var(--space-6);
+  }
+
+  .details-list li::before {
+    content: '✓';
+    color: var(--color-success);
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+  }
+
+  .challenges-section {
+    padding: var(--space-20) 0;
+  }
+
+  .challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .challenge-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--color-warning);
+  }
+
+  .challenge-card h4 {
+    color: var(--color-warning);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .challenge-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .solution {
+    background: var(--color-neutral-50);
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
+  .solution-label {
+    color: var(--color-success);
+    font-weight: var(--font-weight-bold);
+    font-size: 0.875rem;
+  }
+
+  .solution-text {
+    color: var(--color-neutral-600);
+    margin: var(--space-2) 0 0;
+    line-height: var(--line-height-relaxed);
+  }
+
+  .success-factors {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .factors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .factor-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--color-primary);
+  }
+
+  .factor-card h4 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .factor-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .impact {
+    background: var(--color-neutral-50);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+  }
+
+  .impact-label {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+    font-size: 0.875rem;
+  }
+
+  .impact-text {
+    color: var(--color-neutral-600);
+    margin: var(--space-1) 0 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .financial-breakdown {
+    padding: var(--space-20) 0;
+  }
+
+  .breakdown-card {
+    background: white;
+    padding: var(--space-10);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    max-width: 700px;
+    margin: 0 auto;
+    border: 2px solid var(--color-success);
+  }
+
+  .breakdown-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    background: var(--color-neutral-50);
+  }
+
+  .breakdown-item.total {
+    background: var(--color-success);
+    color: white;
+    font-size: 1.125rem;
+  }
+
+  .item-label {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .item-value {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .item-value.original {
+    color: var(--color-neutral-900);
+  }
+
+  .item-value.fee {
+    color: var(--color-warning);
+  }
+
+  .item-value.bonus {
+    color: var(--color-success);
+  }
+
+  .item-value.recovered {
+    color: white;
+    font-size: 1.25rem;
+  }
+
+  .breakdown-note {
+    background: var(--color-success);
+    color: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+  }
+
+  .breakdown-note p {
+    margin: 0;
+    color: white;
+    text-align: center;
+  }
+
+  .client-testimonial {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  .testimonial-card {
+    background: white;
+    padding: var(--space-10);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    border: 2px solid var(--color-primary);
+  }
+
+  .testimonial-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .testimonial-content blockquote {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: var(--color-neutral-600);
+    font-style: italic;
+    margin: 0 0 var(--space-6);
+    padding: 0;
+    border: none;
+  }
+
+  .client-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .client-name {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.125rem;
+  }
+
+  .client-location {
+    color: var(--color-neutral-500);
+    font-size: 0.875rem;
+  }
+
+  .lessons-learned {
+    padding: var(--space-20) 0;
+  }
+
+  .lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .lesson-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-primary);
+  }
+
+  .lesson-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .lesson-card h4 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .lesson-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .cta-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-section .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .cta-section .btn-outline:hover {
+    background: white;
+    color: var(--color-primary);
+  }
+
+  .comments-section {
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 1024px) {
+    .overview-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .timeline::before {
+      left: 20px;
+    }
+
+    .timeline-item {
+      padding-left: 0;
+    }
+
+    .marker-number {
+      width: 40px;
+      height: 40px;
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .case-title {
+      font-size: 2rem;
+    }
+
+    .case-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .lawyer-contact {
+      gap: var(--space-3);
+    }
+
+    .cta-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .cta-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .cta-content h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

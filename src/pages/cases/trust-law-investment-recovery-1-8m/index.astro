@@ -1,0 +1,1182 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import StarRating from '../../../components/StarRating.astro';
+import CommentForm from '../../../components/CommentForm.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "Article",
+  "headline": "نجاح Trust Law في استرداد 1.8 مليون جنيه من شركة استثمار وهمية",
+  "description": "قصة نجاح مفصلة لاسترداد 1.8 مليون جنيه إسترليني من شركة استثمار وهمية خلال 10 أشهر",
+  "author": {
+    "@type": "Organization",
+    "name": "دليل الخليج"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "دليل الخليج",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://khalijtrust.com/img/logo4.png"
+    }
+  },
+  "datePublished": "2024-03-18",
+  "dateModified": "2024-03-18",
+  "url": "https://khalijtrust.com/cases/trust-law-investment-recovery-1-8m/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://khalijtrust.com/cases/trust-law-investment-recovery-1-8m/"
+  }
+};
+
+const caseDetails = {
+  clientName: "فاطمة ع.",
+  amount: "1,800,000 جنيه إسترليني",
+  duration: "10 أشهر",
+  lawyerName: "مكتب Trust Law",
+  location: "مانشستر، المملكة المتحدة",
+  caseType: "استثمار وهمي",
+  outcome: "استرجاع كامل",
+  courtFilingFee: "500 جنيه إسترليني",
+  successFee: "3% من المبلغ المسترجع",
+  totalRecovered: "1,800,000 جنيه إسترليني"
+};
+
+const timeline = [
+  {
+    date: "مايو 2023",
+    phase: "التواصل الأولي",
+    description: "استشارة مجانية وتقييم قوة القضية",
+    status: "مكتمل",
+    details: [
+      "مراجعة شاملة لوثائق الاستثمار",
+      "تحليل عقود الشركة والاتفاقيات",
+      "تقييم الأدلة المتوفرة",
+      "تحديد استراتيجية قانونية مناسبة"
+    ]
+  },
+  {
+    date: "يونيو 2023",
+    phase: "بدء الإجراءات",
+    description: "دفع رسوم فتح ملف المحكمة والبدء الرسمي",
+    status: "مكتمل",
+    details: [
+      "تقديم الدعوى في المحكمة العليا",
+      "إعداد الوثائق القانونية الشاملة",
+      "تعيين فريق التحقيق المتخصص",
+      "إشعار جميع الأطراف المعنية"
+    ]
+  },
+  {
+    date: "يوليو - أغسطس 2023",
+    phase: "جمع الأدلة",
+    description: "تجميع الوثائق والأدلة القانونية",
+    status: "مكتمل",
+    details: [
+      "جمع سجلات المعاملات المصرفية",
+      "الحصول على شهادات من ضحايا آخرين",
+      "تحليل الهيكل المالي للشركة الوهمية",
+      "توثيق جميع المراسلات والوعود الكاذبة"
+    ]
+  },
+  {
+    date: "سبتمبر - فبراير 2024",
+    phase: "الإجراءات القضائية",
+    description: "رفع الدعوى والمتابعة القانونية",
+    status: "مكتمل",
+    details: [
+      "جلسات استماع في المحكمة",
+      "تقديم الأدلة والشهادات",
+      "مواجهة دفوعات الطرف الآخر",
+      "التفاوض على تسوية خارج المحكمة"
+    ]
+  },
+  {
+    date: "مارس 2024",
+    phase: "الحكم والتنفيذ",
+    description: "صدور حكم لصالح العميلة وتنفيذ الاسترجاع",
+    status: "مكتمل",
+    details: [
+      "صدور حكم قضائي لصالح العميلة",
+      "تنفيذ الحكم وتجميد أصول الشركة",
+      "تحويل كامل المبلغ للعميلة",
+      "إغلاق الملف بنجاح تام"
+    ]
+  }
+];
+
+const scamDetails = {
+  companyName: "شركة الاستثمارات الذهبية المحدودة",
+  scamType: "مخطط استثماري وهمي",
+  promisedReturns: "25% ربح شهري مضمون",
+  operationPeriod: "18 شهر",
+  totalVictims: "47 مستثمر",
+  totalStolen: "8.5 مليون جنيه إسترليني"
+};
+
+const warningSignsFound = [
+  {
+    sign: "وعود بأرباح مضمونة",
+    description: "الشركة وعدت بأرباح 25% شهرياً بدون أي مخاطر",
+    severity: "عالي جداً"
+  },
+  {
+    sign: "عدم وجود ترخيص حقيقي",
+    description: "ادعت الشركة تراخيص مزيفة من جهات غير موجودة",
+    severity: "عالي جداً"
+  },
+  {
+    sign: "ضغط للاستثمار السريع",
+    description: "إلحاح مستمر لزيادة الاستثمار والاستفادة من 'العروض المحدودة'",
+    severity: "عالي"
+  },
+  {
+    sign: "صعوبة في التواصل",
+    description: "تجنب الاجتماعات الشخصية والاعتماد على التواصل الإلكتروني فقط",
+    severity: "متوسط"
+  }
+];
+
+const recoveryProcess = [
+  {
+    step: "تحديد موقع الأصول",
+    description: "تم تتبع أموال الشركة في حسابات مصرفية متعددة",
+    result: "العثور على 2.1 مليون جنيه في حسابات مجمدة"
+  },
+  {
+    step: "التفاوض مع البنوك",
+    description: "التفاوض مع البنوك لتجميد الحسابات وتسهيل الاسترداد",
+    result: "تعاون كامل من 3 بنوك رئيسية"
+  },
+  {
+    step: "الإجراءات القانونية",
+    description: "رفع دعاوى قضائية ضد الشركة والمسؤولين عنها",
+    result: "أحكام قضائية لصالح جميع الضحايا"
+  },
+  {
+    step: "تنفيذ الأحكام",
+    description: "تنفيذ الأحكام القضائية واسترداد الأموال",
+    result: "استرداد كامل للأموال خلال 30 يوم"
+  }
+];
+---
+
+<Layout 
+  title="قصة نجاح: استرداد 1.8 مليون جنيه من شركة استثمار وهمية"
+  description="قصة نجاح مفصلة لاسترداد 1.8 مليون جنيه إسترليني من شركة استثمار وهمية عبر مكتب Trust Law خلال 10 أشهر مع تفاصيل العملية"
+  keywords="استرداد أموال، استثمار وهمي، Trust Law، قصة نجاح، مانشستر، قضية ناجحة"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Case Header -->
+    <section class="case-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="success-badge">
+            <span class="badge-icon">✅</span>
+            <span class="badge-text">قصة نجاح</span>
+          </div>
+          
+          <h1 class="case-title">
+            استرداد 1.8 مليون جنيه من شركة استثمار وهمية
+          </h1>
+          
+          <div class="case-summary">
+            <p class="summary-text">
+              شركة استثمار وهمية اختفت بأموال المستثمرين بعد وعود كاذبة بأرباح مضمونة. 
+              استطاع فريق Trust Law المتخصص تتبع الأموال واسترجاعها بالكامل خلال 10 أشهر فقط.
+            </p>
+          </div>
+          
+          <div class="case-stats">
+            <div class="stat-item">
+              <span class="stat-number">{caseDetails.amount}</span>
+              <span class="stat-label">المبلغ المسترجع</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{caseDetails.duration}</span>
+              <span class="stat-label">مدة القضية</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">معدل الاسترجاع</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Overview -->
+    <section class="case-overview">
+      <div class="container">
+        <div class="overview-grid">
+          <div class="client-info">
+            <h2>تفاصيل القضية</h2>
+            <div class="info-list">
+              <div class="info-item">
+                <span class="info-label">العميلة:</span>
+                <span class="info-value">{caseDetails.clientName}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">المبلغ المفقود:</span>
+                <span class="info-value">{caseDetails.amount}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">المبلغ المسترجع:</span>
+                <span class="info-value success">{caseDetails.totalRecovered}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">المدة الزمنية:</span>
+                <span class="info-value">{caseDetails.duration}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">المكتب القانوني:</span>
+                <span class="info-value">{caseDetails.lawyerName}</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">الموقع:</span>
+                <span class="info-value">{caseDetails.location}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="scam-info">
+            <h3>معلومات الشركة المحتالة</h3>
+            <div class="scam-details">
+              <div class="detail-item">
+                <span class="detail-label">اسم الشركة:</span>
+                <span class="detail-value">{scamDetails.companyName}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">نوع الاحتيال:</span>
+                <span class="detail-value">{scamDetails.scamType}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الأرباح الموعودة:</span>
+                <span class="detail-value danger">{scamDetails.promisedReturns}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">فترة العمل:</span>
+                <span class="detail-value">{scamDetails.operationPeriod}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">إجمالي الضحايا:</span>
+                <span class="detail-value">{scamDetails.totalVictims}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">إجمالي المسروق:</span>
+                <span class="detail-value danger">{scamDetails.totalStolen}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Story -->
+    <section class="detailed-story">
+      <div class="container">
+        <div class="story-content">
+          <h2>القصة التفصيلية</h2>
+          
+          <div class="story-chapter">
+            <h3>الفصل الأول: الوقوع في الفخ</h3>
+            <p>
+              في أوائل عام 2022، تلقت السيدة فاطمة ع. من مانشستر دعوة للاستثمار في شركة 
+              "الاستثمارات الذهبية المحدودة" التي ادعت أنها متخصصة في تداول الذهب والمعادن النفيسة.
+            </p>
+            <p>
+              الشركة قدمت عرضاً مغرياً بأرباح مضمونة تصل إلى 25% شهرياً، مع ضمانات كتابية 
+              وشهادات مزيفة من عملاء سابقين. بدأت فاطمة بمبلغ صغير، وعندما رأت "الأرباح" 
+              تتراكم في حسابها، قررت زيادة استثمارها تدريجياً.
+            </p>
+            <p>
+              خلال 8 أشهر، استثمرت فاطمة مجموع 1.8 مليون جنيه إسترليني من مدخراتها 
+              ومدخرات التقاعد. كانت تعتقد أنها تبني مستقبلاً مالياً آمناً لعائلتها.
+            </p>
+          </div>
+          
+          <div class="story-chapter">
+            <h3>الفصل الثاني: اكتشاف الحقيقة المؤلمة</h3>
+            <p>
+              في ديسمبر 2022، قررت فاطمة سحب جزء من أرباحها لشراء منزل جديد. 
+              هنا بدأت المشاكل - الشركة بدأت بالمماطلة ووضع العراقيل أمام السحب.
+            </p>
+            <p>
+              أولاً طلبوا رسوم "ضرائب" إضافية، ثم رسوم "تحويل دولي"، وأخيراً ادعوا 
+              وجود "مشاكل تقنية" في النظام. كل هذا بينما كانت الأرباح الوهمية تستمر في الظهور.
+            </p>
+            <p>
+              بعد شهرين من المماطلة، اختفت الشركة تماماً. الموقع الإلكتروني أصبح غير متاح، 
+              وأرقام الهواتف لا ترد، وجميع وسائل التواصل توقفت. أدركت فاطمة أنها فقدت 
+              مدخرات عمرها.
+            </p>
+          </div>
+          
+          <div class="story-chapter">
+            <h3>الفصل الثالث: البحث عن الأمل</h3>
+            <p>
+              في حالة من اليأس والإحباط، بدأت فاطمة البحث عن طرق لاسترجاع أموالها. 
+              جربت التواصل مع البنك، لكن الرد كان أن المعاملات تمت بموافقتها.
+            </p>
+            <p>
+              خلال بحثها على الإنترنت، وجدت موقع دليل الخليج وقرأت عن مكتب Trust Law 
+              وخبرتهم في استرجاع أموال الاستثمارات الوهمية. قصص النجاح التي قرأتها 
+              أعطتها بصيص أمل.
+            </p>
+          </div>
+          
+          <div class="story-chapter">
+            <h3>الفصل الرابع: بداية رحلة الاسترداد</h3>
+            <p>
+              في مايو 2023، تواصلت فاطمة مع مكتب Trust Law وحصلت على استشارة مجانية. 
+              الفريق القانوني راجع قضيتها بعناية وأكد لها أن هناك فرصة جيدة لاسترجاع أموالها.
+            </p>
+            <p>
+              ما أعجب فاطمة هو الشفافية الكاملة من المكتب حول الرسوم والعملية والتوقعات الزمنية. 
+              لم يقدموا وعوداً مبالغاً فيها، بل كانوا واقعيين وصادقين حول التحديات المحتملة.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="case-timeline">
+      <div class="container">
+        <div class="section-header">
+          <h2>مراحل استرداد الأموال</h2>
+          <p>الجدول الزمني التفصيلي لعملية الاسترداد</p>
+        </div>
+        
+        <div class="timeline">
+          {timeline.map((phase, index) => (
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <div class="marker-number">{index + 1}</div>
+                <div class="marker-status status-{phase.status.toLowerCase()}"></div>
+              </div>
+              
+              <div class="timeline-content">
+                <div class="phase-header">
+                  <h4>{phase.phase}</h4>
+                  <span class="phase-date">{phase.date}</span>
+                </div>
+                <p class="phase-description">{phase.description}</p>
+                
+                <div class="phase-details">
+                  <h5>ما تم إنجازه:</h5>
+                  <ul class="details-list">
+                    {phase.details.map(detail => (
+                      <li>{detail}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Warning Signs -->
+    <section class="warning-signs">
+      <div class="container">
+        <div class="section-header">
+          <h2>علامات التحذير التي تم تجاهلها</h2>
+          <p>العلامات التي كان يجب الانتباه إليها لتجنب الوقوع في الفخ</p>
+        </div>
+        
+        <div class="signs-grid">
+          {warningSignsFound.map(sign => (
+            <div class="sign-card">
+              <div class="sign-header">
+                <h4>{sign.sign}</h4>
+                <span class="severity-badge severity-{sign.severity.replace(' ', '-').toLowerCase()}">
+                  {sign.severity}
+                </span>
+              </div>
+              <p>{sign.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Recovery Process -->
+    <section class="recovery-process">
+      <div class="container">
+        <div class="section-header">
+          <h2>عملية الاسترداد</h2>
+          <p>كيف تمكن Trust Law من تتبع واسترجاع الأموال</p>
+        </div>
+        
+        <div class="process-grid">
+          {recoveryProcess.map((step, index) => (
+            <div class="process-card">
+              <div class="process-number">{index + 1}</div>
+              <div class="process-content">
+                <h4>{step.step}</h4>
+                <p class="process-description">{step.description}</p>
+                <div class="process-result">
+                  <span class="result-label">النتيجة:</span>
+                  <span class="result-text">{step.result}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Client Testimonial -->
+    <section class="client-testimonial">
+      <div class="container">
+        <div class="testimonial-card">
+          <div class="testimonial-icon">💬</div>
+          <div class="testimonial-content">
+            <blockquote>
+              "كنت أعتقد أن أموالي ضاعت إلى الأبد. عندما اختفت الشركة، شعرت بالذنب والغضب من نفسي. 
+              لكن فريق Trust Law أعاد لي الأمل والثقة. لم يكتفوا باسترجاع أموالي، بل عاملوني بكرامة 
+              واحترام طوال الرحلة. أنصح أي شخص في موقف مشابه بعدم اليأس والتواصل معهم فوراً."
+            </blockquote>
+            <div class="client-info">
+              <span class="client-name">{caseDetails.clientName}</span>
+              <span class="client-location">{caseDetails.location}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lessons and Tips -->
+    <section class="lessons-tips">
+      <div class="container">
+        <div class="section-header">
+          <h2>الدروس المستفادة ونصائح للمستقبل</h2>
+          <p>كيف تحمي نفسك من الوقوع في فخ مشابه</p>
+        </div>
+        
+        <div class="tips-grid">
+          <div class="tip-card">
+            <div class="tip-icon">🔍</div>
+            <h4>ابحث قبل الاستثمار</h4>
+            <p>لا تستثمر في أي شركة دون بحث شامل عن تراخيصها وسمعتها</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">⚠️</div>
+            <h4>احذر من الوعود المبالغة</h4>
+            <p>أي وعود بأرباح مضمونة أو عوائد خيالية هي علامة تحذير قوية</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">💰</div>
+            <h4>لا تضع كل البيض في سلة واحدة</h4>
+            <p>نوع استثماراتك ولا تضع كل أموالك في مكان واحد</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">🤝</div>
+            <h4>اطلب المساعدة عند الحاجة</h4>
+            <p>لا تتردد في طلب المساعدة القانونية عند الشك أو التعرض للاحتيال</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>هل تعرضت لاحتيال مشابه؟</h2>
+          <p>
+            قصة فاطمة دليل على أن استرجاع الأموال ممكن مع المساعدة القانونية المناسبة. 
+            لا تيأس وتواصل مع الخبراء فوراً.
+          </p>
+          <div class="cta-actions">
+            <a href="/lawyers/trust-law/" class="btn btn-primary">
+              تواصل مع Trust Law
+            </a>
+            <a href="/lawyers/" class="btn btn-secondary">
+              تصفح المحامين الموثوقين
+            </a>
+            <a href="/contact/" class="btn btn-outline">
+              احصل على استشارة مجانية
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <JournalistByline articleSlug="trust-law-investment-recovery-1-8m" />
+        <CommentForm postId="trust-law-investment-recovery-1-8m" postType="case" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .case-header {
+    background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .case-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .success-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .badge-text {
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .case-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+  }
+
+  .case-summary {
+    max-width: 800px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .summary-text {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .case-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-2);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .case-overview {
+    padding: var(--space-16) 0;
+    background: var(--color-neutral-50);
+  }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .client-info,
+  .scam-info {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .client-info {
+    border-left: 4px solid var(--color-success);
+  }
+
+  .scam-info {
+    border-left: 4px solid var(--color-error);
+  }
+
+  .client-info h2 {
+    color: var(--color-success);
+    margin-bottom: var(--space-6);
+    font-size: 1.75rem;
+  }
+
+  .scam-info h3 {
+    color: var(--color-error);
+    margin-bottom: var(--space-6);
+    font-size: 1.5rem;
+  }
+
+  .info-list,
+  .scam-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .info-item,
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-md);
+  }
+
+  .info-label,
+  .detail-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-600);
+  }
+
+  .info-value,
+  .detail-value {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+  }
+
+  .info-value.success {
+    color: var(--color-success);
+    font-size: 1.125rem;
+  }
+
+  .detail-value.danger {
+    color: var(--color-error);
+  }
+
+  .detailed-story {
+    padding: var(--space-20) 0;
+  }
+
+  .story-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .story-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-8);
+    color: var(--color-neutral-900);
+    text-align: center;
+  }
+
+  .story-chapter {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-8);
+    border-left: 4px solid var(--color-primary);
+  }
+
+  .story-chapter h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+    font-size: 1.5rem;
+  }
+
+  .story-chapter p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+    font-size: 1.125rem;
+  }
+
+  .case-timeline {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--color-success);
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-6);
+    margin-bottom: var(--space-10);
+    position: relative;
+  }
+
+  .timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    position: relative;
+    z-index: 2;
+  }
+
+  .marker-number {
+    width: 60px;
+    height: 60px;
+    background: var(--color-success);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .marker-status {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .status-مكتمل {
+    background: var(--color-success);
+  }
+
+  .timeline-content {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    flex: 1;
+    border-left: 4px solid var(--color-success);
+  }
+
+  .phase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .phase-header h4 {
+    color: var(--color-success);
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  .phase-date {
+    background: var(--color-success);
+    color: white;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .phase-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-6);
+    font-size: 1.125rem;
+  }
+
+  .phase-details h5 {
+    color: var(--color-neutral-700);
+    margin-bottom: var(--space-3);
+  }
+
+  .details-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .details-list li {
+    padding: var(--space-2) 0;
+    color: var(--color-neutral-600);
+    border-bottom: 1px solid var(--color-neutral-100);
+    position: relative;
+    padding-right: var(--space-6);
+  }
+
+  .details-list li::before {
+    content: '✓';
+    color: var(--color-success);
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+  }
+
+  .warning-signs {
+    padding: var(--space-20) 0;
+  }
+
+  .signs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .sign-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--color-error);
+  }
+
+  .sign-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-3);
+  }
+
+  .sign-header h4 {
+    color: var(--color-error);
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  .severity-badge {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .severity-عالي-جداً {
+    background: #dc2626;
+    color: white;
+  }
+
+  .severity-عالي {
+    background: var(--color-error);
+    color: white;
+  }
+
+  .severity-متوسط {
+    background: var(--color-warning);
+    color: white;
+  }
+
+  .sign-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .recovery-process {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .process-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--color-primary);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .process-number {
+    width: 40px;
+    height: 40px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 0;
+  }
+
+  .process-content {
+    flex: 1;
+  }
+
+  .process-content h4 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .process-description {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .process-result {
+    background: var(--color-neutral-50);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+  }
+
+  .result-label {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+    font-size: 0.875rem;
+  }
+
+  .result-text {
+    color: var(--color-neutral-600);
+    margin: var(--space-1) 0 0;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .client-testimonial {
+    padding: var(--space-16) 0;
+  }
+
+  .testimonial-card {
+    background: white;
+    padding: var(--space-10);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    border: 2px solid var(--color-success);
+  }
+
+  .testimonial-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .testimonial-content blockquote {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: var(--color-neutral-600);
+    font-style: italic;
+    margin: 0 0 var(--space-6);
+    padding: 0;
+    border: none;
+  }
+
+  .client-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .client-name {
+    color: var(--color-success);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.125rem;
+  }
+
+  .client-location {
+    color: var(--color-neutral-500);
+    font-size: 0.875rem;
+  }
+
+  .lessons-tips {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .tip-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-primary);
+  }
+
+  .tip-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .tip-card h4 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .tip-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .cta-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-section .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .cta-section .btn-outline:hover {
+    background: white;
+    color: var(--color-primary);
+  }
+
+  .comments-section {
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 1024px) {
+    .overview-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .timeline::before {
+      left: 20px;
+    }
+
+    .marker-number {
+      width: 40px;
+      height: 40px;
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .case-title {
+      font-size: 2rem;
+    }
+
+    .case-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .cta-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .cta-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+
+    .cta-content h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

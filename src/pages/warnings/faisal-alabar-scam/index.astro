@@ -1,0 +1,676 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import StarRating from '../../../components/StarRating.astro';
+import CommentForm from '../../../components/CommentForm.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "Article",
+  "headline": "تحذير من مكتب المحامي فيصل مشاري العبار",
+  "description": "تحذير من مكتب المحامي الشيخ فيصل مشاري العبار الذي يطلب مبالغ ضخمة تحت مسمى رسوم قانونية دون تقديم خدمات فعلية",
+  "author": {
+    "@type": "Organization",
+    "name": "دليل الخليج"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "دليل الخليج",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://khalijtrust.com/img/logo4.png"
+    }
+  },
+  "datePublished": "2024-01-20",
+  "dateModified": "2024-01-20",
+  "image": "https://khalijtrust.com/img/alabar.jpg",
+  "url": "https://khalijtrust.com/warnings/faisal-alabar-scam/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://khalijtrust.com/warnings/faisal-alabar-scam/"
+  }
+};
+
+const warningDetails = {
+  lawyerName: "المحامي الشيخ فيصل مشاري العبار",
+  previousName: "المحامي يوسف جاسم العبار",
+  type: "مكتب محاماة مشبوه",
+  website: "alabar-law.com",
+  phone: "+44 20 8089 1553",
+  riskLevel: "خطر عالي",
+  reportsCount: 18,
+  status: "نشط - تجنب التعامل معه",
+  lastUpdated: "2024-01-20"
+};
+
+const scamPattern = [
+  {
+    step: "التواصل الأولي",
+    description: "التواصل مع الضحايا عبر واتساب وتقديم وعود مغرية باستعادة الأموال",
+    icon: "📱"
+  },
+  {
+    step: "طلب الرسوم الأولى",
+    description: "طلب رسوم قانونية أو رسوم متابعة دولية كدفعة أولى",
+    icon: "💰"
+  },
+  {
+    step: "اختلاق التعقيدات",
+    description: "ادعاء وجود تعقيدات قانونية جديدة تتطلب رسوم إضافية",
+    icon: "📋"
+  },
+  {
+    step: "المماطلة والتأخير",
+    description: "عدم تقديم أي إثباتات على وجود تقدم حقيقي في القضية",
+    icon: "⏰"
+  },
+  {
+    step: "الاختفاء التدريجي",
+    description: "توقف التواصل تدريجياً أو تجاهل الضحايا تماماً",
+    icon: "👻"
+  }
+];
+
+const suspiciousActivities = [
+  {
+    title: "تغيير الاسم المتكرر",
+    description: "كان يعمل سابقاً تحت اسم المحامي يوسف جاسم العبار ثم غير الاسم عام 2021",
+    severity: "عالي"
+  },
+  {
+    title: "طلب رسوم ضخمة مقدماً",
+    description: "يطلب مبالغ مالية كبيرة تحت مسمى رسوم قانونية أو رسوم متابعة دولية",
+    severity: "عالي جداً"
+  },
+  {
+    title: "عدم تقديم إثباتات",
+    description: "لا يقدم أي إثباتات على وجود تقدم حقيقي في القضايا",
+    severity: "عالي"
+  },
+  {
+    title: "شبهة التنسيق مع شركات النصب",
+    description: "شكوك قوية بوجود تنسيق مع شركات الفوركس النصابة لاستدراج الضحايا",
+    severity: "عالي جداً"
+  }
+];
+---
+
+<Layout 
+  title="تحذير من مكتب المحامي فيصل مشاري العبار"
+  description="تحذير من مكتب المحامي الشيخ فيصل مشاري العبار الذي يطلب مبالغ ضخمة تحت مسمى رسوم قانونية دون تقديم خدمات فعلية في استرجاع أموال الفوركس"
+  keywords="فيصل مشاري العبار، يوسف جاسم العبار، مكتب محاماة مشبوه، احتيال قانوني، استرجاع أموال فوركس"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Warning Header -->
+    <section class="warning-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="warning-badge">
+            <span class="badge-icon">⚠️</span>
+            <span class="badge-text">تحذير مهم</span>
+          </div>
+          
+          <h1 class="warning-title">
+            تحذير من مكتب المحامي فيصل مشاري العبار
+          </h1>
+          
+          <div class="lawyer-image">
+            <img src="https://khalijtrust.com/img/alabar.jpg" alt="مكتب المحامي فيصل العبار" class="lawyer-photo" />
+          </div>
+          
+          <div class="warning-summary">
+            <p class="summary-text">
+              نُصدر هذا التحذير بناءً على عدة بلاغات واستفسارات وردتنا إلى وحدة التحذيرات في دليل الخليج، 
+              بخصوص جهة تُدعى أنها مكتب محاماة تحت اسم المحامي الشيخ فيصل مشاري العبار.
+            </p>
+          </div>
+          
+          <div class="warning-stats">
+            <div class="stat-item danger">
+              <StarRating rating={0.5} size="large" />
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{warningDetails.reportsCount}</span>
+              <span class="stat-label">بلاغ مؤكد</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">خطر عالي</span>
+              <span class="stat-label">مستوى التحذير</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Office Details -->
+    <section class="office-details">
+      <div class="container">
+        <div class="details-content">
+          <div class="main-details">
+            <h2>تفاصيل المكتب المشبوه</h2>
+            <p>
+              وفقًا لما تم توثيقه من شهادات المتضررين، فإن هذه الجهة تقدم نفسها على أنها متخصصة 
+              في قضايا استرجاع الأموال من شركات الفوركس. لكنها – وفق إفادات متعددة – تطلب مبالغ 
+              مالية ضخمة تحت مسمى "رسوم قانونية" أو "رسوم متابعة دولية"، لتُفاجأ الضحية لاحقًا 
+              بعدم وجود أي خطوات فعلية على الأرض.
+            </p>
+          </div>
+          
+          <div class="contact-details">
+            <h3>معلومات الاتصال المشبوهة</h3>
+            <div class="contact-list">
+              <div class="contact-item">
+                <span class="contact-label">الاسم الحالي:</span>
+                <span class="contact-value">{warningDetails.lawyerName}</span>
+              </div>
+              <div class="contact-item">
+                <span class="contact-label">الاسم السابق:</span>
+                <span class="contact-value">{warningDetails.previousName}</span>
+              </div>
+              <div class="contact-item">
+                <span class="contact-label">الموقع الإلكتروني:</span>
+                <span class="contact-value danger">{warningDetails.website}</span>
+              </div>
+              <div class="contact-item">
+                <span class="contact-label">رقم الواتساب:</span>
+                <span class="contact-value danger">{warningDetails.phone}</span>
+              </div>
+            </div>
+            <div class="warning-note">
+              <p><strong>تحذير:</strong> نُحذر من زيارة الموقع أو إرسال بيانات عبره</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scam Pattern -->
+    <section class="scam-pattern">
+      <div class="container">
+        <div class="section-header">
+          <h2>النمط الموحد في طريقة الاحتيال</h2>
+          <p>المتضررون أكدوا وجود نمط موحد في طريقة الاحتيال</p>
+        </div>
+        
+        <div class="pattern-timeline">
+          {scamPattern.map((step, index) => (
+            <div class="timeline-item">
+              <div class="timeline-number">{index + 1}</div>
+              <div class="timeline-content">
+                <div class="step-icon">{step.icon}</div>
+                <h4>{step.step}</h4>
+                <p>{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Suspicious Activities -->
+    <section class="suspicious-activities">
+      <div class="container">
+        <div class="section-header">
+          <h2>الأنشطة المشبوهة المؤكدة</h2>
+          <p>الأدلة والشواهد على الممارسات الاحتيالية</p>
+        </div>
+        
+        <div class="activities-grid">
+          {suspiciousActivities.map(activity => (
+            <div class="activity-card">
+              <div class="activity-header">
+                <h4>{activity.title}</h4>
+                <span class="severity-badge severity-{activity.severity.replace(' ', '-').toLowerCase()}">
+                  {activity.severity}
+                </span>
+              </div>
+              <p>{activity.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Final Warning -->
+    <section class="final-warning">
+      <div class="container">
+        <div class="warning-card">
+          <div class="warning-icon">🚨</div>
+          <div class="warning-content">
+            <h3>تحذير نهائي</h3>
+            <p>
+              نحذّر الجميع من الوقوع في فخ هذه الممارسات المشبوهة، ونؤكد أنه لا يجوز دفع أي مبالغ 
+              لأي جهة تدّعي تقديم خدمات استرجاع أموال، دون التأكد من ترخيصها القانوني وخضوعها 
+              للمراقبة القضائية الرسمية.
+            </p>
+            <p>
+              في حال تعرضت لأي محاولة مماثلة، نرجو التوجه مباشرة إلى الجهات القانونية والرسمية المختصة، 
+              وتقديم شكوى لحمايتك من التعرض لمزيد من الأذى المالي أو النفسي.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <JournalistByline articleSlug="faisal-alabar-scam" />
+        <CommentForm postId="faisal-alabar-warning" postType="warning" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .warning-header {
+    background: linear-gradient(135deg, var(--color-warning) 0%, #d97706 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .warning-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .warning-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .badge-text {
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .warning-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+  }
+
+  .lawyer-image {
+    margin: var(--space-8) 0;
+  }
+
+  .lawyer-photo {
+    max-width: 300px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 4px solid white;
+  }
+
+  .warning-summary {
+    max-width: 800px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .summary-text {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .warning-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-item.danger {
+    border: 2px solid white;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .office-details {
+    padding: var(--space-16) 0;
+    background: var(--color-neutral-50);
+  }
+
+  .details-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .main-details h2 {
+    color: var(--color-warning);
+    margin-bottom: var(--space-6);
+    font-size: 2rem;
+  }
+
+  .main-details p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    font-size: 1.125rem;
+  }
+
+  .contact-details {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border-left: 4px solid var(--color-warning);
+  }
+
+  .contact-details h3 {
+    color: var(--color-warning);
+    margin-bottom: var(--space-6);
+    font-size: 1.5rem;
+  }
+
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-md);
+  }
+
+  .contact-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-600);
+  }
+
+  .contact-value {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+  }
+
+  .contact-value.danger {
+    color: var(--color-warning);
+  }
+
+  .warning-note {
+    background: var(--color-warning);
+    color: white;
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+  }
+
+  .warning-note p {
+    margin: 0;
+    color: white;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .warning-note strong {
+    color: white;
+  }
+
+  .scam-pattern {
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .pattern-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .pattern-timeline::before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--color-warning);
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+    position: relative;
+  }
+
+  .timeline-number {
+    width: 50px;
+    height: 50px;
+    background: var(--color-warning);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 0;
+    z-index: 2;
+  }
+
+  .timeline-content {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    flex: 1;
+    border-left: 4px solid var(--color-warning);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .step-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .timeline-content h4 {
+    color: var(--color-warning);
+    margin-bottom: var(--space-3);
+    font-size: 1.25rem;
+  }
+
+  .timeline-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .suspicious-activities {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .activity-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--color-error);
+  }
+
+  .activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .activity-header h4 {
+    color: var(--color-error);
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  .severity-badge {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .severity-عالي-جداً {
+    background: #dc2626;
+    color: white;
+  }
+
+  .severity-عالي {
+    background: var(--color-error);
+    color: white;
+  }
+
+  .activity-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .final-warning {
+    padding: var(--space-20) 0;
+  }
+
+  .warning-card {
+    background: white;
+    padding: var(--space-10);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    border: 3px solid var(--color-error);
+  }
+
+  .warning-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .warning-content h3 {
+    color: var(--color-error);
+    margin-bottom: var(--space-6);
+    font-size: 2rem;
+  }
+
+  .warning-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+    font-size: 1.125rem;
+  }
+
+  .comments-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 1024px) {
+    .details-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .pattern-timeline::before {
+      left: 15px;
+    }
+
+    .timeline-number {
+      width: 30px;
+      height: 30px;
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .warning-title {
+      font-size: 2rem;
+    }
+
+    .warning-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

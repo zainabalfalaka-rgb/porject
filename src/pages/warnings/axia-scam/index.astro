@@ -1,0 +1,966 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import StarRating from '../../../components/StarRating.astro';
+import CommentForm from '../../../components/CommentForm.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "Article",
+  "headline": "تحذير من شركة اكسيا Axia - شركة تداول احتيالية",
+  "description": "تحذير شامل من شركة اكسيا Axia التي تمارس النصب والاحتيال على عملائها من خلال التلاعب في الصفقات ورفض السحب",
+  "author": {
+    "@type": "Organization",
+    "name": "دليل الخليج"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "دليل الخليج",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://khalijtrust.com/img/logo4.png"
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2024-01-15",
+  "image": "https://khalijtrust.com/img/axia.PNG",
+  "url": "https://khalijtrust.com/warnings/axia-scam/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://khalijtrust.com/warnings/axia-scam/"
+  }
+};
+
+const warningDetails = {
+  companyName: "شركة اكسيا",
+  englishName: "Axia Trading",
+  type: "شركة تداول احتيالية",
+  location: "غير محدد",
+  riskLevel: "خطر شديد",
+  reportedAmount: "متنوع",
+  reportsCount: 134,
+  status: "نشطة - تجنب التعامل معها نهائياً",
+  lastUpdated: "2024-01-15"
+};
+
+const fraudMethods = [
+  {
+    title: "التسويق المضلل",
+    description: "تدعي وجود تراخيص من هيئات مشهورة مثل CySEC بالرغم من عدم صحة ذلك",
+    icon: "📢"
+  },
+  {
+    title: "رفض عمليات السحب",
+    description: "تضع العراقيل أمام استرداد الأموال وترفض طلبات السحب",
+    icon: "🚫"
+  },
+  {
+    title: "التلاعب في الصفقات",
+    description: "تغلق الصفقات المربحة وتحولها إلى خسائر لمصلحتها",
+    icon: "📊"
+  },
+  {
+    title: "التلاعب في الأسعار",
+    description: "تتلاعب في أسعار الأصول لتحقيق مكاسب غير عادلة",
+    icon: "💹"
+  },
+  {
+    title: "توصيات مضللة",
+    description: "تقدم إشارات وعروض تداول وهمية لجذب المزيد من الضحايا",
+    icon: "📈"
+  },
+  {
+    title: "الاختفاء المفاجئ",
+    description: "تغلق أنشطتها فجأة وتختفي بجميع أموال العملاء",
+    icon: "👻"
+  }
+];
+
+const evidenceList = [
+  {
+    title: "عدم وجود ترخيص رسمي",
+    description: "لا تمتلك أي تراخيص رسمية صادرة من جهات تنظيمية موثوقة",
+    severity: "عالي"
+  },
+  {
+    title: "ادعاءات كاذبة حول المكاتب",
+    description: "تدعي وجود مكاتب في الخليج لكن التحقيق أثبت عدم وجودها",
+    severity: "عالي"
+  },
+  {
+    title: "شكاوى متعددة",
+    description: "عشرات الشكاوى من عملاء تعرضوا للنصب ورفض السحب",
+    severity: "عالي"
+  },
+  {
+    title: "عدم الشفافية",
+    description: "لا توجد معلومات موثوقة عن مالكي ومسؤولي الشركة",
+    severity: "متوسط"
+  },
+  {
+    title: "اختفاء الموقع",
+    description: "تغلق موقعها فجأة للتهرب من المساءلة والشبهات",
+    severity: "عالي"
+  }
+];
+
+const protectionTips = [
+  {
+    title: "تحقق من التراخيص",
+    description: "تأكد من وجود تراخيص حقيقية من هيئات رقابية معترف بها",
+    icon: "🔍"
+  },
+  {
+    title: "ابحث عن المراجعات",
+    description: "اقرأ تجارب العملاء الحقيقية على مواقع مستقلة",
+    icon: "📚"
+  },
+  {
+    title: "تجنب الوعود الخيالية",
+    description: "احذر من أي وعود بأرباح مضمونة أو عوائد غير واقعية",
+    icon: "⚠️"
+  },
+  {
+    title: "اختبر السحب أولاً",
+    description: "جرب سحب مبلغ صغير قبل إيداع مبالغ كبيرة",
+    icon: "💳"
+  },
+  {
+    title: "احتفظ بالوثائق",
+    description: "احتفظ بجميع المراسلات والوثائق كأدلة",
+    icon: "📄"
+  },
+  {
+    title: "استشر الخبراء",
+    description: "اطلب المشورة من خبراء ماليين قبل الاستثمار",
+    icon: "👨‍💼"
+  }
+];
+---
+
+<Layout 
+  title="تحذير من شركة اكسيا Axia - شركة تداول احتيالية"
+  description="تحذير شامل من شركة اكسيا Axia التي تمارس النصب والاحتيال على عملائها من خلال التلاعب في الصفقات ورفض السحب وادعاءات كاذبة حول التراخيص"
+  keywords="اكسيا، Axia، شركة تداول احتيالية، نصب تداول، تلاعب صفقات، رفض سحب، احتيال مالي"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Warning Header -->
+    <section class="warning-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="warning-badge">
+            <span class="badge-icon">🚨</span>
+            <span class="badge-text">تحذير عاجل</span>
+          </div>
+          
+          <h1 class="warning-title">
+            تحذير من شركة اكسيا
+            <span class="english-name">Axia Trading</span>
+          </h1>
+          
+          <div class="company-image">
+            <img src="https://khalijtrust.com/img/axia.PNG" alt="شركة اكسيا Axia" class="company-logo" />
+          </div>
+          
+          <div class="warning-summary">
+            <p class="summary-text">
+              شركة اكسيا (Axia) هي شركة تداول احتيالية تمارس النصب المنظم على عملائها من خلال 
+              التلاعب في الصفقات، رفض عمليات السحب، وادعاءات كاذبة حول التراخيص والمكاتب.
+            </p>
+          </div>
+          
+          <div class="warning-stats">
+            <div class="stat-item danger">
+              <StarRating rating={0} size="large" />
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{warningDetails.reportsCount}</span>
+              <span class="stat-label">شكوى مؤكدة</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">خطر شديد</span>
+              <span class="stat-label">مستوى التحذير</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Company Overview -->
+    <section class="company-overview">
+      <div class="container">
+        <div class="overview-content">
+          <div class="overview-text">
+            <h2>من هي شركة اكسيا - Axia؟</h2>
+            <p>
+              شركة اكسيا - Axia هي إحدى الشركات غير الموثوقة والمشبوهة في مجال التداول عبر الإنترنت، 
+              والتي يُزعم أنها تمارس النصب والاحتيال على عملائها. تدّعي الشركة أنها توفر خدمات التداول 
+              في أسواق العملات الأجنبية والأسهم والسلع، إلا أنها في الواقع لا تملك أي ترخيص أو تنظيم 
+              من قبل أي جهة رقابية.
+            </p>
+            <p>
+              تم رفع العديد من الشكاوى ضد الشركة من قبل عملاء تعرّضوا للنصب وعدم دفع أموالهم عند طلب السحب. 
+              حيث تقوم الشركة بالتلاعب في الصفقات وإغلاقها بخسائر كبيرة بهدف الاستيلاء على أموال العملاء.
+            </p>
+          </div>
+          
+          <div class="company-details">
+            <h3>تفاصيل الشركة</h3>
+            <div class="details-list">
+              <div class="detail-item">
+                <span class="detail-label">الاسم:</span>
+                <span class="detail-value">{warningDetails.companyName}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الاسم الإنجليزي:</span>
+                <span class="detail-value">{warningDetails.englishName}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">النوع:</span>
+                <span class="detail-value">{warningDetails.type}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">مستوى الخطر:</span>
+                <span class="detail-value danger">{warningDetails.riskLevel}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">عدد الشكاوى:</span>
+                <span class="detail-value">{warningDetails.reportsCount}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الحالة:</span>
+                <span class="detail-value danger">{warningDetails.status}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fraud Methods -->
+    <section class="fraud-methods">
+      <div class="container">
+        <div class="section-header">
+          <h2>طريقة نصب شركة اكسيا - Axia</h2>
+          <p>كيف تقوم الشركة بخداع المستثمرين وسرقة أموالهم</p>
+        </div>
+        
+        <div class="methods-grid">
+          {fraudMethods.map(method => (
+            <div class="method-card">
+              <div class="method-icon">{method.icon}</div>
+              <h4>{method.title}</h4>
+              <p>{method.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Evidence Section -->
+    <section class="evidence-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>الأدلة على نصب شركة اكسيا - Axia</h2>
+          <p>الشواهد والأدلة التي تثبت أن الشركة احتيالية</p>
+        </div>
+        
+        <div class="evidence-grid">
+          {evidenceList.map(evidence => (
+            <div class="evidence-card">
+              <div class="evidence-header">
+                <div class="evidence-number">🔍</div>
+                <div class="severity-badge severity-{evidence.severity.toLowerCase()}">
+                  {evidence.severity}
+                </div>
+              </div>
+              <h4>{evidence.title}</h4>
+              <p>{evidence.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Evidence -->
+    <section class="detailed-evidence">
+      <div class="container">
+        <div class="evidence-content">
+          <div class="evidence-item">
+            <h3>1. عدم وجود أي سجل أو ترخيص رسمي</h3>
+            <p>
+              تُعد شركة اكسيا - Axia من الشركات غير الموثوقة وغير المرخصة في مجال التداول الإلكتروني، 
+              حيث إنها لا تمتلك أي تراخيص رسمية صادرة من جهات تنظيمية لتقديم خدمات التداول.
+            </p>
+          </div>
+          
+          <div class="evidence-item">
+            <h3>2. إدعاء اكسيا الكاذب حول مكاتبها في الخليج</h3>
+            <p>
+              أفادت بعض الشكاوى بأن الشركة ادعت بأنها تملك مكاتب تمثيلية في بعض دول الخليج العربي. 
+              ولكن بعد التحري، توصل فريق الامتثال القانوني إلى حقيقة عدم وجود أية مكاتب محلية حقيقية 
+              لشركة اكسيا، مما يؤكد على تعمد الشركة تضليل المتداولين.
+            </p>
+          </div>
+          
+          <div class="evidence-item">
+            <h3>3. وجود العشرات من الشكاوى</h3>
+            <p>
+              تلقى فريق الامتثال القانوني العشرات من الشكاوى والتقارير حول شركة اكسيا، مما يؤكد تورط 
+              الشركة في عمليات نصب واحتيال ممنهجة على عملائها. تتمحور معظم هذه الشكاوى حول رفض الشركة 
+              المتكرر لتنفيذ طلبات سحب الأموال.
+            </p>
+          </div>
+          
+          <div class="evidence-item">
+            <h3>4. اختفاء الموقع الإلكتروني فجأة</h3>
+            <p>
+              تلجأ شركة اكسيا من وقت لآخر إلى إغلاق موقعها الإلكتروني بشكل مفاجئ، مدّعية أنها لم تعد 
+              تقدم خدماتها إلا للمتداولين المقيمين في الاتحاد الأوروبي فقط. تأتي هذه الخطوة في محاولة 
+              من الشركة للتهرب من المساءلة والشبهات.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Protection Tips -->
+    <section class="protection-tips">
+      <div class="container">
+        <div class="section-header">
+          <h2>تحذيرات من التعامل مع شركة اكسيا - Axia</h2>
+          <p>كيف تحمي نفسك من الشركات الاحتيالية</p>
+        </div>
+        
+        <div class="tips-grid">
+          {protectionTips.map(tip => (
+            <div class="tip-card">
+              <div class="tip-icon">{tip.icon}</div>
+              <h4>{tip.title}</h4>
+              <p>{tip.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Khalij Trust Section -->
+    <section class="khalij-trust">
+      <div class="container">
+        <div class="trust-card">
+          <div class="trust-icon">🔎</div>
+          <div class="trust-content">
+            <h3>موقع دليل الخليج</h3>
+            <p>
+              تُعتبر موقع دليل الخليج مصدرًا موثوقًا للمعلومات حول شركات التداول في المنطقة، 
+              حيث يُقدم معلومات دقيقة وشاملة عن الشركات الموثوقة وغير الموثوقة.
+            </p>
+            
+            <div class="trust-benefits">
+              <div class="benefit">
+                <span class="benefit-icon">✅</span>
+                <span>تقييمات ومراجعات دقيقة للشركات</span>
+              </div>
+              <div class="benefit">
+                <span class="benefit-icon">✅</span>
+                <span>تحذيرات من ممارسات النصب والاحتيال</span>
+              </div>
+              <div class="benefit">
+                <span class="benefit-icon">✅</span>
+                <span>معلومات محدثة عن الشركات المشبوهة</span>
+              </div>
+            </div>
+            
+            <div class="trust-actions">
+              <a href="/warnings/" class="btn btn-primary">
+                تصفح التحذيرات
+              </a>
+              <a href="/lawyers/" class="btn btn-outline">
+                ابحث عن محامي
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final Warning -->
+    <section class="final-warning">
+      <div class="container">
+        <div class="final-card">
+          <div class="final-icon">⚠️</div>
+          <div class="final-content">
+            <h3>استنتاج</h3>
+            <p>
+              في ختام هذا التقرير، يتضح أن شركة اكسيا - Axia ليست مجرد شركة غير موثوقة، 
+              بل تعتبر شركة نصب واحتيال تهدف لاستغلال المستثمرين.
+            </p>
+            <div class="final-advice">
+              <h4>نصيحتنا النهائية:</h4>
+              <p>
+                ندعو جميع المتداولين والمستثمرين إلى اتخاذ الحيطة والحذر وتجنب التعامل مع شركة اكسيا 
+                أو أي شركات مشابهة في المستقبل، لضمان حماية أموالهم واستثماراتهم.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <JournalistByline articleSlug="axia-scam" />
+        <CommentForm postId="axia-warning" postType="warning" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .warning-header {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .warning-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .warning-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .badge-text {
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .warning-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .english-name {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--font-weight-normal);
+  }
+
+  .company-image {
+    margin: var(--space-8) 0;
+  }
+
+  .company-logo {
+    max-width: 300px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 4px solid white;
+  }
+
+  .warning-summary {
+    max-width: 800px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .summary-text {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .warning-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-item.danger {
+    border: 2px solid var(--color-secondary-light);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .company-overview {
+    padding: var(--space-20) 0;
+    background: var(--color-neutral-50);
+  }
+
+  .overview-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .overview-text h2 {
+    color: #dc2626;
+    margin-bottom: var(--space-6);
+    font-size: 2.5rem;
+  }
+
+  .overview-text p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+    font-size: 1.125rem;
+  }
+
+  .company-details {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border-left: 4px solid #dc2626;
+  }
+
+  .company-details h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-6);
+    font-size: 1.5rem;
+  }
+
+  .details-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-md);
+  }
+
+  .detail-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-600);
+  }
+
+  .detail-value {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+  }
+
+  .detail-value.danger {
+    color: #dc2626;
+  }
+
+  .fraud-methods {
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .method-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid #dc2626;
+    transition: transform 0.3s ease;
+  }
+
+  .method-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .method-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .method-card h4 {
+    color: #dc2626;
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .method-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .evidence-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .evidence-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid #dc2626;
+  }
+
+  .evidence-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .evidence-number {
+    font-size: 1.5rem;
+  }
+
+  .severity-badge {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .severity-عالي {
+    background: #dc2626;
+    color: white;
+  }
+
+  .severity-متوسط {
+    background: var(--color-warning);
+    color: white;
+  }
+
+  .evidence-card h4 {
+    color: #dc2626;
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .evidence-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .detailed-evidence {
+    padding: var(--space-20) 0;
+  }
+
+  .evidence-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .evidence-item {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-8);
+    border-left: 4px solid #dc2626;
+  }
+
+  .evidence-item h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-4);
+    font-size: 1.5rem;
+  }
+
+  .evidence-item p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  .protection-tips {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .tip-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-success);
+  }
+
+  .tip-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .tip-card h4 {
+    color: var(--color-success);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .tip-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .khalij-trust {
+    padding: var(--space-20) 0;
+  }
+
+  .trust-card {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .trust-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .trust-content h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .trust-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .trust-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .benefit {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .benefit-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .benefit span:last-child {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .trust-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .khalij-trust .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .khalij-trust .btn-outline:hover {
+    background: white;
+    color: var(--color-primary);
+  }
+
+  .final-warning {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .final-card {
+    background: white;
+    padding: var(--space-12);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    border: 3px solid #dc2626;
+  }
+
+  .final-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .final-content h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-4);
+    font-size: 2rem;
+  }
+
+  .final-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-8);
+    font-size: 1.125rem;
+  }
+
+  .final-advice {
+    background: #dc2626;
+    color: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+  }
+
+  .final-advice h4 {
+    color: white;
+    margin-bottom: var(--space-4);
+    font-size: 1.5rem;
+  }
+
+  .final-advice p {
+    margin: 0;
+    color: white;
+    font-size: 1.125rem;
+  }
+
+  .comments-section {
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 1024px) {
+    .overview-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .warning-title {
+      font-size: 2rem;
+    }
+
+    .english-name {
+      font-size: 1.125rem;
+    }
+
+    .warning-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .trust-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .trust-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,986 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import StarRating from '../../../components/StarRating.astro';
+import CommentForm from '../../../components/CommentForm.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "Article",
+  "headline": "تحذير من شركة إنفستيكو Investico - شركة تداول احتيالية",
+  "description": "تحذير شامل من شركة إنفستيكو Investico التي تستخدم تراخيص مزيفة والتلاعب في الأسعار لسرقة أموال المتداولين",
+  "author": {
+    "@type": "Organization",
+    "name": "دليل الخليج"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "دليل الخليج",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://khalijtrust.com/img/logo4.png"
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2024-01-15",
+  "image": "https://khalijtrust.com/img/Investico.webp",
+  "url": "https://khalijtrust.com/warnings/investico-scam/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://khalijtrust.com/warnings/investico-scam/"
+  }
+};
+
+const warningDetails = {
+  companyName: "شركة إنفستيكو",
+  englishName: "Investico Education",
+  type: "شركة تداول احتيالية",
+  location: "جنوب أفريقيا (مزعوم)",
+  riskLevel: "خطر شديد",
+  reportedAmount: "متنوع",
+  reportsCount: 92,
+  status: "نشطة - تجنب التعامل معها نهائياً",
+  lastUpdated: "2024-01-15",
+  minimumDeposit: "250 دولار أمريكي",
+  claimedAssets: "300+ أصل مالي",
+  leverage: "1:500"
+};
+
+const fraudMethods = [
+  {
+    title: "تراخيص مزيفة",
+    description: "ادعاء تراخيص من جهات غير موجودة أو باسم شركات أخرى",
+    icon: "📜"
+  },
+  {
+    title: "منصة تداول متلاعب بها",
+    description: "استخدام منصة خاصة للتلاعب بالأسعار والصفقات",
+    icon: "💻"
+  },
+  {
+    title: "التلاعب في الأسعار",
+    description: "تغيير الأسعار أثناء التداول وضرب أوامر وقف الخسارة",
+    icon: "📊"
+  },
+  {
+    title: "رفض السحوبات",
+    description: "وضع عقبات متعددة أمام سحب الأموال",
+    icon: "🚫"
+  },
+  {
+    title: "وعود كاذبة",
+    description: "ادعاء توفير أدوات تداول متقدمة وشفافية مزيفة",
+    icon: "🎭"
+  },
+  {
+    title: "عدم وجود تاريخ واضح",
+    description: "إخفاء معلومات التأسيس والمالكين الحقيقيين",
+    icon: "❓"
+  }
+];
+
+const evidenceDetails = [
+  {
+    title: "ادعاءات كاذبة حول التراخيص",
+    description: "تدعي الشركة أنها تابعة لمجموعة Faraz Financial Services المرخصة في جنوب أفريقيا برقم 45518، لكن التحقيق أثبت عدم وجود هذا الترخيص",
+    severity: "عالي جداً"
+  },
+  {
+    title: "التلاعب في تنفيذ الصفقات",
+    description: "تنفيذ صفقات عند نقاط دخول مختلفة عن التي حددها المتداول وضرب وقف الخسارة قبل وصول السعر الفعلي",
+    severity: "عالي جداً"
+  },
+  {
+    title: "مشاكل في سحب الأموال",
+    description: "طلب وثائق لم تكن مطلوبة عند فتح الحساب وتأخير متعمد في عمليات السحب",
+    severity: "عالي"
+  },
+  {
+    title: "منصة تداول مضللة",
+    description: "الترويج لمنصة تداول متطورة لكنها في الواقع تُستخدم لتسهيل التلاعب",
+    severity: "عالي"
+  }
+];
+
+const protectionSteps = [
+  {
+    title: "التحقق من التراخيص",
+    description: "تأكد من صحة التراخيص في المواقع الرسمية للهيئات الرقابية",
+    icon: "🔍"
+  },
+  {
+    title: "تجنب المنصات الخاصة",
+    description: "احذر من الشركات التي تستخدم منصات تداول خاصة بها",
+    icon: "⚠️"
+  },
+  {
+    title: "اختبار السحب",
+    description: "جرب سحب مبلغ صغير قبل إيداع مبالغ كبيرة",
+    icon: "💳"
+  },
+  {
+    title: "قراءة التجارب",
+    description: "ابحث عن تجارب المستخدمين الحقيقية على مواقع مستقلة",
+    icon: "📖"
+  },
+  {
+    title: "تجنب الوعود المبالغة",
+    description: "احذر من الشركات التي تعد بأرباح مضمونة أو أدوات سحرية",
+    icon: "🎯"
+  },
+  {
+    title: "استشارة الخبراء",
+    description: "اطلب المشورة من خبراء ماليين وقانونيين موثوقين",
+    icon: "👨‍💼"
+  }
+];
+---
+
+<Layout 
+  title="تحذير من شركة إنفستيكو Investico - شركة تداول احتيالية"
+  description="تحذير شامل من شركة إنفستيكو Investico التي تستخدم تراخيص مزيفة والتلاعب في الأسعار لسرقة أموال المتداولين مع رفض السحوبات"
+  keywords="إنفستيكو، Investico، شركة تداول احتيالية، تراخيص مزيفة، تلاعب أسعار، رفض سحب، احتيال مالي"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Warning Header -->
+    <section class="warning-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="warning-badge">
+            <span class="badge-icon">🚨</span>
+            <span class="badge-text">تحذير عاجل</span>
+          </div>
+          
+          <h1 class="warning-title">
+            تحذير من شركة إنفستيكو
+            <span class="english-name">Investico Education</span>
+          </h1>
+          
+          <div class="company-image">
+            <img src="https://khalijtrust.com/img/Investico.webp" alt="شركة إنفستيكو Investico" class="company-logo" />
+          </div>
+          
+          <div class="warning-summary">
+            <p class="summary-text">
+              شركة إنفستيكو (Investico) هي شركة تداول احتيالية تسعى للظهور بمظهر موثوق لاستدراج 
+              أكبر عدد من المتداولين وسرقة أموالهم من خلال تراخيص مزيفة ومنصة متلاعب بها.
+            </p>
+          </div>
+          
+          <div class="warning-stats">
+            <div class="stat-item danger">
+              <StarRating rating={0} size="large" />
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{warningDetails.reportsCount}</span>
+              <span class="stat-label">شكوى مؤكدة</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">خطر شديد</span>
+              <span class="stat-label">مستوى التحذير</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Company Overview -->
+    <section class="company-overview">
+      <div class="container">
+        <div class="overview-content">
+          <div class="overview-text">
+            <h2>من هي شركة إنفستيكو Investico Education؟</h2>
+            <p>
+              شركة "إنفستيكو" Investico هي شركة تداول عبر الإنترنت تدّعي تقديم خدمات تداول متطورة وشفافة، 
+              لكن هذا مجرد مظهر خدّاع. تتبنى الشركة هذا الأسلوب بهدف الاحتيال على المتداولين.
+            </p>
+            <p>
+              الحد الأدنى للإيداع الذي تفرضه الشركة هو {warningDetails.minimumDeposit}، وتزعم أنها توفر 
+              مجموعة متنوعة من الأصول المالية للتداول تتجاوز {warningDetails.claimedAssets}.
+            </p>
+            <p>
+              توفر الشركة منصة تداول خاصة بها، مما يسهل عليها التلاعب بالأسعار من خلالها. كما تقدم المنصة 
+              وعودًا جذابة مثل التداول بدون عمولات وأدوات تحليل متعددة، لكن قيمة هذه الأدوات تتضاءل في ظل 
+              وجود شركة احتيالية تتلاعب في الأسعار.
+            </p>
+          </div>
+          
+          <div class="company-details">
+            <h3>تفاصيل الشركة</h3>
+            <div class="details-list">
+              <div class="detail-item">
+                <span class="detail-label">الاسم:</span>
+                <span class="detail-value">{warningDetails.companyName}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الاسم الإنجليزي:</span>
+                <span class="detail-value">{warningDetails.englishName}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الحد الأدنى للإيداع:</span>
+                <span class="detail-value">{warningDetails.minimumDeposit}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الرافعة المالية المزعومة:</span>
+                <span class="detail-value">{warningDetails.leverage}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">عدد الأصول المزعومة:</span>
+                <span class="detail-value">{warningDetails.claimedAssets}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الحالة:</span>
+                <span class="detail-value danger">{warningDetails.status}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fraud Methods -->
+    <section class="fraud-methods">
+      <div class="container">
+        <div class="section-header">
+          <h2>طريقة احتيال شركة إنفستيكو</h2>
+          <p>كيف تقوم الشركة بخداع المستثمرين وسرقة أموالهم</p>
+        </div>
+        
+        <div class="methods-grid">
+          {fraudMethods.map(method => (
+            <div class="method-card">
+              <div class="method-icon">{method.icon}</div>
+              <h4>{method.title}</h4>
+              <p>{method.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Analysis -->
+    <section class="detailed-analysis">
+      <div class="container">
+        <div class="section-header">
+          <h2>تحليل مفصل لأساليب الاحتيال</h2>
+          <p>شرح تفصيلي لكيفية عمل الشركة الاحتيالية</p>
+        </div>
+        
+        <div class="analysis-content">
+          <div class="analysis-section">
+            <h3>1. ادعاءات شركة إنفستيكو وتراخيص وهمية</h3>
+            <p>
+              تدعي شركة "إنفستيكو" Investico أنها تابعة لمجموعة Faraz Financial Services، والتي يُزعم 
+              أنها مرخصة في جنوب أفريقيا من قبل هيئة سلوك القضايا المالية تحت رقم الترخيص 45518.
+            </p>
+            <p>
+              ولكن، يجب الانتباه إلى أن حصول الشركة على تراخيص بأسماء مختلفة يعد إشارة قوية لاحتمالية 
+              وقوع الاحتيال. قام فريق التحقيق بالتواصل مع الهيئة المالية للتحقق من صحة هذا الترخيص، 
+              وتبين أنه غير موجود على الإطلاق.
+            </p>
+          </div>
+          
+          <div class="analysis-section">
+            <h3>2. تلاعب شركة إنفستيكو في الأسعار</h3>
+            <p>
+              تعددت الشكاوى ضد شركة "إنفستيكو" التي تؤكد تورطها في التلاعب بالأسعار عبر منصتها الخاصة، 
+              والتي تُروج لها على أنها منصة متفردة تقدم أدوات تداول مساعدة.
+            </p>
+            <p>
+              من ضمن هذه الشكاوى، تقوم الشركة بتنفيذ صفقات عند نقاط دخول غير تلك التي حددها المتداول 
+              مسبقًا في الأوامر المعلقة. بالإضافة إلى ذلك، تضرب وقف الخسارة قبل أن يصل السعر الفعلي إليه.
+            </p>
+          </div>
+          
+          <div class="analysis-section">
+            <h3>3. مشاكل سحب الأموال</h3>
+            <p>
+              تقدم العديد من المتداولين والعملاء لدى شركة "إنفستيكو" بشكاوى تتعلق بعدم قدرتهم على سحب 
+              أموالهم من الشركة. تتعلق الشكاوى بمحاولاتهم لسحب رأس مالهم الأصلي.
+            </p>
+            <p>
+              تضع الشركة عقبات متعددة مثل طلب وثائق لم يكن مطلوبًا تقديمها عند فتح الحساب، أو تأخير 
+              متعمد في عمليات السحب، وأحيانًا تتجاهل طلبات السحب بشكل كامل دون أي رد.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Evidence Section -->
+    <section class="evidence-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>الأدلة على احتيال شركة إنفستيكو</h2>
+          <p>الشواهد والأدلة التي تثبت أن الشركة احتيالية</p>
+        </div>
+        
+        <div class="evidence-grid">
+          {evidenceDetails.map(evidence => (
+            <div class="evidence-card">
+              <div class="evidence-header">
+                <div class="evidence-number">🔍</div>
+                <div class="severity-badge severity-{evidence.severity.replace(' ', '-').toLowerCase()}">
+                  {evidence.severity}
+                </div>
+              </div>
+              <h4>{evidence.title}</h4>
+              <p>{evidence.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Protection Steps -->
+    <section class="protection-steps">
+      <div class="container">
+        <div class="section-header">
+          <h2>كيف تحمي نفسك من شركات مثل إنفستيكو؟</h2>
+          <p>خطوات عملية لتجنب الوقوع في فخ الشركات الاحتيالية</p>
+        </div>
+        
+        <div class="steps-grid">
+          {protectionSteps.map(step => (
+            <div class="step-card">
+              <div class="step-icon">{step.icon}</div>
+              <h4>{step.title}</h4>
+              <p>{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Complaint Process -->
+    <section class="complaint-process">
+      <div class="container">
+        <div class="process-card">
+          <div class="process-icon">📋</div>
+          <div class="process-content">
+            <h3>كيفية تقديم شكوى ضد الشركات المحتالة؟</h3>
+            <p>
+              إذا تعرضت للاحتيال من قبل شركات تداول نصابة مثل إنفستيكو، يمكنك تقديم شكوى من خلال 
+              موقع دليل الخليج حيث نقدم هذه الخدمة مجاناً للمتداولين.
+            </p>
+            
+            <div class="process-steps">
+              <div class="process-step">
+                <span class="step-number">1</span>
+                <span class="step-text">جمع جميع الأدلة والوثائق التي تثبت تعرضك للاحتيال</span>
+              </div>
+              <div class="process-step">
+                <span class="step-number">2</span>
+                <span class="step-text">تقديم شكوى مفصلة عبر موقع دليل الخليج</span>
+              </div>
+              <div class="process-step">
+                <span class="step-number">3</span>
+                <span class="step-text">دراسة الشكوى والتحقق من صحتها من قبل فريق متخصص</span>
+              </div>
+              <div class="process-step">
+                <span class="step-number">4</span>
+                <span class="step-text">التواصل معك لمتابعة الإجراءات اللازمة لاستكمال الشكوى</span>
+              </div>
+            </div>
+            
+            <div class="process-actions">
+              <a href="/report/" class="btn btn-primary">
+                قدم شكوى الآن
+              </a>
+              <a href="/lawyers/" class="btn btn-outline">
+                ابحث عن محامي متخصص
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final Warning -->
+    <section class="final-warning">
+      <div class="container">
+        <div class="final-card">
+          <div class="final-icon">⚠️</div>
+          <div class="final-content">
+            <h3>خلاصة التحذير</h3>
+            <p>
+              وفقًا للأبحاث التي أجراها فريق عمل موقع دليل الخليج، تبيّن أن شركة "إنفستيكو" هي شركة 
+              احتيالية تسعى للظهور بمظهر موثوق به لاستدراج أكبر عدد من المتداولين وسرقة أموالهم.
+            </p>
+            <div class="final-advice">
+              <h4>نصيحتنا النهائية:</h4>
+              <p>
+                إذا كنت قد تعرضت للاحتيال من قبل هذه الشركة أو أي شركة أخرى، يمكنك زيارة موقع دليل الخليج 
+                للاطلاع على قائمة بأفضل المحامين المتخصصين في استرجاع الأموال من الشركات النصابة.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <JournalistByline articleSlug="investico-scam" />
+        <CommentForm postId="investico-warning" postType="warning" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .warning-header {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .warning-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .warning-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .badge-text {
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .warning-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .english-name {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--font-weight-normal);
+  }
+
+  .company-image {
+    margin: var(--space-8) 0;
+  }
+
+  .company-logo {
+    max-width: 300px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 4px solid white;
+  }
+
+  .warning-summary {
+    max-width: 800px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .summary-text {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .warning-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-item.danger {
+    border: 2px solid var(--color-secondary-light);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .company-overview {
+    padding: var(--space-20) 0;
+    background: var(--color-neutral-50);
+  }
+
+  .overview-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .overview-text h2 {
+    color: #dc2626;
+    margin-bottom: var(--space-6);
+    font-size: 2.5rem;
+  }
+
+  .overview-text p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+    font-size: 1.125rem;
+  }
+
+  .company-details {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border-left: 4px solid #dc2626;
+  }
+
+  .company-details h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-6);
+    font-size: 1.5rem;
+  }
+
+  .details-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-md);
+  }
+
+  .detail-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-600);
+  }
+
+  .detail-value {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+  }
+
+  .detail-value.danger {
+    color: #dc2626;
+  }
+
+  .fraud-methods {
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .method-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid #dc2626;
+    transition: transform 0.3s ease;
+  }
+
+  .method-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .method-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .method-card h4 {
+    color: #dc2626;
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .method-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .detailed-analysis {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .analysis-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .analysis-section {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-8);
+    border-left: 4px solid #dc2626;
+  }
+
+  .analysis-section h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-4);
+    font-size: 1.5rem;
+  }
+
+  .analysis-section p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+    font-size: 1.125rem;
+  }
+
+  .evidence-section {
+    padding: var(--space-20) 0;
+  }
+
+  .evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .evidence-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid #dc2626;
+  }
+
+  .evidence-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .evidence-number {
+    font-size: 1.5rem;
+  }
+
+  .severity-badge {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .severity-عالي-جداً {
+    background: #dc2626;
+    color: white;
+  }
+
+  .severity-عالي {
+    background: var(--color-error);
+    color: white;
+  }
+
+  .evidence-card h4 {
+    color: #dc2626;
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .evidence-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .protection-steps {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .step-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-success);
+  }
+
+  .step-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .step-card h4 {
+    color: var(--color-success);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .step-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .complaint-process {
+    padding: var(--space-20) 0;
+  }
+
+  .process-card {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .process-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .process-content h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .process-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .step-number {
+    width: 30px;
+    height: 30px;
+    background: white;
+    color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 0;
+  }
+
+  .step-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .process-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .complaint-process .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .complaint-process .btn-outline:hover {
+    background: white;
+    color: var(--color-primary);
+  }
+
+  .final-warning {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .final-card {
+    background: white;
+    padding: var(--space-12);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    border: 3px solid #dc2626;
+  }
+
+  .final-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .final-content h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-4);
+    font-size: 2rem;
+  }
+
+  .final-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-8);
+    font-size: 1.125rem;
+  }
+
+  .final-advice {
+    background: #dc2626;
+    color: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+  }
+
+  .final-advice h4 {
+    color: white;
+    margin-bottom: var(--space-4);
+    font-size: 1.5rem;
+  }
+
+  .final-advice p {
+    margin: 0;
+    color: white;
+    font-size: 1.125rem;
+  }
+
+  .comments-section {
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 1024px) {
+    .overview-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .warning-title {
+      font-size: 2rem;
+    }
+
+    .english-name {
+      font-size: 1.125rem;
+    }
+
+    .warning-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .process-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .process-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

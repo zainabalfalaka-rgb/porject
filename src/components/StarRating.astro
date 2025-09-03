@@ -1,0 +1,110 @@
+---
+export interface Props {
+  rating: number;
+  maxRating?: number;
+  size?: 'small' | 'medium' | 'large';
+  showNumber?: boolean;
+  className?: string;
+}
+
+const { 
+  rating, 
+  maxRating = 5, 
+  size = 'medium',
+  showNumber = true,
+  className = ''
+} = Astro.props;
+
+const fullStars = Math.floor(rating);
+const hasHalfStar = rating % 1 !== 0;
+const emptyStars = maxRating - Math.ceil(rating);
+---
+
+<div class={`star-rating ${size} ${className}`}>
+  <div class="stars">
+    {Array.from({ length: fullStars }, (_, i) => (
+      <span class="star filled" key={`full-${i}`}>★</span>
+    ))}
+    {hasHalfStar && <span class="star half">★</span>}
+    {Array.from({ length: emptyStars }, (_, i) => (
+      <span class="star empty" key={`empty-${i}`}>★</span>
+    ))}
+  </div>
+  {showNumber && (
+    <span class="rating-number">
+      ({rating.toFixed(1)} من {maxRating})
+    </span>
+  )}
+</div>
+
+<style>
+  .star-rating {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .stars {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .star {
+    display: inline-block;
+    transition: all 0.2s ease;
+  }
+
+  .star.filled {
+    color: var(--color-secondary);
+  }
+
+  .star.half {
+    background: linear-gradient(90deg, var(--color-secondary) 50%, var(--color-neutral-300) 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .star.empty {
+    color: var(--color-neutral-300);
+  }
+
+  .rating-number {
+    font-size: 0.875rem;
+    color: var(--color-neutral-600);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* Sizes */
+  .star-rating.small .star {
+    font-size: 1rem;
+  }
+
+  .star-rating.small .rating-number {
+    font-size: 0.75rem;
+  }
+
+  .star-rating.medium .star {
+    font-size: 1.25rem;
+  }
+
+  .star-rating.medium .rating-number {
+    font-size: 0.875rem;
+  }
+
+  .star-rating.large .star {
+    font-size: 1.5rem;
+  }
+
+  .star-rating.large .rating-number {
+    font-size: 1rem;
+  }
+
+  @media (hover: hover) {
+    .star-rating:hover .star.filled,
+    .star-rating:hover .star.half {
+      transform: scale(1.1);
+    }
+  }
+</style>

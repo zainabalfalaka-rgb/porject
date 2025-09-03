@@ -1,0 +1,990 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import StarRating from '../../../components/StarRating.astro';
+import CommentForm from '../../../components/CommentForm.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "Article",
+  "headline": "تحذير من شركة CSOP - منصة تداول احتيالية",
+  "description": "تحذير عاجل من شركة CSOP التي تستخدم التسويق الهرمي والتلاعب في المنصة لسرقة أموال المتداولين",
+  "author": {
+    "@type": "Organization",
+    "name": "دليل الخليج"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "دليل الخليج",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://khalijtrust.com/img/logo4.png"
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2024-01-15",
+  "image": "https://hunterofscams.com/images/csop.jpg",
+  "url": "https://khalijtrust.com/warnings/csop-scam/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://khalijtrust.com/warnings/csop-scam/"
+  }
+};
+
+const warningDetails = {
+  companyName: "شركة CSOP",
+  englishName: "CSOP",
+  type: "منصة تداول احتيالية",
+  location: "جزر مارشال (مزعوم)",
+  riskLevel: "خطر شديد",
+  reportedAmount: "25,000 دولار (حالة واحدة)",
+  reportsCount: 78,
+  status: "نشطة - تجنب التعامل معها نهائياً",
+  lastUpdated: "2024-01-15"
+};
+
+const scamMethods = [
+  {
+    title: "التسويق الهرمي",
+    description: "تشجيع العملاء على جلب مستثمرين جدد مقابل عمولات",
+    icon: "🔺"
+  },
+  {
+    title: "منصة تداول مزيفة",
+    description: "منصة متلاعب بها تظهر أرباحاً وهمية",
+    icon: "💻"
+  },
+  {
+    title: "رفض السحوبات",
+    description: "رفض جميع طلبات السحب مع طلب رسوم إضافية",
+    icon: "🚫"
+  },
+  {
+    title: "مديرو حسابات وهميون",
+    description: "موظفون مزيفون يقدمون وعوداً كاذبة",
+    icon: "👤"
+  },
+  {
+    title: "التلاعب في الأسعار",
+    description: "تأخير تنفيذ الصفقات وإغلاق الصفقات الرابحة قسرياً",
+    icon: "📊"
+  },
+  {
+    title: "عدم وجود مقر فعلي",
+    description: "لا توجد مكاتب حقيقية أو عناوين واضحة",
+    icon: "🏢"
+  }
+];
+
+const victimStories = [
+  {
+    name: "أحمد ك.",
+    amount: "25,000 دولار",
+    date: "مارس 2024",
+    story: "خسرت أكثر من 25,000 دولار مع شركة CSOP. في البداية أظهروا لي أرباحاً كبيرة في الحساب، لكن عندما حاولت السحب رفضوا طلبي وطلبوا مني إيداع المزيد من الأموال."
+  },
+  {
+    name: "سارة م.",
+    amount: "غير محدد",
+    date: "فبراير 2024",
+    story: "وقعت في فخ التسويق الهرمي الخاص بهم. أقنعوني بجلب أصدقائي للاستثمار معهم مقابل عمولات، لكن في النهاية خسرنا جميعاً أموالنا."
+  }
+];
+
+const protectionTips = [
+  {
+    title: "تجنب الشركات غير المرخصة",
+    description: "تأكد من وجود تراخيص من هيئات رقابية معترف بها",
+    icon: "📜"
+  },
+  {
+    title: "احذر من التسويق الهرمي",
+    description: "لا تنجرف وراء عروض جلب مستثمرين جدد",
+    icon: "⚠️"
+  },
+  {
+    title: "لا تصدق الوعود السريعة",
+    description: "احذر من وعود الأرباح المضمونة والسريعة",
+    icon: "💰"
+  },
+  {
+    title: "تحقق من التراخيص",
+    description: "راجع التراخيص في المواقع الرسمية للهيئات",
+    icon: "🔍"
+  },
+  {
+    title: "اقرأ تجارب المستخدمين",
+    description: "ابحث عن تجارب حقيقية من مستخدمين سابقين",
+    icon: "📚"
+  },
+  {
+    title: "استشر الخبراء",
+    description: "اطلب المشورة من خبراء ماليين موثوقين",
+    icon: "👨‍💼"
+  }
+];
+---
+
+<Layout 
+  title="تحذير من شركة CSOP - منصة تداول احتيالية"
+  description="تحذير عاجل من شركة CSOP التي تستخدم التسويق الهرمي والتلاعب في المنصة لسرقة أموال المتداولين مع رفض جميع طلبات السحب"
+  keywords="CSOP، شركة تداول احتيالية، تسويق هرمي، منصة مزيفة، رفض سحب، احتيال مالي"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Warning Header -->
+    <section class="warning-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="warning-badge">
+            <span class="badge-icon">🚨</span>
+            <span class="badge-text">تحذير عاجل</span>
+          </div>
+          
+          <h1 class="warning-title">
+            تحذير من شركة CSOP
+            <span class="english-name">CSOP Trading Platform</span>
+          </h1>
+          
+          <div class="company-image">
+            <img src="https://hunterofscams.com/images/csop.jpg" alt="شركة CSOP" class="company-logo" />
+          </div>
+          
+          <div class="warning-summary">
+            <p class="summary-text">
+              نحذر جميع المتداولين من التعامل مع شركة CSOP التي تدعي تقديم خدمات التداول في الأسواق المالية. 
+              الشركة غير مرخصة وتستخدم أساليب احتيالية متعددة لسرقة أموال المستثمرين.
+            </p>
+          </div>
+          
+          <div class="warning-stats">
+            <div class="stat-item danger">
+              <StarRating rating={0} size="large" />
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{warningDetails.reportsCount}</span>
+              <span class="stat-label">شكوى مسجلة</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">خطر شديد</span>
+              <span class="stat-label">مستوى التحذير</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Company Details -->
+    <section class="company-details">
+      <div class="container">
+        <div class="details-grid">
+          <div class="detail-card">
+            <h3>معلومات الشركة</h3>
+            <div class="detail-list">
+              <div class="detail-item">
+                <span class="detail-label">الاسم:</span>
+                <span class="detail-value">{warningDetails.companyName}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الموقع:</span>
+                <span class="detail-value">csop.com</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">المقر المزعوم:</span>
+                <span class="detail-value">{warningDetails.location}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الترخيص:</span>
+                <span class="detail-value danger">غير مرخصة</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">النشاط المزعوم:</span>
+                <span class="detail-value">تداول العملات والعقود مقابل الفروقات</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="detail-card">
+            <h3>إحصائيات التحذير</h3>
+            <div class="detail-list">
+              <div class="detail-item">
+                <span class="detail-label">عدد الشكاوى:</span>
+                <span class="detail-value">{warningDetails.reportsCount}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">مستوى الخطر:</span>
+                <span class="detail-value danger">{warningDetails.riskLevel}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">أكبر خسارة مبلغة:</span>
+                <span class="detail-value danger">{warningDetails.reportedAmount}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الحالة:</span>
+                <span class="detail-value danger">{warningDetails.status}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scam Methods -->
+    <section class="scam-methods">
+      <div class="container">
+        <div class="section-header">
+          <h2>أساليب النصب المستخدمة</h2>
+          <p>كيف تقوم شركة CSOP بخداع المستثمرين وسرقة أموالهم</p>
+        </div>
+        
+        <div class="methods-grid">
+          {scamMethods.map(method => (
+            <div class="method-card">
+              <div class="method-icon">{method.icon}</div>
+              <h4>{method.title}</h4>
+              <p>{method.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Detailed Analysis -->
+    <section class="detailed-analysis">
+      <div class="container">
+        <div class="analysis-content">
+          <div class="analysis-section">
+            <h3>1. التسويق الهرمي</h3>
+            <p>
+              تستخدم شركة CSOP نظام التسويق الهرمي كأحد أساليبها الرئيسية في الاحتيال، حيث تشجع العملاء 
+              على جلب مستثمرين جدد مقابل عمولات مغرية.
+            </p>
+            <ul class="analysis-list">
+              <li>تشجيع العملاء على جلب مستثمرين جدد</li>
+              <li>وعود بعمولات على كل مستثمر جديد</li>
+              <li>نظام عمولات متعدد المستويات</li>
+              <li>استخدام شبكات التواصل الاجتماعي للترويج</li>
+            </ul>
+          </div>
+          
+          <div class="analysis-section">
+            <h3>2. التلاعب في المنصة</h3>
+            <p>
+              تستخدم الشركة منصة تداول مزيفة ومتلاعب بها لخداع المستثمرين وإظهار أرباح وهمية.
+            </p>
+            <ul class="analysis-list">
+              <li>منصة تداول مزيفة تظهر أرباحاً وهمية</li>
+              <li>تأخير تنفيذ الصفقات المربحة</li>
+              <li>إغلاق قسري للصفقات الرابحة</li>
+              <li>تلاعب في الأسعار والرسوم البيانية</li>
+            </ul>
+          </div>
+          
+          <div class="analysis-section">
+            <h3>3. مشاكل السحب والإيداع</h3>
+            <p>
+              أكثر الشكاوى شيوعاً ضد شركة CSOP تتعلق برفض طلبات السحب ووضع عراقيل أمام استرداد الأموال.
+            </p>
+            <ul class="analysis-list">
+              <li>رفض جميع طلبات السحب</li>
+              <li>طلب رسوم إضافية للسحب</li>
+              <li>اشتراط إيداعات إضافية للسماح بالسحب</li>
+              <li>تجميد الحسابات عند طلب السحب</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Victim Stories -->
+    <section class="victim-stories">
+      <div class="container">
+        <div class="section-header">
+          <h2>تجارب الضحايا</h2>
+          <p>قصص حقيقية من أشخاص تعرضوا للاحتيال من شركة CSOP</p>
+        </div>
+        
+        <div class="stories-grid">
+          {victimStories.map(story => (
+            <div class="story-card">
+              <div class="story-header">
+                <div class="victim-info">
+                  <div class="victim-name">{story.name}</div>
+                  <div class="story-date">{story.date}</div>
+                </div>
+                <div class="lost-amount">خسارة: {story.amount}</div>
+              </div>
+              <div class="story-content">
+                <p>"{story.story}"</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Legal Status -->
+    <section class="legal-status">
+      <div class="container">
+        <div class="status-card">
+          <div class="status-icon">⚖️</div>
+          <div class="status-content">
+            <h3>الوضع القانوني</h3>
+            <div class="status-points">
+              <div class="status-point">
+                <span class="point-icon">❌</span>
+                <p>الشركة غير مرخصة من أي هيئة رقابية معتمدة</p>
+              </div>
+              <div class="status-point">
+                <span class="point-icon">❌</span>
+                <p>تعمل بشكل غير قانوني من جزر مارشال</p>
+              </div>
+              <div class="status-point">
+                <span class="point-icon">❌</span>
+                <p>لا تخضع لأي رقابة مالية</p>
+              </div>
+              <div class="status-point">
+                <span class="point-icon">❌</span>
+                <p>لا توجد حماية قانونية للمستثمرين</p>
+              </div>
+              <div class="status-point">
+                <span class="point-icon">⚠️</span>
+                <p>تم تحذير المستثمرين منها في عدة دول</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Protection Tips -->
+    <section class="protection-tips">
+      <div class="container">
+        <div class="section-header">
+          <h2>كيف تحمي نفسك؟</h2>
+          <p>نصائح مهمة لتجنب الوقوع في فخ الشركات الاحتيالية</p>
+        </div>
+        
+        <div class="tips-grid">
+          {protectionTips.map(tip => (
+            <div class="tip-card">
+              <div class="tip-icon">{tip.icon}</div>
+              <h4>{tip.title}</h4>
+              <p>{tip.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Recovery Section -->
+    <section class="recovery-section">
+      <div class="container">
+        <div class="recovery-card">
+          <div class="recovery-icon">🆘</div>
+          <div class="recovery-content">
+            <h3>هل وقعت ضحية لشركة CSOP؟</h3>
+            <p>إذا كنت قد تعرضت للاحتيال من قبل شركة CSOP، يمكننا مساعدتك في:</p>
+            
+            <div class="recovery-services">
+              <div class="service-item">
+                <span class="service-icon">📋</span>
+                <span>توثيق عملية النصب</span>
+              </div>
+              <div class="service-item">
+                <span class="service-icon">⚖️</span>
+                <span>تقديم الإرشادات القانونية اللازمة</span>
+              </div>
+              <div class="service-item">
+                <span class="service-icon">🤝</span>
+                <span>التواصل مع المحامين المتخصصين</span>
+              </div>
+              <div class="service-item">
+                <span class="service-icon">💰</span>
+                <span>متابعة إجراءات استرداد الأموال</span>
+              </div>
+            </div>
+            
+            <div class="recovery-actions">
+              <a href="/lawyers/" class="btn btn-primary">
+                ابحث عن محامي متخصص
+              </a>
+              <a href="/report/" class="btn btn-secondary">
+                بلغ عن الاحتيال
+              </a>
+              <a href="/contact/" class="btn btn-outline">
+                اطلب مساعدة فورية
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <JournalistByline articleSlug="csop-scam" />
+        <CommentForm postId="csop-warning" postType="warning" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .warning-header {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .warning-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .warning-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .badge-text {
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .warning-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .english-name {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--font-weight-normal);
+  }
+
+  .company-image {
+    margin: var(--space-8) 0;
+  }
+
+  .company-logo {
+    max-width: 300px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 4px solid white;
+  }
+
+  .warning-summary {
+    max-width: 800px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .summary-text {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .warning-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-item.danger {
+    border: 2px solid var(--color-secondary-light);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .company-details {
+    padding: var(--space-16) 0;
+    background: var(--color-neutral-50);
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .detail-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid #dc2626;
+  }
+
+  .detail-card h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-6);
+    font-size: 1.5rem;
+  }
+
+  .detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-md);
+  }
+
+  .detail-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-600);
+  }
+
+  .detail-value {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+  }
+
+  .detail-value.danger {
+    color: #dc2626;
+  }
+
+  .scam-methods {
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .method-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid #dc2626;
+    transition: transform 0.3s ease;
+  }
+
+  .method-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .method-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .method-card h4 {
+    color: #dc2626;
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .method-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .detailed-analysis {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .analysis-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .analysis-section {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-8);
+    border-left: 4px solid #dc2626;
+  }
+
+  .analysis-section h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-4);
+    font-size: 1.5rem;
+  }
+
+  .analysis-section p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .analysis-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .analysis-list li {
+    padding: var(--space-2) 0;
+    color: var(--color-neutral-600);
+    border-bottom: 1px solid var(--color-neutral-200);
+    position: relative;
+    padding-right: var(--space-6);
+  }
+
+  .analysis-list li::before {
+    content: '•';
+    color: #dc2626;
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+  }
+
+  .victim-stories {
+    padding: var(--space-20) 0;
+  }
+
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .story-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--color-warning);
+  }
+
+  .story-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid var(--color-neutral-100);
+  }
+
+  .victim-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .victim-name {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+    font-size: 1.125rem;
+  }
+
+  .story-date {
+    color: var(--color-neutral-500);
+    font-size: 0.875rem;
+  }
+
+  .lost-amount {
+    background: #dc2626;
+    color: white;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-bold);
+    font-size: 0.875rem;
+  }
+
+  .story-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    font-style: italic;
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  .legal-status {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .status-card {
+    background: white;
+    padding: var(--space-10);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    border: 3px solid #dc2626;
+  }
+
+  .status-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .status-content h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-6);
+    font-size: 2rem;
+  }
+
+  .status-points {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .status-point {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    background: var(--color-neutral-50);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+  }
+
+  .point-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .status-point p {
+    margin: 0;
+    color: var(--color-neutral-600);
+    font-weight: var(--font-weight-semibold);
+    text-align: right;
+  }
+
+  .protection-tips {
+    padding: var(--space-20) 0;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .tip-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-success);
+  }
+
+  .tip-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .tip-card h4 {
+    color: var(--color-success);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .tip-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .recovery-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .recovery-card {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .recovery-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .recovery-content h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .recovery-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .recovery-services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+  }
+
+  .service-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .service-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .service-item span:last-child {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .recovery-actions {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .recovery-section .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .recovery-section .btn-outline:hover {
+    background: white;
+    color: var(--color-primary);
+  }
+
+  .comments-section {
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 768px) {
+    .warning-title {
+      font-size: 2rem;
+    }
+
+    .english-name {
+      font-size: 1.125rem;
+    }
+
+    .warning-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .details-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .recovery-services {
+      grid-template-columns: 1fr;
+    }
+
+    .recovery-actions {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .recovery-actions .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

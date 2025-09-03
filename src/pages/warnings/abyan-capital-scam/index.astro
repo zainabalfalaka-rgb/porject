@@ -1,0 +1,819 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import StarRating from '../../../components/StarRating.astro';
+import CommentForm from '../../../components/CommentForm.astro';
+import JournalistByline from '../../../components/JournalistByline.astro';
+
+const schemaData = {
+  "@type": "Article",
+  "headline": "تحذير من شركة أبيان المالية Abyan Capital - احتيال استثماري",
+  "description": "تحذير شامل من شركة أبيان المالية Abyan Capital التي تستخدم نظام تدوير الأموال والمخططات الهرمية لسرقة أموال المستثمرين",
+  "author": {
+    "@type": "Organization",
+    "name": "دليل الخليج"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "دليل الخليج",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://khalijtrust.com/img/logo4.png"
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2024-01-15",
+  "image": "https://khalijtrust.com/img/abyan.JPG",
+  "url": "https://khalijtrust.com/warnings/abyan-capital-scam/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://khalijtrust.com/warnings/abyan-capital-scam/"
+  }
+};
+
+const warningDetails = {
+  companyName: "شركة أبيان المالية",
+  englishName: "Abyan Capital",
+  type: "شركة استثمار وهمية",
+  location: "المملكة العربية السعودية",
+  riskLevel: "خطر شديد",
+  reportedAmount: "غير محدد",
+  reportsCount: 45,
+  status: "نشطة - تجنب التعامل معها",
+  lastUpdated: "2024-01-15"
+};
+
+const redFlags = [
+  {
+    title: "نظام تدوير الأموال",
+    description: "تستخدم أموال المستثمرين الجدد لدفع أرباح المستثمرين السابقين",
+    severity: "عالي"
+  },
+  {
+    title: "عدم وجود تراخيص صحيحة",
+    description: "لا تملك تراخيص رسمية موثوقة تضمن حماية أموال المستثمرين",
+    severity: "عالي"
+  },
+  {
+    title: "استخدام فتاوى مضللة",
+    description: "تستخدم فتاوى غير دقيقة وغير متعلقة بخدماتها الحقيقية",
+    severity: "متوسط"
+  },
+  {
+    title: "طريقة دفع محدودة",
+    description: "تقتصر على آبل باي فقط دون طرق دفع أخرى موثوقة",
+    severity: "متوسط"
+  },
+  {
+    title: "وعود بعوائد خيالية",
+    description: "تدعي تحقيق أرباح تصل إلى 100% خلال فترة قصيرة",
+    severity: "عالي"
+  }
+];
+
+const victimStories = [
+  {
+    name: "أحمد م.",
+    amount: "50,000 ريال",
+    story: "استثمرت في الشركة بناءً على وعودهم بأرباح مضمونة. في البداية كانوا يظهرون أرباحاً وهمية، لكن عندما طلبت السحب بدأوا بالمماطلة حتى اختفوا تماماً."
+  },
+  {
+    name: "فاطمة ع.",
+    amount: "75,000 ريال",
+    story: "تم إقناعي بالاستثمار من خلال الفتاوى المزعومة. اكتشفت لاحقاً أن هذه الفتاوى لا تتعلق بخدماتهم الحقيقية وأن الشركة تستخدم نظام هرمي."
+  }
+];
+---
+
+<Layout 
+  title="تحذير من شركة أبيان المالية Abyan Capital - احتيال استثماري"
+  description="تحذير شامل من شركة أبيان المالية Abyan Capital التي تستخدم نظام تدوير الأموال والمخططات الهرمية لسرقة أموال المستثمرين في السعودية"
+  keywords="أبيان المالية، Abyan Capital، احتيال استثماري، نصب، تدوير أموال، مخطط هرمي، السعودية"
+  schemaData={schemaData}
+>
+  <Header />
+  
+  <main>
+    <!-- Warning Header -->
+    <section class="warning-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="warning-badge">
+            <span class="badge-icon">⚠️</span>
+            <span class="badge-text">تحذير عاجل</span>
+          </div>
+          
+          <h1 class="warning-title">
+            تحذير من شركة أبيان المالية
+            <span class="english-name">Abyan Capital</span>
+          </h1>
+          
+          <div class="company-image">
+            <img src="https://khalijtrust.com/img/abyan.JPG" alt="شركة أبيان المالية Abyan Capital" class="company-logo" />
+          </div>
+          
+          <div class="warning-summary">
+            <p class="summary-text">
+              شركة استثمار وهمية تستخدم نظام تدوير الأموال والمخططات الهرمية لسرقة أموال المستثمرين. 
+              تدعي تحقيق أرباح خيالية تصل إلى 100% وتستخدم فتاوى مضللة لخداع المستثمرين.
+            </p>
+          </div>
+          
+          <div class="warning-stats">
+            <div class="stat-item danger">
+              <StarRating rating={0.5} size="large" />
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">{warningDetails.reportsCount}</span>
+              <span class="stat-label">بلاغ احتيال</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">خطر شديد</span>
+              <span class="stat-label">مستوى المخاطر</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Company Details -->
+    <section class="company-details">
+      <div class="container">
+        <div class="details-grid">
+          <div class="detail-card">
+            <h3>معلومات الشركة</h3>
+            <div class="detail-list">
+              <div class="detail-item">
+                <span class="detail-label">الاسم:</span>
+                <span class="detail-value">{warningDetails.companyName}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الاسم الإنجليزي:</span>
+                <span class="detail-value">{warningDetails.englishName}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">النوع:</span>
+                <span class="detail-value">{warningDetails.type}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الموقع:</span>
+                <span class="detail-value">{warningDetails.location}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">الحالة:</span>
+                <span class="detail-value danger">{warningDetails.status}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="detail-card">
+            <h3>إحصائيات التحذير</h3>
+            <div class="detail-list">
+              <div class="detail-item">
+                <span class="detail-label">عدد البلاغات:</span>
+                <span class="detail-value">{warningDetails.reportsCount}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">مستوى الخطر:</span>
+                <span class="detail-value danger">{warningDetails.riskLevel}</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">آخر تحديث:</span>
+                <span class="detail-value">{new Date(warningDetails.lastUpdated).toLocaleDateString('ar-AE')}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How the Scam Works -->
+    <section class="scam-method">
+      <div class="container">
+        <div class="section-header">
+          <h2>كيف تعمل عملية الاحتيال؟</h2>
+          <p>فهم طريقة عمل الشركة يساعدك على تجنب الوقوع في الفخ</p>
+        </div>
+        
+        <div class="method-steps">
+          <div class="step-item">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>الجذب والإغراء</h3>
+              <p>تروج الشركة لاستثمارات في الأسهم والعقارات والصكوك مع وعود بعوائد تصل إلى 100%</p>
+            </div>
+          </div>
+          
+          <div class="step-item">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>استخدام الفتاوى المضللة</h3>
+              <p>تستخدم فتاوى دينية غير متعلقة بخدماتها الحقيقية لكسب ثقة المستثمرين</p>
+            </div>
+          </div>
+          
+          <div class="step-item">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>نظام تدوير الأموال</h3>
+              <p>تستخدم أموال المستثمرين الجدد لدفع أرباح وهمية للمستثمرين السابقين</p>
+            </div>
+          </div>
+          
+          <div class="step-item">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>الانهيار والاختفاء</h3>
+              <p>عند توقف دخول أموال جديدة، تنهار المنظومة وتختفي الشركة بأموال الجميع</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Red Flags -->
+    <section class="red-flags">
+      <div class="container">
+        <div class="section-header">
+          <h2>علامات التحذير</h2>
+          <p>المؤشرات التي تدل على أن الشركة احتيالية</p>
+        </div>
+        
+        <div class="flags-grid">
+          {redFlags.map(flag => (
+            <div class="flag-card">
+              <div class="flag-header">
+                <div class="flag-icon">🚩</div>
+                <div class="severity-badge severity-{flag.severity.toLowerCase()}">
+                  {flag.severity}
+                </div>
+              </div>
+              <h4>{flag.title}</h4>
+              <p>{flag.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Victim Stories -->
+    <section class="victim-stories">
+      <div class="container">
+        <div class="section-header">
+          <h2>تجارب الضحايا</h2>
+          <p>قصص حقيقية من أشخاص تعرضوا للاحتيال</p>
+        </div>
+        
+        <div class="stories-grid">
+          {victimStories.map(story => (
+            <div class="story-card">
+              <div class="story-header">
+                <div class="victim-name">{story.name}</div>
+                <div class="lost-amount">خسارة: {story.amount}</div>
+              </div>
+              <div class="story-content">
+                <p>"{story.story}"</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Protection Tips -->
+    <section class="protection-tips">
+      <div class="container">
+        <div class="section-header">
+          <h2>كيف تحمي نفسك؟</h2>
+          <p>نصائح مهمة لتجنب الوقوع في فخ الشركات الاحتيالية</p>
+        </div>
+        
+        <div class="tips-grid">
+          <div class="tip-card">
+            <div class="tip-icon">🔍</div>
+            <h4>تحقق من التراخيص</h4>
+            <p>تأكد من أن الشركة مرخصة من هيئات رقابية موثوقة ومعترف بها دولياً</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">⚠️</div>
+            <h4>احذر من الوعود الخيالية</h4>
+            <p>أي شركة تعد بأرباح مضمونة أو عوائد خيالية هي شركة مشبوهة</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">📚</div>
+            <h4>ابحث واقرأ</h4>
+            <p>ابحث عن تجارب الآخرين واقرأ التحذيرات قبل الاستثمار</p>
+          </div>
+          
+          <div class="tip-card">
+            <div class="tip-icon">💰</div>
+            <h4>لا تستثمر كل أموالك</h4>
+            <p>لا تضع كل أموالك في استثمار واحد، خاصة مع شركات غير مؤكدة</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Legal Action -->
+    <section class="legal-action">
+      <div class="container">
+        <div class="action-card">
+          <div class="action-icon">⚖️</div>
+          <div class="action-content">
+            <h3>تعرضت للاحتيال من هذه الشركة؟</h3>
+            <p>لا تتردد في طلب المساعدة القانونية لاسترجاع أموالك</p>
+            <div class="action-buttons">
+              <a href="/lawyers/" class="btn btn-primary">
+                ابحث عن محامي
+              </a>
+              <a href="/report/" class="btn btn-outline">
+                بلغ عن الاحتيال
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments-section">
+      <div class="container">
+        <JournalistByline articleSlug="abyan-capital-scam" />
+        <CommentForm postId="abyan-capital-warning" postType="warning" />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .warning-header {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    color: white;
+    padding: var(--space-20) 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .warning-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,800 1000,1000"/></svg>');
+    background-size: cover;
+  }
+
+  .header-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .warning-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+    backdrop-filter: blur(10px);
+  }
+
+  .badge-icon {
+    font-size: 1.5rem;
+  }
+
+  .badge-text {
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .warning-title {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .english-name {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: var(--font-weight-normal);
+  }
+
+  .company-image {
+    margin: var(--space-8) 0;
+  }
+
+  .company-logo {
+    max-width: 300px;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    border: 4px solid white;
+  }
+
+  .warning-summary {
+    max-width: 800px;
+    margin: 0 auto var(--space-8);
+  }
+
+  .summary-text {
+    font-size: 1.25rem;
+    line-height: var(--line-height-relaxed);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .warning-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+  }
+
+  .stat-item.danger {
+    border: 2px solid var(--color-secondary-light);
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    color: white;
+    margin-bottom: var(--space-1);
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .company-details {
+    padding: var(--space-16) 0;
+    background: var(--color-neutral-50);
+  }
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .detail-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid #dc2626;
+  }
+
+  .detail-card h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-6);
+    font-size: 1.5rem;
+  }
+
+  .detail-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3);
+    background: var(--color-neutral-50);
+    border-radius: var(--radius-md);
+  }
+
+  .detail-label {
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-600);
+  }
+
+  .detail-value {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+  }
+
+  .detail-value.danger {
+    color: #dc2626;
+  }
+
+  .scam-method {
+    padding: var(--space-20) 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--color-neutral-900);
+  }
+
+  .section-header p {
+    font-size: 1.125rem;
+    color: var(--color-neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .method-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .step-item {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border: 2px solid #dc2626;
+  }
+
+  .step-number {
+    width: 50px;
+    height: 50px;
+    background: #dc2626;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-bold);
+    margin: 0 auto var(--space-4);
+  }
+
+  .step-content h3 {
+    color: #dc2626;
+    margin-bottom: var(--space-3);
+    font-size: 1.25rem;
+  }
+
+  .step-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .red-flags {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .flags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .flag-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid #dc2626;
+  }
+
+  .flag-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .flag-icon {
+    font-size: 1.5rem;
+  }
+
+  .severity-badge {
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  .severity-عالي {
+    background: #dc2626;
+    color: white;
+  }
+
+  .severity-متوسط {
+    background: var(--color-warning);
+    color: white;
+  }
+
+  .flag-card h4 {
+    color: #dc2626;
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .flag-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .victim-stories {
+    padding: var(--space-20) 0;
+  }
+
+  .stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-8);
+  }
+
+  .story-card {
+    background: white;
+    padding: var(--space-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border: 2px solid var(--color-warning);
+  }
+
+  .story-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid var(--color-neutral-100);
+  }
+
+  .victim-name {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+    font-size: 1.125rem;
+  }
+
+  .lost-amount {
+    background: #dc2626;
+    color: white;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-bold);
+    font-size: 0.875rem;
+  }
+
+  .story-content p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    font-style: italic;
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  .protection-tips {
+    background: var(--color-neutral-50);
+    padding: var(--space-20) 0;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .tip-card {
+    background: white;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border-top: 4px solid var(--color-success);
+  }
+
+  .tip-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .tip-card h4 {
+    color: var(--color-success);
+    margin-bottom: var(--space-3);
+    font-size: 1.125rem;
+  }
+
+  .tip-card p {
+    color: var(--color-neutral-600);
+    line-height: var(--line-height-relaxed);
+    margin: 0;
+  }
+
+  .legal-action {
+    padding: var(--space-16) 0;
+  }
+
+  .action-card {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    border-radius: var(--radius-xl);
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .action-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .action-content h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .action-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .legal-action .btn-outline {
+    border-color: white;
+    color: white;
+  }
+
+  .legal-action .btn-outline:hover {
+    background: white;
+    color: var(--color-primary);
+  }
+
+  .comments-section {
+    background: var(--color-neutral-50);
+    padding: var(--space-16) 0;
+  }
+
+  @media (max-width: 768px) {
+    .warning-title {
+      font-size: 2rem;
+    }
+
+    .english-name {
+      font-size: 1.125rem;
+    }
+
+    .warning-stats {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .details-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .action-buttons {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .action-buttons .btn {
+      width: 100%;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

@@ -20,6 +20,7 @@ export const journalists = [
     articles: [
       'abyan-capital-scam',
       'tradee-u-global-scam',
+      'fx-in',
       'wrpro-scam',
       'evest-scam',
       'axia-scam',
@@ -91,6 +92,7 @@ export function getJournalistArticles(journalistId) {
 export const articleTitles = {
   'abyan-capital-scam': 'تحذير من شركة أبيان المالية Abyan Capital',
   'tradee-u-global-scam': ' تحذير من شركة التداول TradeEU Global',
+  'fx-in': 'تحذير من شركة fx-in',
   'wrpro-scam': 'تحذير من شركة التداول WRPro',
   'evest-scam': 'تحذير من شركة إيفيست Evest',
   'axia-scam': 'تحذير من شركة اكسيا Axia',
